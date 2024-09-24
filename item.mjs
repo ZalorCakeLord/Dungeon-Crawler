@@ -43,6 +43,22 @@ export class Item {
             player.canRest = true
             player.restCooldown = 0
             messageLog.add(`You can now rest once every five turns. Resting will restore 10 health points.`);
+        }else if(this.effect.type === 'gamble'){
+            // 20% chance to double attack power. 20% chance to halve attack power. 60% chance to spawn a random enemy.
+            let chance = Math.random();
+            if(chance < 0.2){
+                player.attackPower *= 2;
+                messageLog.add(`You doubled your attack power!`);
+            }
+            else if(chance < 0.4){
+                player.attackPower /= 2;
+                messageLog.add(`You halved your attack power!`);
+            }
+            else{
+                messageLog.add(`You gambled and spawned a random enemy!`);
+                player.dungeon.spawnEnemy(`${player.dungeon.currentPosition.x},${player.dungeon.currentPosition.y}`);
+            }
+
         }else {
             messageLog.add('Invalid effect type!');
         }

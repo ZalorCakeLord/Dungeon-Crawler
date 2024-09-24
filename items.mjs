@@ -147,6 +147,7 @@ export const items = [
         "A sword forged in the light of a rare red moon. It holds mysterious powers, most potent under a blood-red sky."),
 
     new Item("Sleeping Bag", { type: "rest" }, "A warm, comfortable sleeping bag. Resting in it can restore a bit of health."),
+    new Item("Devil's Dice", { type: "gamble" }, "A set of dice said to be cursed by the devil. Rolling them can bring great fortune or terrible misfortune."),
 
     new Item("Ring of Bloodlust", { type: "health", value: 20 }, "A ring that pulses malevolently in your hand.", true, 10, true, "The moment you put on the ring you feel it leech your lifeforce. You lose 20 health, but gain 10 attack."),
 

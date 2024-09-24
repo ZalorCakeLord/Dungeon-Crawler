@@ -38,6 +38,36 @@ export class Dungeon {
         return this.map.get(`${x},${y}`);
     }
 
+    getAdjacentRooms(x, y) {
+        const directions = [
+            { x: 0, y: 1 },
+            { x: 1, y: 0 },
+            { x: 0, y: -1 },
+            { x: -1, y: 0 }
+        ];
+        return directions.map(dir => this.getRoom(x + dir.x, y + dir.y));
+    }
+
+    spawnEnemy(x, y) {
+        const room = this.getRoom(x, y);
+        if (!room.enemy) {
+            room.enemy = getRandomEnemy();
+        }
+    }
+
+    moveEnemyToNearbyRoom(x, y) {
+        const currentRoom = this.getRoom(x, y);
+        if (currentRoom.enemy) {
+            const adjacentRooms = this.getAdjacentRooms(x, y).filter(room => room.passable);
+            if (adjacentRooms.length > 0) {
+                const randomIndex = Math.floor(Math.random() * adjacentRooms.length);
+                const newRoom = adjacentRooms[randomIndex];
+                newRoom.enemy = currentRoom.enemy;
+                currentRoom.enemy = null;
+            }
+        }
+    }
+
     display() {
         const room = this.getRoom(this.currentPosition.x, this.currentPosition.y);
         console.log(`You are in ${room.description}.`);

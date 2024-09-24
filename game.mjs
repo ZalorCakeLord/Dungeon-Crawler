@@ -8,6 +8,7 @@ export class Game {
     constructor() {
         this.player = new Player();
         this.dungeon = new Dungeon(this.player);
+        this.player.dungeon = this.dungeon;
         this.startTime = null;
         this.endTime = null;
         this.statistics = {
@@ -57,6 +58,7 @@ export class Game {
         messageLog.nl();
         this.player = new Player();
         this.dungeon = new Dungeon(this.player);
+        this.player.dungeon = this.dungeon;
         this.startTime = new Date();
         messageLog.enemiesKilled = 0;
         this.statistics = {
@@ -91,6 +93,7 @@ export class Game {
                 messageLog.nl();
                 this.player = new Player();
                 this.dungeon = new Dungeon(this.player);
+                this.player.dungeon = this.dungeon;
                 this.startTime = new Date();
                 messageLog.enemiesKilled = 0;
                 this.statistics = {
@@ -182,6 +185,19 @@ export class Game {
                 break;
             default:
                 messageLog.add('Invalid action!');
+        }
+        for (let [key, room] of this.dungeon.map.entries()) {
+            const [x, y] = key.split(',').map(Number);
+            //the enemy in the same room as the player should not move if the player just attacked it
+            if (x === this.dungeon.currentPosition.x && y === this.dungeon.currentPosition.y) {
+                continue;
+            }
+            if (room.enemy) {
+                const chanceToMove = Math.random();
+                if (chanceToMove < 0.3) { // 30% chance to move
+                    this.dungeon.moveEnemyToNearbyRoom(x, y);
+                }
+            }
         }
     }
 
