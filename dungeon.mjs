@@ -25,8 +25,8 @@ export class Dungeon {
 
     generateRoom(x, y) {
         const description = Math.random() > 0.2 ? descriptions[Math.floor(Math.random() * descriptions.length)] : impassableDescriptions[Math.floor(Math.random() * impassableDescriptions.length)];
-        const enemy = Math.random() > 0.5 ? this.randomEnemy() : null;
-        const item = Math.random() > 0.5 ? this.randomItem() : null;
+        const enemy = Math.random() > 0.35 ? this.randomEnemy() : null; //raised odds of enemy spawn
+        const item = Math.random() > 0.5 ? this.randomItem() : null; //the lower the number, the higher the odds of item spawn
         const passable = !impassableDescriptions.includes(description);
         this.map.set(`${x},${y}`, { description, enemy, item, passable });
     }
@@ -58,7 +58,7 @@ export class Dungeon {
     moveEnemyToNearbyRoom(x, y) {
         const currentRoom = this.getRoom(x, y);
         if (currentRoom.enemy) {
-            const adjacentRooms = this.getAdjacentRooms(x, y).filter(room => room.passable);
+            const adjacentRooms = this.getAdjacentRooms(x, y).filter(room => room.passable && !room.enemy); // Check if the room is passable and does not already have an enemy
             if (adjacentRooms.length > 0) {
                 const randomIndex = Math.floor(Math.random() * adjacentRooms.length);
                 const newRoom = adjacentRooms[randomIndex];
@@ -137,6 +137,9 @@ export class Dungeon {
             if (Math.random() < 0.5) { // 50% chance to attack
                 room.enemy.attack(this.player);
                 messageLog.add(`==}The ${room.enemy.name} attacks you as you enter the room!{==`);
+                if (this.player.health <= 0) {
+                    messageLog.deathCause = room.enemy.name; // Set the cause of death
+                }
             }
         }
     }

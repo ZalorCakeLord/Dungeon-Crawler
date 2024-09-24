@@ -37,7 +37,7 @@ export class Game {
         return `${hours}:${minutes}:${seconds}`;
     }
 
-    gameLoop() {
+    async gameLoop() {
         while (!this.player.isDead()) {
             this.render();
             const action = this.getPlayerAction();
@@ -48,9 +48,11 @@ export class Game {
         //display what killed the player
         console.log(`You explored the dungeon for ${this.calculateTimeSpent()}!`);
         console.log(`You defeated ${messageLog.enemiesKilled} enemies and found ${this.statistics.itemsFound} items.`);
-        console.log(randomDeathMessage());
+        let deathCause = messageLog.deathCause;
+        console.log(randomDeathMessage(deathCause));
         //wait for any key to be pressed
-        this.prompt('Press any key to restart...');
+        console.log('Press any key to restart...');
+        await new Promise(resolve => process.stdin.once('data', resolve));
         messageLog.clear();
         messageLog.add('Restarting game...');
         messageLog.add('You explored the dungeon for ' + this.calculateTimeSpent() + '!');
@@ -194,7 +196,7 @@ export class Game {
             }
             if (room.enemy) {
                 const chanceToMove = Math.random();
-                if (chanceToMove < 0.3) { // 30% chance to move
+                if (chanceToMove < (1-room.enemy.speed)) { // chance to move is different for each enemy
                     this.dungeon.moveEnemyToNearbyRoom(x, y);
                 }
             }

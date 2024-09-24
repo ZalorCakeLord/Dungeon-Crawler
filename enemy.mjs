@@ -1,13 +1,14 @@
 import { messageLog } from './messageLog.mjs';
 
 export class Enemy {
-    constructor(name, health, attackPower, behavior, description, attackMessages) {
+    constructor(name, health, attackPower, behavior, description, attackMessages, speed) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
         this.behavior = behavior;
         this.description = description;
         this.attackMessages = attackMessages || [`The ${name} attacks you for ${attackPower} damage.`];
+        this.speed = speed;
     }
 
     
