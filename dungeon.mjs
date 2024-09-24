@@ -11,6 +11,7 @@ export class Dungeon {
         this.previousPosition = { x: 0, y: 0 };
         this.previousDirection = null;
         this.visitedRooms = new Set();
+        this.monsterSpawnCounter = 0
         this.generateRoom(this.currentPosition.x, this.currentPosition.y);
         this.visitedRooms.add(`${this.currentPosition.x},${this.currentPosition.y}`);
     }
@@ -25,8 +26,18 @@ export class Dungeon {
 
     generateRoom(x, y) {
         const description = Math.random() > 0.2 ? descriptions[Math.floor(Math.random() * descriptions.length)] : impassableDescriptions[Math.floor(Math.random() * impassableDescriptions.length)];
-        const enemy = Math.random() > 0.35 ? this.randomEnemy() : null; //raised odds of enemy spawn
-        const item = Math.random() > 0.5 ? this.randomItem() : null; //the lower the number, the higher the odds of item spawn
+        
+        // Adjust enemy spawn probability based on the monsterSpawnCounter
+        const enemySpawnProbability = Math.max(0.1, 0.35 - (this.monsterSpawnCounter * 0.05)); // Minimum probability of 0.1
+        const enemy = Math.random() < enemySpawnProbability ? this.randomEnemy() : null;
+        
+        if (enemy) {
+            this.monsterSpawnCounter++;
+        } else {
+            this.monsterSpawnCounter = Math.max(0, this.monsterSpawnCounter - 1); // Decrease counter if no enemy spawns
+        }
+
+        const item = Math.random() > 0.5 ? this.randomItem() : null; // The lower the number, the higher the odds of item spawn
         const passable = !impassableDescriptions.includes(description);
         this.map.set(`${x},${y}`, { description, enemy, item, passable });
     }

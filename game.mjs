@@ -70,7 +70,7 @@ export class Game {
     }
 
     render() {
-        console.log(`Health: ${this.player.health}  Attack Power: ${this.player.attackPower}\n`);
+        console.log(`Health: ${String(this.player.health).padStart(4, '0')}  Attack Power: ${String(this.player.attackPower).padStart(4, '0')}  Rooms Explored: ${String(this.dungeon.visitedRooms.size).padStart(4, '0')} \n Slain: ${String(messageLog.enemiesKilled).padStart(4, '0')}        Looted: ${String(this.statistics.itemsFound).padStart(4, '0')}  Spawn Probability: ${Math.max(0.1, 0.35 - (this.dungeon.monsterSpawnCounter * 0.05))}\n`);
         this.dungeon.displayMap();
         this.dungeon.display();
         messageLog.getMessages().forEach(message => console.log(message));
