@@ -1,7 +1,7 @@
 import { messageLog } from './messageLog.mjs';
 
 export class Enemy {
-    constructor(name, health, attackPower, behavior, description, attackMessages, speed) {
+    constructor(name, health, attackPower, behavior, description, attackMessages, speed, deathMessages) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
@@ -9,11 +9,16 @@ export class Enemy {
         this.description = description;
         this.attackMessages = attackMessages || [`The ${name} attacks you for ${attackPower} damage.`];
         this.speed = speed;
+        this.deathMessages = deathMessages || [`You killed the ${name}.`, `The ${name} is dead.`,`The ${name} has fallen!`];
     }
 
     
     randomAttackMessage() {
         return this.attackMessages[Math.floor(Math.random() * this.attackMessages.length)];
+    }
+
+    randomDeathMessage() {
+        return this.deathMessages[Math.floor(Math.random() * this.deathMessages.length)];
     }
 
 
@@ -80,7 +85,8 @@ export class Enemy {
                 player.attackPower += Math.floor(messageLog.enemiesKilled / 50)
                 player.health += Math.floor(messageLog.enemiesKilled / 50)
             }
-            messageLog.add(`The ${this.name} is dead.`);
+
+            messageLog.add(this.randomDeathMessage());
         } else {
             messageLog.add(`The ${this.name} has ${this.health} health left.`);
         }

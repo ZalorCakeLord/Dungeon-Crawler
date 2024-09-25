@@ -1,3 +1,4 @@
+import { deathMessages } from './deathMessages.mjs';
 import { Enemy } from './enemy.mjs';
 
 const enemyDefinitions = [
@@ -9,6 +10,13 @@ const enemyDefinitions = [
             'A stream of flame erupts from the Dragon’s maw, scorching you for {amount} damage!',
             'The ground trembles as the Dragon crashes into you, dealing {amount} damage!'
         ],
+        deathMessages: [
+            'The Dragon lets out a final roar as it falls to the ground, defeated.',
+            'With a mighty crash, the Dragon collapses, its fire extinguished.',
+            'The great beast falls, its scales dulled and lifeless.',
+            'A thunderous silence follows as the Dragon takes its last breath.',
+            'The Dragon crumples, its ancient eyes dimming as it succumbs.'
+        ],
         speed: 0.25
     },
     {
@@ -18,6 +26,13 @@ const enemyDefinitions = [
             'The Wily Fox circles around you, landing a hit for {amount} damage!',
             'A flash of fur and teeth, and the Wily Fox bites you for {amount} damage!',
             'The Wily Fox moves with blinding speed, dealing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Wily Fox collapses, its cunning gaze fading into the shadows.',
+            'With a final yelp, the Wily Fox falls, defeated by your hand.',
+            'The sly creature lies still, its mischievous spirit extinguished.',
+            'The cunning fox’s last breath escapes as it succumbs to its wounds.',
+            'The Wily Fox’s body goes limp, its cleverness lost forever.'
         ],
         speed: 0.75
     },
@@ -29,6 +44,13 @@ const enemyDefinitions = [
             'A heavy blow from the Troll lands, dealing {amount} damage!',
             "The Troll's fists slam into you, dealing {amount} damage!"
         ],
+        deathMessages: [
+            'The Troll lets out a final roar, crashing to the ground with a heavy thud.',
+            'With a last desperate swing, the Troll falls, its might extinguished.',
+            'The massive creature crumples, its gnarled fists falling still.',
+            'The ground shakes as the Troll collapses, its power finally broken.',
+            'The Troll’s breath slows, and it slumps to the ground, defeated.'
+        ],
         speed: 0.5
     },
     {
@@ -38,6 +60,13 @@ const enemyDefinitions = [
             "The Skeleton's bony fingers claw at you, inflicting {amount} damage!",
             "A bone-rattling blow from the Skeleton deals {amount} damage!",
             "The Skeleton's eyes glow with dark energy as it strikes you for {amount} damage!"
+        ],
+        deathMessages: [
+            'The Skeleton falls apart, its bones scattering across the ground.',
+            'With a final clatter, the Skeleton crumbles into a heap of bones.',
+            'The dark magic fades, leaving only scattered bones behind.',
+            'The rattle of bones goes silent as the Skeleton succumbs to defeat.',
+            'The skeletal warrior collapses, its enchanted form returning to dust.'
         ],
         speed: 0.6
     },
@@ -49,6 +78,13 @@ const enemyDefinitions = [
             "A dark mist surrounds the Vampire as it deals {amount} damage!",
             "The Vampire's eyes gleam with hunger as it strikes you for {amount} damage!"
         ],
+        deathMessages: [
+            'The Vampire lets out a final hiss, collapsing into a heap of shadows.',
+            'With a final gasp, the Vampire disintegrates into a cloud of dust.',
+            'The allure of the night fades as the Vampire falls to the ground.',
+            'The once-mighty creature crumbles, its power extinguished.',
+            'The pale figure lies still, its hunger for blood forever silenced.'
+        ],
         speed: 0.4
     },
     {
@@ -58,6 +94,13 @@ const enemyDefinitions = [
             "The Wolf circles around you, landing a hit for {amount} damage!",
             "A flash of fur and teeth, and the Wolf bites you for {amount} damage!",
             "The Wolf moves with blinding speed, dealing {amount} damage!"
+        ],
+        deathMessages: [
+            'The Wolf lets out a final growl, collapsing in defeat.',
+            'With a last desperate lunge, the Wolf falls, its spirit extinguished.',
+            'The fierce creature slumps to the ground, its eyes dimming.',
+            'The howl of the Wolf fades into silence as it succumbs.',
+            'The gray wolf lies still, its fierce heart stilled forever.'
         ],
         speed: 0.7
     },
@@ -69,6 +112,13 @@ const enemyDefinitions = [
             "A putrid stench surrounds the Zombie as it deals {amount} damage!",
             "The Zombie's eyes glow with malevolent light as it strikes you for {amount} damage!"
         ],
+        deathMessages: [
+            'The Zombie crumbles into a heap of decayed flesh and bones.',
+            'With a final moan, the Zombie collapses, its curse lifted.',
+            'The shambling creature goes still, its unholy life extinguished.',
+            'The decay fades as the Zombie falls, a putrid silence left behind.',
+            'The undead horror lies motionless, its hunger finally sated.'
+        ],
         speed: 0.1
     },
     {
@@ -79,35 +129,68 @@ const enemyDefinitions = [
             "A venomous bite from the Serpent deals {amount} damage!",
             "The Serpent moves with blinding speed, dealing {amount} damage!"
         ],
+        deathMessages: [
+            'The Serpent coils up one last time before falling lifeless.',
+            'With a final hiss, the Serpent drops to the ground, defeated.',
+            'The gleaming scales dull as the Serpent succumbs to its wounds.',
+            'The agile creature lies still, its life force slipping away.',
+            'The Serpent’s eyes dim, and it collapses in a lifeless heap.'
+        ],
         speed: 0.8
     },
     {
         name: 'Dark Knight', health: 80, attackPower: 20, behavior: 'defensive', description: 'A knight in pitch-black armor, standing motionless with sword in hand. A dark aura surrounds it.', attackMessages: [
             "The Dark Knight's sword slashes, dealing {amount} damage!",
             "With a swift motion, the Dark Knight strikes you for {amount} damage!",
-            "The Dark Knight's shield bashes you, inflicting {amount} damage!",
-            "An ominous aura surrounds the Dark Knight as it deals {amount} damage!",
-            "The Dark Knight's eyes gleam with malice as it strikes you for {amount} damage!"
+            "The Dark Knight's shield blocks your attack and counters for {amount} damage!",
+            "A powerful blow from the Dark Knight lands, dealing {amount} damage!",
+            "The Dark Knight's eyes glow with dark energy as it strikes you for {amount} damage!"
         ],
-        speed: 0.3
+        deathMessages: [
+            'The Dark Knight lets out a final cry as it collapses, its armor clattering.',
+            'With a last desperate swing, the Dark Knight falls, its power extinguished.',
+            'The knight crumples, its dark aura dissipating into the air.',
+            'The ground shakes as the Dark Knight falls, its might finally broken.',
+            'The Dark Knight’s breath slows, and it slumps to the ground, defeated.'
+        ],
+        speed: 0.5
     },
     {
-        name: 'Elemental', health: 55, attackPower: 17, behavior: 'aggressive', description: 'A being of swirling air and fire, its form constantly shifting. Its roar echoes like thunder.', attackMessages: [
-            'The Elemental hurls a bolt of fire, scorching you for {amount} damage!',
-            'With a roar, the Elemental slams into you, causing {amount} damage!',
-            'The Elemental’s swirling flames burn you, dealing {amount} damage!',
-            'A surge of lightning from the Elemental shocks you for {amount} damage!',
-            'The wind from the Elemental slams into you, inflicting {amount} damage!'
+        name: 'Ghost', health: 25, attackPower: 5, behavior: 'evasive', description: 'A wispy figure, drifting through the air with a mournful wail. Its presence sends shivers down your spine.', attackMessages: [
+            "The Ghost reaches out with icy fingers, dealing {amount} damage!",
+            "With a chilling wail, the Ghost strikes you for {amount} damage!",
+            "The Ghost's haunting presence drains your spirit, inflicting {amount} damage!",
+            "A cold breeze surrounds the Ghost as it deals {amount} damage!",
+            "The Ghost vanishes and reappears, hitting you for {amount} damage!"
+        ],
+        deathMessages: [
+            'The Ghost lets out a final wail, fading into nothingness.',
+            'With a last shiver, the Ghost disappears, its haunting lifted.',
+            'The ethereal figure dissolves, leaving behind a faint whisper.',
+            'The ghostly apparition crumples, its energy returning to the void.',
+            'The Ghost’s chilling presence vanishes, a silence left in its wake.'
         ],
         speed: 0.6
-    },
+    },    
     {
-        name: 'Griffin', health: 75, attackPower: 19, behavior: 'aggressive', description: 'A majestic beast with the head of an eagle and the body of a lion. It screeches as it spreads its wings.', attackMessages: [
+        name: 'Griffin',
+        health: 75,
+        attackPower: 19,
+        behavior: 'aggressive',
+        description: 'A majestic beast with the head of an eagle and the body of a lion. It screeches as it spreads its wings.',
+        attackMessages: [
             'The Griffin swoops down and slashes you with its talons, dealing {amount} damage!',
             'With a deafening screech, the Griffin lunges, its beak striking you for {amount} damage!',
             'The Griffin’s powerful claws tear into you, causing {amount} damage!',
             'The wind from the Griffin’s wings knocks you down, as it bites you for {amount} damage!',
             'The Griffin dives from above, its claws ripping into your flesh for {amount} damage!'
+        ],
+        deathMessages: [
+            'The Griffin lets out a final screech, collapsing as its wings fold.',
+            'With a heavy thud, the Griffin falls to the ground, its majestic form lifeless.',
+            'The last breath of the Griffin escapes in a cloud of feathers as it falls.',
+            'The mighty creature crashes down, its spirit returning to the skies above.',
+            'The Griffin’s roar fades into silence, its body sprawled across the ground.'
         ],
         speed: 0.5
     },
@@ -120,6 +203,13 @@ const enemyDefinitions = [
         attackMessages: [
             'The Slime splashes you with acidic goo, dealing {amount} damage!',
             'A ripple of slime wraps around your ankle, dissolving your skin for {amount} damage!'
+        ],
+        deathMessages: [
+            'The Slime loses its form, collapsing into a puddle with a final splatter.',
+            'With a squelching sound, the Slime dissolves into nothingness.',
+            'The Slime quivers and bursts, its gooey remnants spreading across the floor.',
+            'The Slime’s mass dissipates, leaving behind a faint, acrid smell.',
+            'The gelatinous creature bubbles and fades, leaving only a slick residue.'
         ],
         speed: 0.2
     },
@@ -134,6 +224,13 @@ const enemyDefinitions = [
             'With a quick lunge, the Bandit stabs at your side, dealing {amount} damage!',
             'The Bandit throws a dagger, which cuts into you for {amount} damage!'
         ],
+        deathMessages: [
+            'The Bandit falls, clutching a wound, his greed extinguished.',
+            'With a final gasp, the Bandit collapses, his dagger slipping from his grasp.',
+            'The sneaky figure crumples to the ground, eyes wide with surprise.',
+            'The Bandit’s last breath escapes, leaving his plans unfulfilled.',
+            'The shadowy figure goes limp, the glint of greed fading from his eyes.'
+        ],
         speed: 0.7
     },
     {
@@ -146,6 +243,13 @@ const enemyDefinitions = [
             'The Minotaur charges, its horns goring you for {amount} damage!',
             'With a mighty swing of its axe, the Minotaur hits you for {amount} damage!',
             'The Minotaur roars and smashes its fist into you, causing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Minotaur lets out a final bellow, collapsing under its own weight.',
+            'With a thunderous crash, the beast falls, its fury extinguished.',
+            'The creature roars once more before crumpling, its power waning.',
+            'The Minotaur’s body shudders and falls, the ground trembling beneath it.',
+            'The towering figure falls silent, its massive form a lifeless heap.'
         ],
         speed: 0.4
     },
@@ -160,6 +264,13 @@ const enemyDefinitions = [
             'Her wail pierces your mind, causing {amount} damage!',
             'The Banshee’s ethereal hand passes through your chest, draining {amount} damage!'
         ],
+        deathMessages: [
+            'The Banshee’s wail fades to silence, her form dissipating into the air.',
+            'With one last mournful cry, the Banshee fades into nothingness.',
+            'The ghostly figure shudders and vanishes, leaving only an eerie stillness.',
+            'Her final scream echoes and then falls silent, the haunting lifted.',
+            'The Banshee’s essence disperses, her cries no longer haunting the night.'
+        ],
         speed: 0.8
     },
     {
@@ -172,6 +283,13 @@ const enemyDefinitions = [
             'The Lich hurls a bolt of dark energy at you, dealing {amount} damage!',
             'A curse from the Lich weakens your body, causing {amount} damage!',
             'With a flick of its skeletal fingers, the Lich summons shadows to attack, dealing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Lich crumbles to dust, its dark power fading into the ether.',
+            'With a final hiss, the Lich collapses, its dark magic extinguished.',
+            'The undead sorcerer collapses, its robes fluttering to the ground.',
+            'The last remnants of dark magic dissipate as the Lich falls silent.',
+            'The Lich’s skeletal frame crumbles, shadows retreating into the darkness.'
         ],
         speed: 0.3
     },
@@ -186,6 +304,13 @@ const enemyDefinitions = [
             'A web shot from the Giant Spider entangles you, leaving you vulnerable as it bites for {amount} damage!',
             'The Giant Spider’s massive leg strikes you, causing {amount} damage!'
         ],
+        deathMessages: [
+            'The Giant Spider collapses, its legs twitching before going still.',
+            'With a final hiss, the massive creature falls, its fangs slackening.',
+            'The spider’s body goes limp, venom pooling around it as it breathes its last.',
+            'The Giant Spider’s form shudders before collapsing, its threat ended.',
+            'Its many eyes dim as the Giant Spider falls, leaving only silence.'
+        ],
         speed: 0.6
     },
     {
@@ -199,9 +324,15 @@ const enemyDefinitions = [
             'With a swift dive, the Harpy scratches your face for {amount} damage!',
             'The Harpy swoops low and rakes you with its claws, causing {amount} damage!'
         ],
+        deathMessages: [
+            'The Harpy lets out a final screech, collapsing to the ground as its wings fold.',
+            'With a pained cry, the Harpy crashes to the earth, its wings still.',
+            'The creature falls, feathers scattered, its voice silenced forever.',
+            'The Harpy’s form crumples, leaving only echoes of its wicked calls.',
+            'The once-mighty screech fades as the Harpy lies still, its wings spread wide.'
+        ],
         speed: 0.7
-    }
-    ,
+    },
     {
         name: 'Warlock',
         health: 55,
@@ -212,6 +343,11 @@ const enemyDefinitions = [
             'The Warlock hurls a ball of black fire at you, scorching for {amount} damage!',
             'Dark incantations echo as the Warlock sends a wave of magic, causing {amount} damage!',
             'The Warlock chants, and a fiery explosion erupts beneath you, dealing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Warlock collapses, its dark magic dissipating into the air.',
+            'With a final, anguished scream, the Warlock crumples to the ground.',
+            'The flames surrounding the Warlock extinguish as it falls, leaving only ashes behind.'
         ],
         speed: 0.5
     },
@@ -226,6 +362,11 @@ const enemyDefinitions = [
             'With a powerful beat of its wings, the Wyvern knocks you off your feet, slashing for {amount} damage!',
             'The Wyvern’s tail strikes like a whip, delivering {amount} damage!'
         ],
+        deathMessages: [
+            'The Wyvern lets out a final roar before crashing to the ground, its wings folding in defeat.',
+            'Its venomous fangs lose their bite as the Wyvern collapses, lifeless on the ground.',
+            'With a shudder, the Wyvern falls from the sky, its body hitting the earth with a thunderous thud.'
+        ],
         speed: 0.4
     },
     {
@@ -238,6 +379,11 @@ const enemyDefinitions = [
             'The Gargoyle leaps from its perch, smashing into you for {amount} damage!',
             'With a flap of its stone wings, the Gargoyle strikes, delivering {amount} damage!',
             'The Gargoyle hurls a chunk of stone at you, causing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Gargoyle shatters into pieces, its stone form crumbling at your feet.',
+            'With a final groan, the Gargoyle collapses back to its stony form, lifeless.',
+            'The glow in the Gargoyle’s eyes fades as it becomes just another statue.'
         ],
         speed: 0.3
     },
@@ -252,6 +398,11 @@ const enemyDefinitions = [
             'Its long, sticky tongue lashes out, pulling you closer as it gnashes for {amount} damage!',
             'With a violent shake, the Mimic strikes you with its heavy chest, dealing {amount} damage!'
         ],
+        deathMessages: [
+            'The Mimic’s jaws snap shut for the last time, and it falls silent, reverting to a normal chest.',
+            'Its form quivers, and with a final groan, the Mimic collapses, no longer animated.',
+            'With a squelch, the Mimic deflates, leaving behind only a mundane treasure chest.'
+        ],
         speed: 0
     },
     {
@@ -264,6 +415,11 @@ const enemyDefinitions = [
             'The Cyclops swings its massive club down, crushing you for {amount} damage!',
             'With a mighty roar, the Cyclops charges, slamming into you for {amount} damage!',
             'The Cyclops grabs a boulder and hurls it at you, dealing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Cyclops stumbles, its massive frame crashing to the ground with a thunderous impact.',
+            'With a final, pained cry, the Cyclops falls, its single eye dimming.',
+            'The Cyclops collapses, shaking the earth as its club drops from its grasp.'
         ],
         speed: 0.2
     },
@@ -278,6 +434,11 @@ const enemyDefinitions = [
             'A cold wind follows the Phantom’s touch, chilling your soul for {amount} damage!',
             'The Phantom’s shadowy form envelops you, draining {amount} damage!'
         ],
+        deathMessages: [
+            'The Phantom dissipates into mist, leaving no trace of its presence.',
+            'With a soft sigh, the Phantom fades away, returning to the void.',
+            'As if caught in a breeze, the Phantom vanishes, leaving only silence behind.'
+        ],
         speed: 0.8
     },
     {
@@ -291,7 +452,12 @@ const enemyDefinitions = [
             'With a slow but heavy punch, the Cursed Statue strikes you for {amount} damage!',
             'A magical energy pulse from the Cursed Statue deals {amount} damage!'
         ],
-        speed:0
+        deathMessages: [
+            'The Cursed Statue crumbles to the ground, the curse finally lifted.',
+            'With a shudder, the Cursed Statue cracks and falls apart, revealing nothing but dust.',
+            'The magical energy fades, and the Cursed Statue collapses, now just a pile of stone.'
+        ],
+        speed: 0
     },
     {
         name: 'Basilisk',
@@ -304,6 +470,11 @@ const enemyDefinitions = [
             'The Basilisk coils around you, squeezing for {amount} damage!',
             'Its deadly gaze briefly meets yours, and pain shoots through you for {amount} damage!'
         ],
+        deathMessages: [
+            'The Basilisk thrashes in its death throes before falling still, its gaze forever blank.',
+            'With a final hiss, the Basilisk collapses, its deadly eyes dimming.',
+            'The creature succumbs, its serpentine body going limp as the venom runs dry.'
+        ],
         speed: 0.6
     },
     {
@@ -315,7 +486,14 @@ const enemyDefinitions = [
         attackMessages: [
             'The Ogre slams its massive fist into you, crushing for {amount} damage!',
             'With a roar, the Ogre swings a heavy club, smashing into you for {amount} damage!',
-            'The ground shakes as the Ogre stomps, dealing {amount} damage!'
+            'The ground shakes as the Ogre stomps, dealing {amount} damage!',
+            'The Ogre charges forward, tackling you with brutal force for {amount} damage!',
+            'With a wild swing of its arm, the Ogre catches you off guard, causing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Ogre lets out a final roar as it crashes to the ground, lifeless.',
+            'With a heavy thud, the Ogre falls, shaking the earth beneath you.',
+            'You watch as the massive form of the Ogre crumbles, its reign of terror ended.'
         ],
         speed: 0.4
     },
@@ -328,7 +506,14 @@ const enemyDefinitions = [
         attackMessages: [
             'A flash of steel cuts through the air as the Shadow Assassin strikes, dealing {amount} damage!',
             'From the shadows, the assassin slashes, leaving you with {amount} damage!',
-            'A quick and deadly strike from behind leaves you reeling for {amount} damage!'
+            'A quick and deadly strike from behind leaves you reeling for {amount} damage!',
+            'The Shadow Assassin vanishes into the darkness, reappearing to stab you for {amount} damage!',
+            'With swift precision, the assassin throws a dagger, hitting you for {amount} damage!'
+        ],
+        deathMessages: [
+            'The Shadow Assassin collapses, their form fading into the shadows.',
+            'With a final, silent gasp, the assassin falls, leaving no trace behind.',
+            'You see the glint of steel dim as the Shadow Assassin succumbs to defeat.'
         ],
         speed: 0.8
     },
@@ -341,7 +526,14 @@ const enemyDefinitions = [
         attackMessages: [
             'The Fire Elemental engulfs you in flames, burning for {amount} damage!',
             'With a burst of heat, the Fire Elemental sears your skin, causing {amount} damage!',
-            "Flames lick at you as the Fire Elemental's fiery form closes in, burning for {amount} damage!"
+            'Flames lick at you as the Fire Elemental\'s fiery form closes in, burning for {amount} damage!',
+            'The Fire Elemental erupts in a fiery explosion, catching you in the blast for {amount} damage!',
+            'With a flick of its fiery limbs, it sends a wave of flames crashing into you, dealing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Fire Elemental sputters and collapses, its flames flickering out.',
+            'With a final roar, the elemental bursts into a shower of sparks before fading away.',
+            'The fire dims as the elemental falls, leaving behind only ash and smoke.'
         ],
         speed: 0.5
     },
@@ -352,9 +544,16 @@ const enemyDefinitions = [
         behavior: 'defensive',
         description: 'A towering figure made entirely of shimmering crystal. Each blow reflects light in a dazzling array of colors.',
         attackMessages: [
-            "The Crystal Golem's heavy fist strikes with crushing force, dealing {amount} damage!",
+            'The Crystal Golem\'s heavy fist strikes with crushing force, dealing {amount} damage!',
             'A shining arm smashes into you as the Crystal Golem moves, causing {amount} damage!',
-            'The Crystal Golem swings its gleaming body, delivering {amount} damage!'
+            'The Crystal Golem swings its gleaming body, delivering {amount} damage!',
+            'The golem charges forward, tackling you with its solid form for {amount} damage!',
+            'With a sharp movement, the Golem sends shards of crystal flying at you, dealing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Crystal Golem shatters into a thousand sparkling pieces, falling silent.',
+            'With a heavy crash, the golem crumbles, its shards glimmering in the light.',
+            'You watch as the once-mighty figure collapses, leaving only scattered crystals behind.'
         ],
         speed: 0.3
     },
@@ -365,9 +564,16 @@ const enemyDefinitions = [
         behavior: 'evasive',
         description: 'A ghostly figure with sunken eyes and skeletal fingers. It drifts across the battlefield, feeding on the life force of the living.',
         attackMessages: [
-            "The Wraith's cold touch drains your life force, causing {amount} damage!",
+            'The Wraith\'s cold touch drains your life force, causing {amount} damage!',
             'The Wraith hovers close, sapping your vitality for {amount} damage!',
-            'You feel your life force ebbing as the Wraith feeds, dealing {amount} damage!'
+            'You feel your life force ebbing as the Wraith feeds, dealing {amount} damage!',
+            'A chilling wail escapes the Wraith as it strikes, causing {amount} damage!',
+            "The Wraith's presence chills your bones as it deals {amount} damage!"
+        ],
+        deathMessages: [
+            'The Wraith lets out a final, haunting wail before dissolving into mist.',
+            'With a shudder, the Wraith vanishes, leaving only silence in its wake.',
+            'You see the Wraith dissipate into shadows, its hunger finally sated.'
         ],
         speed: 0.8
     },
@@ -380,7 +586,14 @@ const enemyDefinitions = [
         attackMessages: [
             'The Ghoul bites into your flesh, tearing for {amount} damage!',
             'The Ghoul claws at you savagely, dealing {amount} damage!',
-            'The stench of decay fills the air as the Ghoul attacks, causing {amount} damage!'
+            'The stench of decay fills the air as the Ghoul attacks, causing {amount} damage!',
+            'With a vicious snarl, the Ghoul lunges at you, dealing {amount} damage!',
+            'The Ghoul emits a guttural growl as it strikes, causing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Ghoul collapses, its body decomposing into the ground.',
+            'With a final, desperate screech, the Ghoul falls still, its hunger unfulfilled.',
+            'The smell of decay fades as the Ghoul crumples into a lifeless heap.'
         ],
         speed: 0.6
     },
@@ -393,10 +606,17 @@ const enemyDefinitions = [
         attackMessages: [
             'The Stone Guardian swings a heavy arm, smashing you for {amount} damage!',
             'With a slow but powerful blow, the Stone Guardian strikes for {amount} damage!',
-            "The Guardian's stone fist crushes into you, dealing {amount} damage!"
+            'The Guardian\'s stone fist crushes into you, dealing {amount} damage!',
+            'The Stone Guardian stomps forward, its weight crashing down for {amount} damage!',
+            'With a fierce growl, the Guardian slams its arm into you, dealing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Stone Guardian shatters, its pieces scattering across the ground.',
+            'With a deep rumble, the Guardian crumbles, leaving behind only rubble.',
+            'You watch as the ancient sentinel falls, its duty finally complete.'
         ],
         speed: 0
-    },
+    },    
     {
         name: 'Demon Hound',
         health: 55,
@@ -406,7 +626,14 @@ const enemyDefinitions = [
         attackMessages: [
             'The Demon Hound bites down with fiery fangs, dealing {amount} damage!',
             'With a snarl, the Demon Hound tears into your flesh for {amount} damage!',
-            "The Demon Hound's molten saliva burns your skin, causing {amount} damage!"
+            "The Demon Hound's molten saliva burns your skin, causing {amount} damage!",
+            'The Demon Hound lunges at you, claws raking for {amount} damage!',
+            'With a vicious growl, it snaps at you, inflicting {amount} damage!'
+        ],
+        deathMessages: [
+            'The Demon Hound lets out a final howl as it crumples to the ground!',
+            'With a burst of flames, the Demon Hound is vanquished, leaving only ashes behind.',
+            'The once ferocious Demon Hound falls silent, its glowing eyes dimming.'
         ],
         speed: 0.7
     },
@@ -419,7 +646,14 @@ const enemyDefinitions = [
         attackMessages: [
             "The Frost Giant's club crashes into you with freezing force, causing {amount} damage!",
             'A chilling wind follows as the Frost Giant smashes its weapon down, dealing {amount} damage!',
-            "The Frost Giant's icy touch freezes you, inflicting {amount} damage!"
+            "The Frost Giant's icy touch freezes you, inflicting {amount} damage!",
+            'With a massive swing, the Frost Giant sends icy shards flying, dealing {amount} damage!',
+            'The Frost Giant stomps down, sending a blast of frost that deals {amount} damage!'
+        ],
+        deathMessages: [
+            'The Frost Giant lets out a last icy breath before crumbling into a pile of snow and ice.',
+            'With a thunderous crash, the Frost Giant falls, shattering upon impact.',
+            'The colossal form of the Frost Giant collapses, ice shards scattering everywhere.'
         ],
         speed: 0.4
     },
@@ -432,7 +666,14 @@ const enemyDefinitions = [
         attackMessages: [
             'The Arcane Construct releases a burst of magical energy, dealing {amount} damage!',
             'A rune-covered arm swings mechanically, striking you for {amount} damage!',
-            "The Arcane Construct's body pulses with power as it strikes, causing {amount} damage!"
+            "The Arcane Construct's body pulses with power as it strikes, causing {amount} damage!",
+            'With a whirring sound, it unleashes a barrage of arcane bolts, dealing {amount} damage!',
+            'The construct charges up and delivers a powerful magical punch, inflicting {amount} damage!'
+        ],
+        deathMessages: [
+            'The Arcane Construct shudders, its runes flickering before going dark.',
+            'With a final spark, the Arcane Construct collapses, its magic dissipating into the air.',
+            'The mechanical figure falls apart, gears and runes scattered across the ground.'
         ],
         speed: 0
     },
@@ -445,7 +686,14 @@ const enemyDefinitions = [
         attackMessages: [
             "The Necromancer's dark magic strikes you with a wave of necrotic energy, causing {amount} damage!",
             'Skeletal hands rise from the ground, clawing at you for {amount} damage!',
-            'The Necromancer sends a blast of black energy, dealing {amount} damage!'
+            'The Necromancer sends a blast of black energy, dealing {amount} damage!',
+            'With a sinister chant, the Necromancer releases a dark wave, causing {amount} damage!',
+            'A burst of deathly energy envelops you, inflicting {amount} damage!'
+        ],
+        deathMessages: [
+            'The Necromancer crumbles into bones, their dark magic finally extinguished.',
+            'With a final gasp, the Necromancer falls, its power fading away.',
+            'The skeletal figure shatters, leaving only a whisper of dark energy behind.'
         ],
         speed: 0.3
     },
@@ -458,7 +706,14 @@ const enemyDefinitions = [
         attackMessages: [
             'The Dire Wolf pounces, sinking its teeth into you for {amount} damage!',
             'With a snarl, the Dire Wolf claws at you, dealing {amount} damage!',
-            "The Dire Wolf's powerful bite tears through your defenses, causing {amount} damage!"
+            "The Dire Wolf's powerful bite tears through your defenses, causing {amount} damage!",
+            'It howls and lunges, crashing into you for {amount} damage!',
+            'With feral agility, the Dire Wolf whips around and delivers a fierce bite, dealing {amount} damage!'
+        ],
+        deathMessages: [
+            'The Dire Wolf collapses, its growl fading into silence.',
+            'With a final howl, the Dire Wolf falls, its eyes losing their fierce light.',
+            'The great beast slumps to the ground, still and lifeless.'
         ],
         speed: 0.7
     },
@@ -471,7 +726,14 @@ const enemyDefinitions = [
         attackMessages: [
             'The Living Armor swings its sword, striking you for {amount} damage!',
             'An iron gauntlet punches forward, dealing {amount} damage!',
-            'With a hollow clang, the Living Armor slams into you for {amount} damage!'
+            'With a hollow clang, the Living Armor slams into you for {amount} damage!',
+            'The armor stomps forward, delivering a crushing blow for {amount} damage!',
+            'A blade of spectral energy emerges from the armor, cutting deep for {amount} damage!'
+        ],
+        deathMessages: [
+            'The Living Armor collapses, its metal body clanging noisily as it falls.',
+            'With a final echoing clang, the armor falls apart, leaving only silence.',
+            'The dark magic fades, causing the armor to collapse into a heap.'
         ],
         speed: 0.2
     },
@@ -484,7 +746,14 @@ const enemyDefinitions = [
         attackMessages: [
             'The Rogue Sorcerer hurls a fireball at you, causing {amount} damage!',
             'Lightning crackles as the Sorcerer summons a bolt, dealing {amount} damage!',
-            'With a flick of his wrist, the Sorcerer sends a blast of arcane energy, causing {amount} damage!'
+            'With a flick of his wrist, the Sorcerer sends a blast of arcane energy, causing {amount} damage!',
+            'He gestures wildly, unleashing a torrent of flame that deals {amount} damage!',
+            'The Sorcerer weaves through the air, striking you with a bolt of raw energy for {amount} damage!'
+        ],
+        deathMessages: [
+            'The Rogue Sorcerer falls to the ground, his last spell fizzling out.',
+            'With a final scream, the Sorcerer is engulfed in his own flames.',
+            'The once-powerful mage collapses, his corrupted energy dissipating into the ether.'
         ],
         speed: 0.8
     },
@@ -497,10 +766,17 @@ const enemyDefinitions = [
         attackMessages: [
             'A vine lashes out, whipping you for {amount} damage!',
             'The Plant snaps its tooth-lined petals, biting down for {amount} damage!',
-            "Venom drips from the Plant's fangs as it strikes, causing {amount} damage!"
+            "Venom drips from the Plant's fangs as it strikes, causing {amount} damage!",
+            'The plant entangles you with its vines, dealing {amount} damage!',
+            'With a sudden snap, the plant attacks, inflicting {amount} damage!'
+        ],
+        deathMessages: [
+            'The Man-Eating Plant wilts, its vines falling limp as it succumbs.',
+            'With a final shudder, the plant collapses, its teeth clattering to the ground.',
+            'The carnivorous plant withers away, leaving nothing but a pile of leaves.'
         ],
         speed: 0
-    },
+    },    
     {
         name: 'Chimera',
         health: 150,
@@ -512,8 +788,194 @@ const enemyDefinitions = [
             "The Chimera's snake head strikes with deadly venom, causing {amount} damage!",
             "The Chimera's goat head rams into you, delivering {amount} damage!"
         ],
+        deathMessages: [
+            "The Chimera lets out a final roar before collapsing.",
+            "With a defeated cry, the Chimera falls, its heads drooping lifelessly.",
+            "The once fearsome Chimera crumbles into a heap of defeated flesh."
+        ],
         speed: 0.6
     },
+    {
+        name: 'Wraith',
+        health: 90,
+        attackPower: 40,
+        behavior: 'passive',
+        description: 'A haunting spirit cloaked in shadows, it glides silently through the air, seeking the souls of the living.',
+        attackMessages: [
+            "The Wraith reaches out with icy fingers, dealing {amount} damage!",
+            "A chilling wail echoes as the Wraith drains your life force, causing {amount} damage!",
+            "The Wraith's touch is like ice, delivering {amount} damage!"
+        ],
+        deathMessages: [
+            "The Wraith dissipates into mist, its scream fading into silence.",
+            "With a final, anguished wail, the Wraith fades from existence.",
+            "The Wraith's form crumbles into shadows, leaving only a whisper behind."
+        ],
+        speed: 0.8
+    },
+    {
+        name: 'Minotaur',
+        health: 160,
+        attackPower: 70,
+        behavior: 'aggressive',
+        description: 'A towering beast with the body of a man and the head of a bull, it charges with immense force through the labyrinth.',
+        attackMessages: [
+            "The Minotaur charges forward, goring you with its horns for {amount} damage!",
+            "With a furious bellow, the Minotaur slams into you, dealing {amount} damage!",
+            "The Minotaur swings its mighty fists, causing {amount} damage!"
+        ],
+        deathMessages: [
+            "The Minotaur collapses, its massive body thudding against the ground.",
+            "With a final roar, the Minotaur falls, shaking the earth beneath.",
+            "The Minotaur's last breath escapes in a low groan as it succumbs."
+        ],
+        speed: 0.4
+    },
+    {
+        name: 'Eldritch Horror',
+        health: 200,
+        attackPower: 100,
+        behavior: 'defensive',
+        description: 'A twisting mass of tentacles and eyes that defies comprehension, its mere presence induces madness.',
+        attackMessages: [
+            "The Eldritch Horror lashes out with a tentacle, dealing {amount} damage!",
+            "An eye opens wide, unleashing a psychic scream that causes {amount} damage!",
+            "The ground quakes as the Eldritch Horror shifts, dealing {amount} damage!"
+        ],
+        deathMessages: [
+            "The Eldritch Horror lets out a final, unearthly shriek before unraveling.",
+            "As it dies, the Eldritch Horror dissolves into an array of colors and whispers.",
+            "The horrors of its existence fade away, leaving only echoes of madness."
+        ],
+        speed: 0.2
+    },
+    {
+        name: 'Vampire',
+        health: 120,
+        attackPower: 60,
+        behavior: 'aggressive',
+        description: 'A pale figure with a predatory gaze, it lurks in the shadows, seeking its next victim.',
+        attackMessages: [
+            "The Vampire lunges forward, biting deeply and dealing {amount} damage!",
+            "With a swift slash of its claws, the Vampire inflicts {amount} damage!",
+            "The Vampire's hypnotic gaze lures you closer, causing {amount} damage!"
+        ],
+        deathMessages: [
+            "The Vampire crumbles into dust, a chilling grin frozen on its face.",
+            "With a final gasp, the Vampire vanishes into mist, leaving only silence.",
+            "The dark energy around the Vampire dissipates, revealing a lifeless husk."
+        ],
+        speed: 0.7
+    },
+    {
+        name: 'Dragon',
+        health: 180,
+        attackPower: 80,
+        behavior: 'aggressive',
+        description: 'A majestic beast with scales like armor and wings that darken the sky, it breathes fire with a terrifying roar.',
+        attackMessages: [
+            "The Dragon unleashes a torrent of flames, dealing {amount} damage!",
+            "With a swipe of its massive claws, the Dragon inflicts {amount} damage!",
+            "The Dragon's tail strikes like a whip, causing {amount} damage!"
+        ],
+        deathMessages: [
+            "The Dragon lets out a final roar before collapsing in a heap of scales.",
+            "With a massive shudder, the Dragon falls, extinguished forever.",
+            "The once-mighty Dragon breathes its last, its body lying still and lifeless."
+        ],
+        speed: 0.5
+    },
+    {
+        name: 'Ghoul',
+        health: 60,
+        attackPower: 30,
+        behavior: 'aggressive',
+        description: 'A grotesque creature that feasts on the remains of the dead, it skitters about with unnatural speed.',
+        attackMessages: [
+            "The Ghoul lunges at you, its claws raking for {amount} damage!",
+            "With a ghastly shriek, the Ghoul bites, dealing {amount} damage!",
+            "The stench of decay surrounds the Ghoul as it inflicts {amount} damage!"
+        ],
+        deathMessages: [
+            "The Ghoul lets out a final, pitiful moan before falling still.",
+            "With a desperate gasp, the Ghoul collapses, its hunger finally sated.",
+            "The Ghoul's lifeless body slumps to the ground, a look of despair on its face."
+        ],
+        speed: 0.9
+    },
+    {
+        name: 'Treant',
+        health: 200,
+        attackPower: 50,
+        behavior: 'defensive',
+        description: 'A massive tree-like creature, it guards the forest with ancient wisdom and formidable strength.',
+        attackMessages: [
+            "The Treant slams a heavy branch down, causing {amount} damage!",
+            "Roots erupt from the ground, ensnaring you and dealing {amount} damage!",
+            "With a deep rumble, the Treant shakes its branches, inflicting {amount} damage!"
+        ],
+        deathMessages: [
+            "The Treant shudders, its bark cracking as it falls to the forest floor.",
+            "With a mournful groan, the Treant collapses, life leaving its ancient form.",
+            "The Treant's last sigh rustles through the leaves as it succumbs."
+        ],
+        speed: 0.3
+    },
+    {
+        name: 'Zombie',
+        health: 80,
+        attackPower: 20,
+        behavior: 'aggressive',
+        description: 'A reanimated corpse, driven by an insatiable hunger for flesh, it stumbles forward with relentless determination.',
+        attackMessages: [
+            "The Zombie lurches forward, biting at you for {amount} damage!",
+            "With a decaying hand, the Zombie slaps you, dealing {amount} damage!",
+            "The Zombie's moan echoes as it claws at you, causing {amount} damage!"
+        ],
+        deathMessages: [
+            "The Zombie crumples to the ground, lifeless once more.",
+            "With a final groan, the Zombie collapses, returning to the grave.",
+            "The putrid remains of the Zombie fall silent, no longer a threat."
+        ],
+        speed: 0.4
+    },
+    {
+        name: 'Gorgon',
+        health: 140,
+        attackPower: 70,
+        behavior: 'defensive',
+        description: 'A fearsome creature with snakes for hair, its gaze can turn flesh to stone.',
+        attackMessages: [
+            "The Gorgon locks eyes with you, dealing {amount} damage and petrifying your resolve!",
+            "With a hiss, the Gorgon strikes, delivering {amount} damage!",
+            "The Gorgon whips her serpentine hair, causing {amount} damage!"
+        ],
+        deathMessages: [
+            "The Gorgon lets out a final hiss as she falls, her snakes lying still.",
+            "With a pained gasp, the Gorgon crumbles into stone.",
+            "The once-mighty Gorgon shatters, her power lost forever."
+        ],
+        speed: 0.5
+    },
+    {
+        name: 'Space Pirate',
+        health: 100,
+        attackPower: 50,
+        behavior: 'aggressive',
+        description: 'A rogue in a cybernetic suit, this space pirate uses advanced weaponry and cunning tactics.',
+        attackMessages: [
+            "The Space Pirate fires a blaster, dealing {amount} damage!",
+            "With a swift move, the Space Pirate slashes with a plasma dagger, inflicting {amount} damage!",
+            "The Space Pirate's energy shield crackles as it strikes, causing {amount} damage!"
+        ],
+        deathMessages: [
+            "The Space Pirate's suit sparks and sputters before collapsing.",
+            "With a final gasp, the Space Pirate falls, his weapons clattering to the ground.",
+            "The Space Pirate's suit powers down, leaving only a lifeless form."
+        ],
+        speed: 0.7
+    },
+
     { name: 'Spectral Knight', health: 140, attackPower: 30, behavior: 'defensive', description: 'A knight clad in ghostly armor, wielding a translucent sword. It silently defends its ancient tomb.', attackMessages: ['The knight swings its sword with ghostly precision, dealing {amount} damage.', 'A spectral slash slices through the air towards you, causing {amount} damage.'], speed: 0.3 },
     { name: 'Hydra', health: 180, attackPower: 55, behavior: 'aggressive', description: 'A many-headed serpent that regenerates each time it is struck. Cutting off one head only leads to two more taking its place.', attackMessages: ['The hydra lashes out with multiple heads, snapping ferociously, inflicting {amount} damage.', 'A head strikes, followed by a second just as fierce, dealing {amount} damage.'], speed: 0.5 },
     { name: 'Djinn', health: 105, attackPower: 35, behavior: 'evasive', description: 'A spirit of the wind, capable of vanishing in a puff of smoke. It strikes swiftly with bolts of energy before disappearing again.', attackMessages: ['The djinn materializes, launching a bolt of energy at you, causing {amount} damage.', 'With a flourish, it vanishes and reappears to strike again, dealing {amount} damage.'], speed: 0.8 },
@@ -543,7 +1005,8 @@ export function createEnemy(name) {
             definition.behavior,
             definition.description,
             definition.attackMessages, // Pass attackMessages here
-            definition.speed
+            definition.speed,
+            definition.deathMessages
         );
     }
     return null;
@@ -551,5 +1014,5 @@ export function createEnemy(name) {
 
 export function getRandomEnemy() {
     const definition = enemyDefinitions[Math.floor(Math.random() * enemyDefinitions.length)];
-    return new Enemy(definition.name, definition.health, definition.attackPower, definition.behavior, definition.description, definition.attackMessages, definition.speed);
+    return new Enemy(definition.name, definition.health, definition.attackPower, definition.behavior, definition.description, definition.attackMessages, definition.speed, definition.deathMessages);
 }

@@ -1,4 +1,4 @@
-import { descriptions, impassableDescriptions } from './descriptions.mjs';
+import { descriptions, impassableDescriptions, getRandomDescription } from './descriptions.mjs';
 import { createEnemy, getRandomEnemy } from './enemies.mjs';
 import { items } from './items.mjs';
 import { messageLog } from './messageLog.mjs';
@@ -25,7 +25,7 @@ export class Dungeon {
     }
 
     generateRoom(x, y) {
-        const description = Math.random() > 0.2 ? descriptions[Math.floor(Math.random() * descriptions.length)] : impassableDescriptions[Math.floor(Math.random() * impassableDescriptions.length)];
+        const description = getRandomDescription();
         
         // Adjust enemy spawn probability based on the monsterSpawnCounter
         const enemySpawnProbability = Math.max(0.1, 0.35 - (this.monsterSpawnCounter * 0.05)); // Minimum probability of 0.1
@@ -38,8 +38,8 @@ export class Dungeon {
         }
 
         const item = Math.random() > 0.5 ? this.randomItem() : null; // The lower the number, the higher the odds of item spawn
-        const passable = !impassableDescriptions.includes(description);
-        this.map.set(`${x},${y}`, { description, enemy, item, passable });
+        const passable = description.impassable? false : true;
+        this.map.set(`${x},${y}`, { description:description.description, enemy, item, passable,contents:description.contents});
     }
 
     getRoom(x, y) {
@@ -72,12 +72,15 @@ export class Dungeon {
 
     moveEnemyToNearbyRoom(x, y) {
         const currentRoom = this.getRoom(x, y);
+        let likelihood = 1-currentRoom.enemy.speed
+        if (Math.random() > likelihood) {
+    
         if (currentRoom.enemy) {
             const playerX = this.currentPosition.x;
             const playerY = this.currentPosition.y;
             const distanceToPlayer = this.calculateDistance(x, y, playerX, playerY);
 
-            if (distanceToPlayer <= 2) {
+            if (distanceToPlayer <= 4) {
                 // Move towards the player
                 const directions = [
                     { x: 0, y: 1 },
@@ -120,6 +123,7 @@ export class Dungeon {
             }
         }
     }
+    }
 
     display() {
         const room = this.getRoom(this.currentPosition.x, this.currentPosition.y);
@@ -129,7 +133,7 @@ export class Dungeon {
         }
         if (room.enemy) {
             if (room.enemy.isDead()) {
-                console.log(`The corpse of a ${room.enemy.name} lies here.`);
+                //console.log(`The corpse of a ${room.enemy.name} lies here.`);
             } else {
                 console.log(`There is a ${room.enemy.name} here.`);
             }
@@ -229,10 +233,10 @@ export class Dungeon {
                         row += '[∞] ';
                     } else if (!room.passable) {
                         row += '[X] ';
-                    } else if (room.item) {
-                        row += '[⋆] ';
                     } else if (room.enemy && !room.enemy.isDead()) {
                         row += '[☠] ';
+                    } else if (room.item) {
+                        row += '[⋆] ';
                     } else {
                         row += '[ ] ';
                     }
