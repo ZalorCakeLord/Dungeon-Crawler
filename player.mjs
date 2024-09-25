@@ -1,3 +1,5 @@
+import { messageLog } from "./messageLog.mjs";
+
 export class Player {
     constructor() {
         this.health = 100;
@@ -24,8 +26,15 @@ export class Player {
         item.applyEffect(this);
     }
 
+    displayInventory() {
+        messageLog.add('Your inventory:');
+        this.inventory.forEach(item => {
+            messageLog.add(item.name);
+        });
+    }
+
     attack(enemy) {
-        console.log(`You attack the ${enemy.name}.`);
+        console.log(`You attack the ${enemy.name}.1`);
         enemy.takeDamage(this.attackPower,this);
         if (!enemy.isDead()) {
             enemy.attack(this);

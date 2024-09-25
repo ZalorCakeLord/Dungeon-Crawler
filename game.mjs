@@ -57,6 +57,7 @@ export class Game {
         messageLog.add('Restarting game...');
         messageLog.add('You explored the dungeon for ' + this.calculateTimeSpent() + '!');
         messageLog.add('You defeated ' + messageLog.enemiesKilled + ' enemies and found ' + this.statistics.itemsFound + ' items.');
+        this.player.displayInventory()
         messageLog.nl();
         this.player = new Player();
         this.dungeon = new Dungeon(this.player);
@@ -105,10 +106,15 @@ export class Game {
 
 
                 break;
+            case 'inventory':
+                this.player.displayInventory();
+                break;
             case 'help':
                 messageLog.nl()
                 messageLog.add('Welcome to the Dungeon Crawler!');
-                messageLog.add('Commands: move [north/south/east/west], search, attack, inspect [name], quit');
+                //how was the fall?
+                messageLog.add('Commands: move [north/south/east/west], search, attack, inspect [name], grab, quit');
+
                 messageLog.add('You can also type "help" to see this message again.');
                 messageLog.add('You can inspect enemies and items by typing "inspect" followed by the name of the enemy or item.');
                 messageLog.add('Map Legend: P = Player, ☠ = Enemy, * = Item, # = Impassable Room');
@@ -123,11 +129,21 @@ export class Game {
                 }
                 break;
             case 'search':
-                const item = this.dungeon.search();
-                if (item) {
-                    this.player.addItem(item);
-                    this.statistics.itemsFound++;
-                    this.dungeon.removeItem();
+                //const item = this.dungeon.search();
+                //if (item) {
+                //    this.player.addItem(item);
+                //    this.statistics.itemsFound++;
+                //    this.dungeon.removeItem();
+                //}
+                const searchRoom = this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y)
+                if(target === ''){
+                    messageLog.nl()
+                    let list = [];
+                    searchRoom.enemy? list.push(searchRoom.enemy.name): null;
+                    searchRoom.item? list.push(searchRoom.item.name): null;
+                    searchRoom.contents.forEach(item => list.push(item.name));
+                    messageLog.add(`You see: ${list.join(', ')}`);
+                    messageLog.add(`For further detail use inspect [name].`); 
                 }
                 break;
             case 'attack':
@@ -149,6 +165,14 @@ export class Game {
                 break;
             case 'quit':
                 this.player.die();
+                break;
+            case 'grab':
+                const item = this.dungeon.search();
+                if (item) {
+                    this.player.addItem(item);
+                    this.statistics.itemsFound++;
+                    this.dungeon.removeItem();
+                }
                 break;
             case 'rest':
                 let thisRoom = this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y);
@@ -194,10 +218,18 @@ export class Game {
             if (x === this.dungeon.currentPosition.x && y === this.dungeon.currentPosition.y) {
                 continue;
             }
-            if (room.enemy) {
+            if (room.enemy && !room.enemy.isDead()) {
                 const chanceToMove = Math.random();
-                if (chanceToMove < (1-room.enemy.speed)) { // chance to move is different for each enemy
+                if (chanceToMove > (1-room.enemy.speed)) { // chance to move is different for each enemy
                     this.dungeon.moveEnemyToNearbyRoom(x, y);
+                    
+                }
+                //message if enemy moves to the same room as the player
+                //this is not currently functional as it is checking the spot the monster moved from
+                //instead of the spot the monster moved to
+                if (x === this.dungeon.currentPosition.x && y === this.dungeon.currentPosition.y) {
+                    messageLog.add(`The ${room.enemy.name} chases you!`);
+                    room.enemy.performBehavior(this.player);
                 }
             }
         }
@@ -205,6 +237,17 @@ export class Game {
 
     inspect(target) {
         const room = this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y);
+
+        /*if(target === ''){
+            messageLog.nl()
+            let list = [];
+            room.enemy? list.push(room.enemy.name): null;
+            room.item? list.push(room.item.name): null;
+            room.contents.forEach(item => list.push(item.name));
+            messageLog.add(`You see: ${list.join(', ')}`);
+            messageLog.add(`For further detail use inspect [name].`); 
+        }*/
+
         if (room.enemy && room.enemy.name.toLowerCase() === target.toLowerCase()) {
 
             messageLog.nl()
@@ -219,7 +262,11 @@ export class Game {
             messageLog.add(room.item.description);
 
         } else {
-            messageLog.add(`There is no ${target} here to inspect.`);
+            room.contents.filter(item => item.name.toLowerCase() === target.toLowerCase()).forEach(item => {
+                messageLog.nl()
+                messageLog.add(`${item.name}`);
+                messageLog.add(`${item.description}`);
+            })
         }
     }
 }
