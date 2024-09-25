@@ -66,15 +66,57 @@ export class Dungeon {
         }
     }
 
+    calculateDistance(x1, y1, x2, y2) {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
+
     moveEnemyToNearbyRoom(x, y) {
         const currentRoom = this.getRoom(x, y);
         if (currentRoom.enemy) {
-            const adjacentRooms = this.getAdjacentRooms(x, y).filter(room => room.passable && !room.enemy); // Check if the room is passable and does not already have an enemy
-            if (adjacentRooms.length > 0) {
-                const randomIndex = Math.floor(Math.random() * adjacentRooms.length);
-                const newRoom = adjacentRooms[randomIndex];
-                newRoom.enemy = currentRoom.enemy;
-                currentRoom.enemy = null;
+            const playerX = this.currentPosition.x;
+            const playerY = this.currentPosition.y;
+            const distanceToPlayer = this.calculateDistance(x, y, playerX, playerY);
+
+            if (distanceToPlayer <= 2) {
+                // Move towards the player
+                const directions = [
+                    { x: 0, y: 1 },
+                    { x: 1, y: 0 },
+                    { x: 0, y: -1 },
+                    { x: -1, y: 0 }
+                ];
+
+                let bestDirection = null;
+                let shortestDistance = distanceToPlayer;
+
+                for (const dir of directions) {
+                    const newX = x + dir.x;
+                    const newY = y + dir.y;
+                    const newDistance = this.calculateDistance(newX, newY, playerX, playerY);
+                    const newRoom = this.getRoom(newX, newY);
+
+                    if (newDistance < shortestDistance && newRoom.passable && !newRoom.enemy) {
+                        bestDirection = dir;
+                        shortestDistance = newDistance;
+                    }
+                }
+
+                if (bestDirection) {
+                    const newRoom = this.getRoom(x + bestDirection.x, y + bestDirection.y);
+                    newRoom.enemy = currentRoom.enemy;
+                    currentRoom.enemy = null;
+                    //return newRoom;
+                }
+            } else {
+                // Move to a random adjacent room
+                const adjacentRooms = this.getAdjacentRooms(x, y).filter(room => room.passable && !room.enemy);
+                if (adjacentRooms.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * adjacentRooms.length);
+                    const newRoom = adjacentRooms[randomIndex];
+                    newRoom.enemy = currentRoom.enemy;
+                    currentRoom.enemy = null;
+                    //return newRoom;
+                }
             }
         }
     }

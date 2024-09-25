@@ -108,6 +108,7 @@ export class Game {
             case 'help':
                 messageLog.nl()
                 messageLog.add('Welcome to the Dungeon Crawler!');
+                //how was the fall?
                 messageLog.add('Commands: move [north/south/east/west], search, attack, inspect [name], quit');
                 messageLog.add('You can also type "help" to see this message again.');
                 messageLog.add('You can inspect enemies and items by typing "inspect" followed by the name of the enemy or item.');
@@ -194,10 +195,18 @@ export class Game {
             if (x === this.dungeon.currentPosition.x && y === this.dungeon.currentPosition.y) {
                 continue;
             }
-            if (room.enemy) {
+            if (room.enemy && !room.enemy.isDead()) {
                 const chanceToMove = Math.random();
-                if (chanceToMove < (1-room.enemy.speed)) { // chance to move is different for each enemy
+                if (chanceToMove > (1-room.enemy.speed)) { // chance to move is different for each enemy
                     this.dungeon.moveEnemyToNearbyRoom(x, y);
+                    
+                }
+                //message if enemy moves to the same room as the player
+                //this is not currently functional as it is checking the spot the monster moved from
+                //instead of the spot the monster moved to
+                if (x === this.dungeon.currentPosition.x && y === this.dungeon.currentPosition.y) {
+                    messageLog.add(`The ${room.enemy.name} chases you!`);
+                    room.enemy.performBehavior(this.player);
                 }
             }
         }
