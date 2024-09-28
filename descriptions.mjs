@@ -125,15 +125,29 @@ export const descriptions = [
         startMessage: `A cozy warmth greets you as you step into this small room. The fireplace crackles gently, filling the air with a soothing glow, while plush chairs offer a much-needed respite from your journey. For a fleeting moment, it feels as though the dangers of the outside world cannot reach you here.`,
     },
     {
-        name: "The Alchemical Chamber",
-        description: "You're in a room cluttered with bubbling cauldrons and shelves lined with strange, glowing potions, the scent of herbs and sulfur thick in the air. Strange symbols glow faintly on the walls, and the air hums with the energy of hidden magic.",
-        contents: [
-            { name: 'cauldrons', description: 'The cauldrons bubble and hiss, their contents simmering with unknown concoctions, sending the sharp scent of herbs and sulfur into the air.' },
-            { name: 'potions', description: 'Glowing potions line the shelves, their vibrant colors casting an otherworldly light across the room. Each bottle seems to hum with latent magical energy, waiting to be unleashed.' }
-        ],
-        impassable: false,
-        startMessage: `The room is cluttered with bubbling cauldrons and shelves lined with glowing potions. The scent of herbs and sulfur fills the air, mingling with the faint glow of magical symbols etched into the walls. The energy here is palpable, and you sense that this room holds secrets not meant for the uninitiated.`,
-    },
+        "name": "The Alchemical Chamber",
+        "description": "You find yourself in a dimly lit chamber, cluttered with bubbling cauldrons that hiss and spit, their contents simmering with unknown concoctions. The shelves that line the walls are filled with an array of glowing potions, each one casting an ethereal light that dances across the stone surfaces. The air is thick with the scent of pungent herbs, mingling with the acrid tang of sulfur, creating an atmosphere both intriguing and foreboding. Strange, arcane symbols flicker on the walls, pulsating with an energy that feels alive, as if the very stones are whispering secrets of ancient magic. A large, ornate table stands in the center, strewn with parchment covered in scrawled notes and diagrams of bizarre creatures and elements. In the corners, various strange devices hum quietly, their purpose obscured by time and dust, hinting at the experiments that have transpired in this mystical space.",
+        "startMessage": "Awakening in this chamber of alchemical wonders fills you with a mix of excitement and trepidation. The bubbling cauldrons and glowing potions seem to beckon you closer, inviting you to explore their mysteries. The air thrums with an undercurrent of power, and the faint glow of the symbols on the walls ignites your curiosity. You feel as though you have stepped into the heart of an ancient laboratory, where knowledge and danger coexist in delicate balance.",
+        "impassable": false,
+        "contents": [
+            {
+                "name": "cauldrons",
+                "description": "The cauldrons bubble and hiss, their dark contents simmering ominously. Each cauldron is crafted from aged iron, the surfaces marred by years of use. Strange tendrils of vapor curl into the air, carrying with them the sharp, herbal scent of potent ingredients being transformed within."
+            },
+            {
+                "name": "potions",
+                "description": "Lining the shelves are an assortment of glowing potions, their vibrant colors ranging from deep emerald greens to shimmering purples. Each bottle is sealed with a cork, and some emit soft sounds, as if they are eager to be released from their glass prisons. The labels are written in elegant script, hinting at their mysterious effects."
+            },
+            {
+                "name": "ornate table",
+                "description": "A large, ornate table dominates the center of the chamber, its surface cluttered with scrolls and bizarre instruments. The wood is dark and polished, etched with intricate designs. Parchments filled with diagrams of mythical creatures and potion recipes lie scattered across its surface, some bearing stains from past experiments."
+            },
+            {
+                "name": "strange devices",
+                "description": "In the corners of the chamber, various strange devices hum and whir, their purpose a mystery. Some resemble twisted metal contraptions, while others are delicate glass instruments filled with swirling liquids, hinting at their role in the alchemical processes that once took place here."
+            }
+        ]
+    },    
     {
         name: "The Rune Chamber",
         description: 'You stand inside a room with ancient runes carved into the stone walls, glowing faintly with an otherworldly light, the atmosphere charged with mysterious energy. The runes pulse softly, as though alive with secrets long forgotten.',
@@ -235,16 +249,33 @@ export const descriptions = [
     },
 
     {
-        name: "The Alchemist's Refuge",
-        description: 'A laboratory filled with glass vials and strange apparatus, the scent of chemicals is pungent in the air. The bubbling liquids and crackling energy suggest that dangerous experiments are taking place here, perhaps long abandoned. Shadows flicker along the walls, hinting at the secrets this place once held. The air feels thick with the remnants of forgotten knowledge, and a sense of unease lingers, as if something is waiting to be discovered.',
-        startMessage: 'You awaken in a dimly lit laboratory, the flickering lights above casting eerie shadows. Confusion fills your mind as you try to grasp how you ended up in this unsettling place. The faint scent of chemicals wraps around you, igniting a sense of dread as you realize you are not alone in your predicament.',
-        impassable: false,
-        contents: [
-            { name: 'vials', description: 'Rows of glass vials line the counters, filled with bubbling, colorful liquids that give off an acrid, chemical scent. Some of them hiss and pop with strange reactions, creating an atmosphere that is both fascinating and terrifying.' },
-            { name: 'apparatus', description: 'Bizarre metal contraptions and coiled wires crisscross the room, sparking with residual energy. They hum faintly, as if they still hold power from forgotten experiments, whispering secrets of their creators.' },
-            { name: 'notebook', description: 'An open notebook rests nearby, filled with hurried scribbles and diagrams. The ink is smudged, but you can make out desperate notes about a failed experiment and its catastrophic results.' }
+        "name": "The Alchemist's Refuge",
+        "description": "A dimly lit laboratory stretches out before you, cluttered with glass vials and strange apparatus. The pungent scent of chemicals hangs thick in the air, a reminder of dangerous experiments that might have once taken place here—perhaps long abandoned. Bubbling liquids and crackling energy fill the room with an unsettling energy, as shadows flicker along the walls, hinting at the arcane secrets this place once held. You can feel the weight of forgotten knowledge in the atmosphere, and an uneasy sensation creeps up your spine, as if something is lurking, waiting to be discovered.",
+        "startMessage": "You awaken in this eerie laboratory, confusion clouding your mind as the flickering lights above cast unsettling shadows. A sense of dread settles in as you grasp the reality of your surroundings; the faint scent of chemicals clings to you, igniting an instinctual alarm. As you collect your thoughts, you realize you are not alone in your predicament—something here stirs, echoing with the memories of its former occupant.",
+        "impassable": false,
+        "contents": [
+            { 
+                "name": "vials", 
+                "description": "Rows of glass vials line the counters, each filled with bubbling, colorful liquids that emit an acrid, chemical scent. Some vials hiss and pop with strange reactions, creating an atmosphere that is both fascinating and terrifying, as if the very air hums with the potential for danger." 
+            },
+            { 
+                "name": "apparatus", 
+                "description": "Bizarre metal contraptions and coiled wires crisscross the room, sparking with residual energy. They hum faintly, suggesting they still possess power from forgotten experiments, their presence whispering secrets of their creators and the hubris that led to their downfall." 
+            },
+            { 
+                "name": "notebook", 
+                "description": "An open notebook rests nearby, filled with frantic scribbles and intricate diagrams. The ink is smudged and faded, but you can make out desperate notes about a failed experiment and its catastrophic results, a chilling testament to the dangers that lurk in the pursuit of knowledge." 
+            },
+            { 
+                "name": "broken glassware", 
+                "description": "Shattered glassware litters the floor, remnants of experiments gone awry. The jagged shards glint in the dim light, creating a dangerous terrain that reflects the chaos of the lab's past." 
+            },
+            { 
+                "name": "flickering candles", 
+                "description": "A few flickering candles struggle against the darkness, casting an uneven glow over the room. Their wax drips down in thick rivulets, a stark contrast to the sterile environment of the laboratory." 
+            }
         ]
-    },
+    },    
     {
         name: "The Melancholy Chamber",
         description: 'A music room with a grand piano sits at its center, though no one plays, the keys sometimes striking themselves in eerie, discordant notes. The haunting melody lingers in the air, filling the room with a sense of melancholy. Dust dances in the dim light, and the walls seem to absorb the music, creating a somber echo that resonates with lost memories. As you move closer, an unsettling feeling washes over you, as if the very essence of sorrow is woven into the fabric of this place.',
@@ -258,15 +289,32 @@ export const descriptions = [
     },
     {
         name: "The Cellar of Shadows",
-        description: 'A damp cellar stretches before you, with barrels stacked high, the scent of wine and something far less pleasant in the air. The floor is slick with moisture, and you can hear the faint sound of something shifting in the darkness. Flickering torchlight casts long shadows, revealing more barrels and ominous corners that seem to hide secrets best left undisturbed. Each creak and drip of water feels amplified in this suffocating atmosphere, making you acutely aware of the tension hanging in the air.',
-        startMessage: 'You awaken in a damp cellar, confusion enveloping you like the chill in the air. The distant sound of shifting shadows sends a shiver down your spine as you try to piece together how you ended up here. The oppressive scent of aged wine and something far more sinister fills your lungs, sparking an instinctual urge to flee.',
+        description: "A damp cellar stretches before you, with barrels stacked high, the scent of aged wine and something far less pleasant permeating the air. The floor is slick with moisture, making each step a careful endeavor, and you can hear the faint sound of something shifting in the darkness beyond your vision. Flickering torchlight casts long, dancing shadows across the stone walls, revealing more barrels and ominous corners that seem to harbor secrets best left undisturbed. The atmosphere is heavy and suffocating, with each creak and drip of water echoing, amplifying the tension hanging in the air. You can't shake the feeling that you are being watched, the shadows themselves seemingly alive, ready to swallow you whole if you linger too long.",
+        startMessage: "You awaken in a damp cellar, confusion enveloping you like the chill in the air. The distant sound of shifting shadows sends a shiver down your spine as you try to piece together how you ended up here. The oppressive scent of aged wine and something far more sinister fills your lungs, igniting an instinctual urge to flee. The flickering torchlight reveals glimpses of your surroundings, but it only deepens your sense of dread as the shadows loom larger.",
         impassable: false,
         contents: [
-            { name: 'wine barrels', description: 'Tall wooden barrels are stacked against the damp stone walls, the scent of aged wine mingling with the musty, sour odor of something that’s been forgotten for far too long. You can hear liquid sloshing within, as if the barrels themselves hold tales of revelry and despair.' },
-            { name: 'dark corner', description: 'In one corner, shadows gather thickly, and the faint sound of something moving just out of sight sends a shiver down your spine, as though the cellar hides more than just wine. A glint of metal catches your eye, hinting at objects long lost.' },
-            { name: 'rusty key', description: 'Half-buried in the muck, a rusty key lies hidden, its purpose long forgotten. You wonder what it might unlock and who once wielded it with intent.' }
+            { 
+                name: 'wine barrels', 
+                description: 'Tall wooden barrels are stacked against the damp stone walls, their surfaces slick with moisture. The scent of aged wine mingles with the musty, sour odor of something that has been forgotten for far too long. You can hear liquid sloshing within, as if the barrels themselves hold tales of revelry and despair, whispering secrets of long-past gatherings.' 
+            },
+            { 
+                name: 'dark corner', 
+                description: 'In one corner, shadows gather thickly, almost sentient in their density. The faint sound of something moving just out of sight sends a shiver down your spine, making you acutely aware that the cellar hides more than just wine. A glint of metal catches your eye, hinting at objects long lost, perhaps the remnants of someone else’s misfortune.' 
+            },
+            { 
+                name: 'rusty key', 
+                description: 'Half-buried in the muck, a rusty key lies hidden, its purpose long forgotten. The key is heavy in your hand, and you can’t help but wonder what it might unlock and who once wielded it with intent. It feels like a relic of lost hope, a reminder that not all who enter this place find their way out.' 
+            },
+            {
+                name: 'skeleton remains',
+                description: 'In the shadows, remnants of a long-dead adventurer lie sprawled on the cold stone floor. Clad in tattered clothing and clutching a faded map, the bones tell a tale of ambition turned to despair, serving as a chilling reminder of the perils that lurk in the depths of the cellar.'
+            },
+            {
+                name: 'flickering torch',
+                description: 'A single torch flickers on the wall, casting erratic shadows that seem to dance with a life of their own. Its light struggles against the darkness, illuminating just enough to reveal the damp stone walls and the oppressive atmosphere, while leaving much hidden in the corners.'
+            }
         ]
-    },
+    },    
     {
         name: "The Celestial Observatory",
         description: 'A grand, domed observatory welcomes you, dominated by a massive telescope aimed at the stars, though the sky outside seems unusually dark. Dust has settled over everything, and the silence is broken only by the faint creak of the telescope swiveling, though no one touches it. Ancient machinery lies dormant, and the air is thick with the weight of countless secrets gazed upon in solitude. As you step forward, an eerie sensation washes over you, as if the universe itself is watching.',
@@ -290,16 +338,16 @@ export const descriptions = [
         ]
     },
     {
-        name: 'The Glistening Cavern',
-        description: 'A dimly lit cave stretches before you, the sound of dripping water echoing, with glittering gemstones embedded in the rocky walls. The gems catch the light, casting faint, colorful glows, though the darkness seems to swallow sound and movement alike. Each step sends vibrations through the ground, and the feeling of being watched intensifies with every heartbeat. You sense ancient secrets lingering in the shadows, waiting for someone brave enough to uncover them.',
-        startMessage: 'You awaken in a dim cave, confusion clouding your mind as the faint sounds of dripping water reach your ears. The soft glow of gemstones illuminates the walls, but the darkness holds more than just beauty; it conceals unknown dangers. As you collect your thoughts, a chill runs down your spine, as if the very rocks whisper of past trespassers who never returned.',
+        name: "The Glistening Cavern",
+        description: "A dimly lit cave stretches before you, where the sound of dripping water echoes softly, creating an unsettling rhythm that reverberates through the stillness. Glittering gemstones are embedded in the rocky walls, their facets catching the meager light and casting faint, colorful glows that dance across the damp surfaces. The darkness seems to swallow sound and movement alike, amplifying the feeling of isolation. Each step sends vibrations through the ground, making the sensation of being watched intensify with every heartbeat. You sense ancient secrets lingering in the shadows, waiting for someone brave enough to uncover them.",
+        startMessage: "You awaken in a dim cave, confusion clouding your mind as the faint sounds of dripping water reach your ears. The soft glow of gemstones illuminates the walls, creating an otherworldly ambiance, but the darkness holds more than just beauty; it conceals unknown dangers. As you collect your thoughts, a chill runs down your spine, as if the very rocks whisper of past trespassers who never returned. Your instincts urge you to tread carefully, aware that every corner could hide both wonders and horrors.",
         impassable: false,
         contents: [
-            { name: 'gemstones', description: 'Tiny gemstones are embedded in the cave walls, their soft glow creating a delicate kaleidoscope of colors that dance across the rocky surface. They beckon to you, holding secrets of their own within their crystalline depths.' },
-            { name: 'pool', description: 'In the center of the cave, a small pool of water reflects the shimmering gems above, rippling as though something stirs just beneath the surface. You can’t help but wonder what lies beneath the stillness.' },
-            { name: 'stone tablet', description: 'A weathered stone tablet rests against the wall, its surface etched with cryptic runes. The language is foreign, but a sense of urgency emanates from it, as if it contains warnings of great importance.' }
+            { name: "gemstones", description: "Tiny gemstones are embedded in the cave walls, their soft glow creating a delicate kaleidoscope of colors that dance across the rocky surface. Each gem seems to pulse with life, beckoning to you, holding secrets of their own within their crystalline depths. Some gems emit a warm, inviting light, while others glimmer with an icy coldness, hinting at their hidden properties." },
+            { name: "pool", description: "In the center of the cave, a small pool of water reflects the shimmering gems above, creating an ethereal mirror that ripples gently. The water is crystal clear, but the reflections distort as if something stirs just beneath the surface. You can’t help but wonder what lies beneath the stillness, and if the pool has seen the passage of time or witnessed ancient rituals long forgotten." },
+            { name: "stone tablet", description: "A weathered stone tablet rests against the wall, its surface etched with cryptic runes that glow faintly in the dim light. The language is foreign, but a sense of urgency emanates from it, as if it contains warnings of great importance. The tablet feels warm to the touch, almost as if it is resonating with the energy of the cavern itself, urging you to decipher its message." }
         ]
-    },
+    },    
     {
         name: 'The Forgotten Ballroom',
         description: 'A dilapidated ballroom greets you with its decaying grandeur; chandeliers hang precariously, their crystals dulled by years of neglect, while tattered curtains sway like ghosts in the dim light. The faint sound of forgotten music lingers, resonating with a melancholic nostalgia that hints at the vibrant celebrations that once filled this space. As you stand amidst the ruin, a strange sense of dislocation washes over you, as though you have awakened in someone else’s memory.',
@@ -323,16 +371,33 @@ export const descriptions = [
         ]
     },
     {
-        name: 'The Serene Sanctuary',
-        description: 'This peaceful sanctuary welcomes you with soft, glowing light and an overwhelming sense of calm, as though time has slowed within these walls. The gentle hum of tranquility is almost otherworldly, and the air is infused with the scent of sweet incense that wraps around you like a warm embrace. It feels as if you’ve stumbled into a dreamscape, far removed from the chaos of reality.',
-        startMessage: 'You awaken in a serene sanctuary, feeling the weight of your disorientation gradually lift as the gentle ambiance envelops you. Here, it seems as though the world outside has forgotten your existence, offering a moment of refuge from the unknown that lies beyond.',
+        name: "The Serene Sanctuary",
+        description: "This peaceful sanctuary welcomes you with soft, glowing light and an overwhelming sense of calm, as though time has slowed within these walls. The gentle hum of tranquility is almost otherworldly, wrapping around you like a protective veil. The air is infused with the scent of sweet incense and delicate floral notes that linger gently, creating a warm embrace for your senses. It feels as if you’ve stumbled into a dreamscape, far removed from the chaos of reality. The walls are adorned with intricate carvings depicting nature's beauty, and the soft sound of chimes hangs in the air, their notes mingling with the whispers of serenity.",
+        startMessage: "You awaken in a serene sanctuary, feeling the weight of your disorientation gradually lift as the gentle ambiance envelops you. Here, it seems as though the world outside has forgotten your existence, offering a moment of refuge from the unknown that lies beyond. The soft illumination soothes your spirit, and you can’t help but feel an inexplicable connection to this tranquil haven.",
         impassable: false,
         contents: [
-            { name: 'glowing orbs', description: 'Small orbs of soft, golden light float lazily in the air, their warmth radiating a sense of peace that is almost palpable. They seem to move with a slow, deliberate grace, inviting you to follow their ethereal dance.' },
-            { name: 'silk cushions', description: 'Silken cushions are strewn across the floor, inviting you to sit and relax. Their colors are rich and deep, blending harmoniously with the serene atmosphere of the room, promising comfort and solace.' },
-            { name: 'fountain of light', description: 'In the center, a small fountain bubbles softly, but instead of water, it flows with glowing liquid light. Its soothing sound complements the tranquility of the room, creating a melody of peace that resonates in your soul.' }
+            { 
+                name: "glowing orbs", 
+                description: "Small orbs of soft, golden light float lazily in the air, their warmth radiating a sense of peace that is almost palpable. They shimmer gently, casting playful shadows on the walls and seem to move with a slow, deliberate grace, inviting you to follow their ethereal dance. Occasionally, they pulse softly, as if responding to your presence, creating a mesmerizing spectacle of luminescence." 
+            },
+            { 
+                name: "silk cushions", 
+                description: "Silken cushions are strewn across the floor, inviting you to sit and relax. Their colors are rich and deep, blending harmoniously with the serene atmosphere of the room—vibrant shades of emerald, sapphire, and amethyst promise comfort and solace. As you sink into one, the cushions cradle you gently, providing a sense of weightlessness and calm, making it easy to forget the outside world." 
+            },
+            { 
+                name: "fountain of light", 
+                description: "In the center, a small fountain bubbles softly, but instead of water, it flows with glowing liquid light. This luminous stream dances gracefully, casting rippling reflections across the room. Its soothing sound complements the tranquility of the space, creating a melody of peace that resonates in your soul, each drop a note in a harmonious symphony. Delicate petals from nearby blossoms float on the surface, adding to the enchanting visual display." 
+            },
+            { 
+                name: "delicate chimes", 
+                description: "Hanging from the ceiling, delicate wind chimes made of crystal catch the soft light and tinkle gently in the slightest breeze. Their notes are clear and pure, adding a melodic undertone to the serenity of the sanctuary, enhancing the otherworldly atmosphere and reminding you of the beauty found in simplicity." 
+            },
+            { 
+                name: "lush greenery", 
+                description: "Potted plants and vines drape gracefully around the edges of the sanctuary, their leaves a vibrant green that adds life to the tranquil space. The gentle rustle of foliage creates a soft whisper, a reminder that nature is ever-present, offering a connection to the outside world without the chaos." 
+            }
         ]
-    },
+    },    
     {
         name: 'The Glowing Garden',
         description: 'You step into a vast underground cavern lit by bioluminescent fungi, their soft glow casting eerie shadows on the stone walls. The air is cool and damp, with the faint luminescence creating a dreamlike atmosphere, as if the cavern belongs to another world untouched by time. The distant sound of dripping water echoes, drawing your attention to the mysteries hidden in the darkness.',
@@ -400,15 +465,33 @@ export const descriptions = [
         ]
     },
     {
-        name: "The Empty Theater",
-        description: 'You enter a grand amphitheater, its stone seats empty and silent, yet whispers of long-forgotten crowds echo in the distance. The center stage, bathed in a spotlight of fading light, seems frozen in time, waiting for a performer to breathe life back into its storied past.',
-        startMessage: 'Awakening in this vast amphitheater, you are struck by the stillness that envelops you. The air is thick with anticipation, as if the very walls hold their breath, longing for the sounds of applause and the thrill of performance once more.',
-        impassable: false,
-        contents: [
-            { name: 'stone seats', description: 'The amphitheater’s stone seats are cracked and weathered, long abandoned by any audience. Dust has settled into the crevices, yet faint whispers of long-gone spectators linger in the air, creating an atmosphere steeped in nostalgia.' },
-            { name: 'center stage', description: 'A large stage at the center remains untouched, as if frozen in time, awaiting the return of a performer. The wood creaks underfoot, and an old podium rests there, slightly off-kilter, a remnant of forgotten speeches and heartfelt performances.' }
+        "name": "The Empty Theater",
+        "description": "You step into a grand amphitheater, where stone seats rise in a semicircle around a stage that seems frozen in time. The seats, long empty and silent, bear the weight of countless performances, while whispers of long-forgotten crowds echo faintly in the distance. A solitary spotlight bathes the center stage in a fading glow, illuminating dust motes that float lazily through the air, waiting for a performer to breathe life back into its storied past. The atmosphere is thick with nostalgia, and an uncanny stillness envelops the space, making each heartbeat feel amplified in the quiet. Shadows stretch across the floor, hinting at the vibrant stories that once unfolded here, now lost to memory.",
+        "startMessage": "Awakening in this vast amphitheater, you are struck by the stillness that envelops you. The air feels charged with anticipation, as if the very walls are holding their breath, longing for the sounds of applause and the thrill of performance once more. You glance around, feeling the weight of countless eyes that once filled the seats, their laughter and gasps echoing faintly in your mind.",
+        "impassable": false,
+        "contents": [
+            { 
+                "name": "stone seats", 
+                "description": "The amphitheater’s stone seats are cracked and weathered, long abandoned by any audience. Dust has settled into the crevices, and though they are silent now, faint whispers of long-gone spectators seem to linger in the air, creating an atmosphere steeped in nostalgia and longing for the past." 
+            },
+            { 
+                "name": "center stage", 
+                "description": "A large stage at the center remains untouched, as if frozen in time, awaiting the return of a performer. The wood creaks softly underfoot, and an old podium rests there, slightly off-kilter, a remnant of forgotten speeches and heartfelt performances. You can almost hear the echoes of dramatic monologues and musical notes hanging in the air." 
+            },
+            { 
+                "name": "faded curtains", 
+                "description": "Heavy, faded curtains drape around the edges of the stage, their once-vibrant colors muted by time. They sway gently in an unseen breeze, as if inviting you to pull them back and reveal the stories hidden behind." 
+            },
+            { 
+                "name": "orchestral pit", 
+                "description": "In front of the stage, the empty orchestral pit sits like a hollow reminder of the music that once filled the theater. Dust-covered instruments lie abandoned, their notes forever silent, waiting for a conductor to return and breathe life into the melody." 
+            },
+            { 
+                "name": "echoing whispers", 
+                "description": "The air seems to pulse with the faint echo of applause and laughter, remnants of performances long past. Each whisper carries a fragment of history, hinting at the stories that unfolded on this very stage." 
+            }
         ]
-    },
+    },    
     {
         name: 'Glimmering Abyss',
         description: 'You find yourself in a room submerged in water up to your knees, with ripples forming with every step you take. Strange aquatic plants glow softly beneath the surface, illuminating the path ahead and creating an otherworldly ambiance.',
@@ -442,12 +525,14 @@ export const descriptions = [
     },
     {
         name: 'The Frostbound Glade',
-        description: 'You stand in a room where snow falls gently from the ceiling, covering the floor in a pristine white layer. The air is frigid, and your breath fogs in front of you, creating ephemeral clouds that dissipate in the chilly air.',
-        startMessage: 'Awakening in this enchanted winter wonderland, you are captivated by the serene beauty that surrounds you. The soft sound of snowflakes landing fills the silence, inviting you to explore this tranquil yet cold domain.',
+        description: "You find yourself in an otherworldly chamber where snow drifts gently from the ceiling like soft, frozen feathers. The floor is blanketed in a thick, immaculate layer of snow that crunches softly beneath your feet. The air is sharp and cold, biting at your skin with every breath, as the icy mist of your exhalations curls up and disappears into the frosty silence. Icicles hang from the ceiling like glass daggers, refracting the dim light, while the soft glow of moonlight, though its source is unseen, illuminates the ethereal, wintry landscape around you.",
+        startMessage: "Awakening in this serene, frozen landscape, your senses are immediately overwhelmed by the purity of the scene before you. Snow falls gently, painting the room in a soft, icy glow. The cold wraps around you, not harsh but ever-present, reminding you of the isolation of this place. Each step leaves a distinct mark in the untouched snow, beckoning you to explore deeper into the glade, though an undeniable sense of coldness—more than just physical—lingers within.",
         impassable: false,
         contents: [
-            { name: 'falling snow', description: 'Snowflakes drift slowly from the ceiling, melting into the air or settling softly onto the growing layers of snow that blanket the floor, each flake unique and delicate.' },
-            { name: 'pristine white layer', description: 'The floor is coated in a thick, pristine white layer of snow, untouched except for your own footprints trailing behind you, marking your journey through this frozen paradise.' }
+            { name: 'falling snow', description: "Snowflakes descend slowly from the ceiling, glimmering faintly in the ambient light as if infused with magic. Each flake is unique, an intricate pattern formed in the frozen air before melting just above the floor or gently resting atop the snow. The steady fall gives the impression that the room is locked in an eternal winter." },
+            { name: 'pristine white layer', description: 'The floor is a flawless expanse of undisturbed snow, its surface so smooth that it looks like a blank canvas. Only your footprints mar its perfection, their shape crisp and defined in the otherwise untouched landscape. Each step creates a soft crunch underfoot, the snow absorbing sound and adding to the hushed tranquility' },
+            { name: 'icicles', description: "Long, sharp icicles hang from the ceiling like jagged spears of glass. They shimmer in the light, each one appearing delicate yet deadly, their pointed ends threatening to drop at any moment. Some reach nearly to the floor, adding a sense of danger to the otherwise serene beauty of the room."},
+            { name: 'moonlit glow', description: "Though the source remains unseen, a soft, silvery light bathes the entire room, casting long shadows and illuminating the snow in a way that makes it glow faintly. It feels like walking beneath a full moon on a clear winter night, the light both calming and eerie, giving the space an ethereal quality."}
         ]
     },
     {
@@ -462,16 +547,16 @@ export const descriptions = [
     },
     {
         name: "The Could-Have-Been Hall",
-        description: 'You find yourself in a hall of mirrors, each reflecting distorted versions of yourself. The glass twists reality, and some reflections move in ways they shouldn’t, as though they have a life of their own. A sense of unease washes over you as you wonder how you ended up in this nightmarish space, filled with fragmented versions of yourself lurking in the reflections.',
-        startMessage: 'As you awaken in this bizarre hall, a chill runs down your spine. Memories of a life before this moment are foggy, and you feel a strange pull to uncover the truth behind your sudden displacement. Each mirror seems to mock you, beckoning you to step closer and confront the shadows of your existence.',
-        impassable: false,
+        description: 'You find yourself in a hall of mirrors, each reflecting distorted versions of yourself. The glass twists reality, and some reflections move in ways they shouldn’t, as though they have a life of their own. The air is thick with an oppressive silence, broken only by the occasional whisper of your own voice echoing back at you, warping into unintelligible murmurs. A sense of unease washes over you as you wonder how you ended up in this nightmarish space, filled with fragmented versions of yourself lurking in the reflections.',
+        startMessage: 'As you awaken in this bizarre hall, a chill runs down your spine. Memories of a life before this moment are foggy, and you feel a strange pull to uncover the truth behind your sudden displacement. Each mirror seems to mock you, beckoning you to step closer and confront the shadows of your existence. The flickering lights overhead create a dance of shadows, amplifying the feeling that you are not alone in this twisted reality.',
+        impassable: true,
         contents: [
-            { name: 'distorted mirrors', description: 'The mirrors reflect warped versions of yourself, making your image twist and stretch in eerie, unnatural ways.' },
-            { name: 'moving reflections', description: 'Some reflections in the mirrors seem to move on their own, stepping in different directions, as if they exist independently of you.' },
-            { name: 'flickering lights', description: 'Small lights flicker between the mirrors, creating an unsettling ambiance that adds to the eerie atmosphere of the hall.' },
-            { name: 'shattered glass shards', description: 'Scattered shards of broken glass litter the floor, each reflecting a different glimpse of a distorted reality. Tread carefully; they might hold fragments of forgotten memories.' }
+            { name: 'distorted mirrors', description: 'The mirrors reflect warped versions of yourself, making your image twist and stretch in eerie, unnatural ways. Each reflection tells a different story, revealing the myriad paths your life could have taken.' },
+            { name: 'moving reflections', description: 'Some reflections in the mirrors seem to move on their own, stepping in different directions, as if they exist independently of you. Their actions are unsettling, mirroring your own movements with a disturbing delay.' },
+            { name: 'flickering lights', description: 'Small lights flicker between the mirrors, creating an unsettling ambiance that adds to the eerie atmosphere of the hall. Shadows dance across the walls, playing tricks on your mind and heightening your sense of paranoia.' },
+            { name: 'shattered glass shards', description: 'Scattered shards of broken glass litter the floor, each reflecting a different glimpse of a distorted reality. Tread carefully; they might hold fragments of forgotten memories or serve as a reminder of paths that were never taken.' }
         ]
-    },
+    },    
     {
         name: "The Spore Sanctuary",
         description: 'You stumble into a room filled with oversized mushrooms and strange glowing plants. The atmosphere is humid, and the air is thick with spores, making it feel like stepping into another world entirely. The vibrant colors and otherworldly glow suggest that this place is alive, perhaps even sentient, watching your every move with a silent gaze.',
@@ -722,9 +807,9 @@ export const descriptions = [
         startMessage: 'Awakening on the staircase, dread creeps into your heart as you realize the futility of your situation. Each direction offers no escape, and the weight of despair presses down on you like a shroud, leaving you questioning your reality.',
         impassable: false,
         contents: [
-            { name: 'spiral staircase', description: 'The staircase twists unnaturally, creating an optical illusion that makes it appear to go both upwards and downwards. It’s disorienting to look at.' },
-            { name: 'heavy air', description: 'The air feels thick and oppressive, as if the weight of time has settled here. Every step feels like a struggle against an unseen force.' },
-            { name: 'sense of entrapment', description: 'The atmosphere is charged with an eerie feeling of being trapped in a never-ending cycle. It instills a sense of dread as you contemplate your next move.' }
+            { name: 'spiral staircase', description: "The staircase spirals in a way that defies logic, its steps warping as you gaze at them. One moment it seems to ascend endlessly, the next it pulls you downward into an abyss. The further you look, the more it twists, stretching reality itself. The stone steps are worn, yet somehow feel untouched by human feet, as if the very act of walking them is an impossibility." },
+            { name: 'heavy air', description: "The air here is unnaturally dense, weighing on your chest with every breath. It feels as though the space is closing in around you, thick with an oppressive force that saps your energy. There's a faint, metallic tang to the air, and an unsettling vibration runs through the space, as though time itself is stuttering in this place." },
+            { name: 'sense of entrapment', description: "The feeling of being trapped is overwhelming. Each step you take reverberates through the space but never seems to bring you closer to a destination. The walls of the spiral tighten in your mind, wrapping you in a loop of uncertainty and despair, as if you’re a mere pawn in a game that has no end, no escape, and no rules you can understand" }
         ]
     },
     {
@@ -750,17 +835,29 @@ export const descriptions = [
         ]
     },
     {
-        name: 'The Null Gravity Chamber',
-        description: 'You step into a vast chamber where the laws of gravity seem to have lost their hold. Objects float around you, suspended in mid-air as if caught in an endless loop. Strange glowing panels line the walls, pulsating softly, casting eerie shadows that dance in the air. A low hum resonates through the room, reminiscent of machinery long forgotten, while the faint glimmer of stars is visible through a massive viewport. Here, time feels distorted, as if the universe is bending around you.',
-        startMessage: 'As you awaken in this surreal environment, disorientation grips your senses. The sensation of weightlessness is exhilarating yet terrifying, making it hard to tell which way is up. Glimpses of forgotten technology and drifting relics remind you of a past that may have been lost to the cosmos. Each moment stretches out, and you can’t shake the feeling that something is watching you from the shadows.',
-        impassable: false,
-        contents: [
-            { name: 'floating artifacts', description: 'Various objects drift lazily around the room, remnants of advanced technology from a civilization long gone. They shine with unknown energy, their purpose now a mystery.' },
-            { name: 'pulsating panels', description: 'The walls are covered in panels that pulse with a soft blue light, seemingly responding to your presence. They might hold secrets waiting to be unlocked.' },
-            { name: 'starfield viewport', description: 'A massive viewport offers a view of the cosmos, revealing distant stars and celestial bodies. It is a breathtaking sight, yet it fills you with an unsettling sense of isolation.' },
-            { name: 'zero-gravity console', description: 'A console floats near the center, covered in strange symbols. Its buttons shimmer with energy, promising untold knowledge and potential dangers.' }
+        "name": "The Null Gravity Chamber",
+        "description": "You step into a vast chamber where the laws of gravity seem to have lost their hold. Objects float serenely around you, suspended in mid-air as if caught in an endless loop of time. Strange glowing panels line the walls, pulsating softly with an ethereal blue light that casts eerie shadows dancing in the air. A low, rhythmic hum resonates through the room, reminiscent of ancient machinery long forgotten, while the faint glimmer of distant stars twinkles through a massive viewport. Here, time feels distorted, as if the very fabric of the universe is bending around you, creating a disorienting sense of both wonder and trepidation.",
+        "startMessage": "As you awaken in this surreal environment, disorientation grips your senses. The sensation of weightlessness is exhilarating yet terrifying, making it hard to discern which way is up or down. Glimpses of forgotten technology and drifting relics remind you of a past that may have been lost to the cosmos, whispering secrets you cannot quite grasp. Each moment stretches out, the air thick with anticipation, and you can’t shake the feeling that something unseen is watching you from the shadows, ready to reveal the mysteries that lie hidden within this enigmatic space.",
+        "impassable": false,
+        "contents": [
+            { 
+                "name": "floating artifacts", 
+                "description": "Various objects drift lazily around the room, remnants of advanced technology from a civilization long gone. They shine with an otherworldly energy, each item radiating an aura of mystery and intrigue, their purposes lost to time." 
+            },
+            { 
+                "name": "pulsating panels", 
+                "description": "The walls are covered in panels that pulse with a soft blue light, responding to your presence in an almost sentient manner. Their rhythmic glow suggests they may hold secrets waiting to be unlocked, beckoning you to investigate further." 
+            },
+            { 
+                "name": "starfield viewport", 
+                "description": "A massive viewport offers a breathtaking view of the cosmos, revealing distant stars and swirling celestial bodies. It is a mesmerizing sight that fills you with awe, yet it also evokes an unsettling sense of isolation, as if you are adrift in an endless void." 
+            },
+            { 
+                "name": "zero-gravity console", 
+                "description": "A console floats near the center, covered in strange symbols and markings that seem to pulse with energy. Its buttons shimmer invitingly, promising untold knowledge and potential dangers, tempting you to engage with the mysteries it guards." 
+            }
         ]
-    },
+    },    
     {
         name: 'The Quantum Nexus',
         description: 'You enter a sprawling room filled with swirling energy patterns, vibrant and chaotic. Each step you take sends ripples through the air, distorting the space around you, as if you are walking through a dream. The walls are lined with shimmering screens displaying incomprehensible data, hinting at experiments that defy the very fabric of reality. Holographic projections flicker to life, showing glimpses of alternate dimensions and timelines. This is a place where the boundaries of science have been pushed beyond comprehension.',
@@ -851,10 +948,10 @@ export const descriptions = [
         startMessage: 'Awakening in this cold, clinical space fills you with a sense of dread. The machinery around you seems to hum with anticipation, as if eager for new subjects to experiment upon. The sterile environment contrasts sharply with the remnants of chaotic experiments, creating an unsettling duality. You can feel the weight of the past pressing down on you, urging you to uncover the secrets hidden within the lab’s confines.',
         impassable: false,
         contents: [
-            { name: 'cybernetic implants', description: 'Rows of implants rest on shelves, each one glistening with potential and echoing the dreams of their creators. They hint at the fusion of flesh and metal that has taken place here.' },
-            { name: 'preserved samples', description: 'Jars filled with preserved biological specimens line the walls, their contents swirling in a viscous fluid, waiting to be analyzed.' },
-            { name: 'mechanical apparatus', description: 'Advanced machinery occupies the center of the lab, its purpose obscured but exuding an air of menacing complexity.' },
-            { name: 'data terminals', description: 'Control panels blink with lights and screens displaying incomprehensible data, inviting you to interact and possibly unlock the secrets of this sterile environment.' }
+            { name: 'cybernetic implants', description: "Rows of sleek, chrome implants rest on shelves, their polished surfaces gleaming under the bright lights. Wires and tubing snake out from some, as if still waiting to be integrated into living flesh. Each implant feels disturbingly organic, a chilling testament to the lab’s fusion of man and machine, hinting at the horrifying transformations once performed here." },
+            { name: 'preserved samples', description: "Glass jars line the walls, filled with murky fluid and suspended biological specimens. Some appear humanoid—twisted limbs or disembodied organs floating in the thick liquid—while others are more alien in nature, as if plucked from unknown species. They pulse faintly, as though still alive, waiting for their next use in some twisted experiment." },
+            { name: 'mechanical apparatus', description: "A towering, multi-armed machine looms at the center of the lab, its appendages adorned with scalpels, drills, and syringes. Its surface is dotted with glowing runes and circuitry, giving it an air of dreadful precision. It hums quietly, as if sensing your presence, waiting for the moment to reactivate and resume its grisly work." },
+            { name: 'data terminals', description: "The data terminals blink erratically, their cracked screens displaying cryptic symbols and fragmented code. Occasionally, the distorted face of a long-forgotten researcher flashes briefly across the monitors, before fading back into static. Wires and cables coil like serpents around the consoles, giving the impression that these machines are more than just passive observers—they might still be controlling something." }
         ]
     },
     {
@@ -1091,13 +1188,25 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
-        description: 'a room where gravity is distorted, pulling you toward the ceiling or walls, disorienting and deadly to traverse. The very laws of physics seem twisted here, making every step a dangerous gamble.',
-        contents: [
-            { name: 'distorted gravity', description: 'The very fabric of reality seems to warp, pulling you in all directions. This room is said to be a result of a failed experiment by a powerful mage, trapping all who enter in its bizarre hold.' },
-            { name: 'disorienting pull', description: 'With each step, you feel the ground shift beneath you. Many have lost their minds trying to navigate this room, forever spiraling in confusion and dread.' },
-            { name: 'deadly traverse', description: 'Every move is a gamble, with the risk of being flung against the walls or ceiling. The echoes of those who lost their lives here resonate in the air, warning others of the danger.' }
-        ], impassable: true
-    },
+        "name": "The Gravitational Tides",
+        "description": "You step into a surreal chamber where the very fabric of gravity seems to unravel, warping the space around you. The walls and ceiling twist and bend, creating a dizzying illusion that pulls you toward them with a disconcerting force. Shadows flicker erratically, as if they have a mind of their own, while faint, disembodied whispers echo throughout, remnants of those who have been trapped here before. The ground undulates like a living surface, rippling and shifting beneath your feet, making every step feel precarious and uncertain. Objects—shattered remnants of furniture and belongings—float suspended in midair, forever caught in this bizarre gravitational dance, serving as a haunting reminder of the room’s dangers. Flickering lights pulse irregularly, casting an unsettling glow that highlights the warped surfaces, while the air is thick with an oppressive energy, almost sentient in its presence. An overwhelming sense of impending doom permeates the atmosphere, making each movement a gamble as you navigate this chaotic and deadly environment.",
+        "startMessage": "Awakening in this distorted gravity chamber, confusion floods your mind as you struggle to orient yourself in this nightmarish landscape. The strange pull of the walls and ceiling threatens to swallow you whole, and the echoes of previous explorers haunt your thoughts. A shiver runs down your spine as you realize that this room holds secrets best left undiscovered, urging you to find a way out before it claims you as its next victim.",
+        "impassable": true,
+        "contents": [
+            {
+                "name": "distorted gravity",
+                "description": "The air feels thick and alive, as if the very laws of physics have been rewritten. You can sense the gravitational pull shifting unpredictably, pulling you in various directions, leaving you disoriented and vulnerable."
+            },
+            {
+                "name": "disorienting pull",
+                "description": "As you take each step, the ground beneath you seems to ripple like water, causing you to feel momentarily weightless before the oppressive pull of the chamber reasserts itself. Many have lost their sanity navigating this treacherous space, forever spiraling into confusion."
+            },
+            {
+                "name": "deadly traverse",
+                "description": "Each move you make is fraught with peril. The risk of being flung against the walls or ceiling looms large, and the echoes of the lost resonate in the air, warning you of the deadly consequences that await the unwary."
+            }
+        ]
+    },    
     {
         description: 'a room filled with glowing, unstable crystals, crackling with dangerous energy that sparks across the floor. The crystals hum ominously, their light flickering like a warning of the danger they pose.',
         contents: [
@@ -1259,6 +1368,7 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
+        name: "The Chamber of the Malignant Serpent",
         description: 'a room where an enormous serpent coils in the center, its eyes glowing with malice. The air is thick with venom, and the creature’s presence alone makes the room impassable.',
         contents: [
             { name: 'enormous serpent', description: 'The serpent lies coiled, its scales glinting like polished obsidian. It is said to be the guardian of ancient treasures, waiting patiently for intruders to approach.' },
@@ -1276,12 +1386,15 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
-        description: 'a room where the ground is littered with shattered bones, and spectral figures patrol silently. Their empty eyes pass over you without recognition, but their presence is unmistakably hostile.',
+        name: "The Hall of Shattered Souls",
+        description: 'You step into a chilling room where the ground is littered with shattered bones, each one a testament to the countless souls lost here. Spectral figures patrol silently, their empty eyes gliding over you without recognition, yet their presence radiates unmistakable hostility. A thick fog hangs in the air, enhancing the haunting atmosphere as you feel an oppressive weight bearing down upon you. Shadows twist and turn around you, echoing the cries of the lost, creating an unsettling ambiance that makes you question your very existence. Each step is a reminder of the fate that awaits the unwary.',
+        startMessage: 'Awakening in this macabre chamber, a sense of dread grips you. The silence feels alive, charged with the energy of the restless spirits that linger here. You struggle to comprehend how you ended up in such a nightmarish space, as the chilling wails of the damned seem to reverberate in your bones. The realization that you cannot traverse this cursed ground sinks in, leaving you trapped in a place where the past intertwines with the present.',
+        impassable: true,
         contents: [
             { name: 'shattered bones', description: 'The floor is a graveyard of bones, remnants of those who dared to tread here before. Each step crunches underfoot, a morbid reminder of the room’s violent past.' },
             { name: 'spectral figures', description: 'Ethereal beings drift through the room, their presence chilling the air. Though they do not acknowledge you, their hostile aura warns of impending danger.' },
             { name: 'hostile atmosphere', description: 'The silence is deafening, interrupted only by the distant sound of wailing. It is a room where the dead walk among the living, and the air is thick with dread.' }
-        ], impassable: true
+        ]
     },
     {
         description: 'a room engulfed by a blizzard, the snow swirling violently, obscuring everything in a freezing white haze. The wind howls like a beast, and the temperature plummets to lethal levels.',
@@ -1308,21 +1421,27 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
-        description: 'a room with a colossal clock mechanism, its gears spinning violently, crushing anything that comes too close. The grinding of metal on metal fills the space, leaving no room for error or passage.',
+        name: "The Clockwork Cataclysm",
+        description: "You enter a room dominated by a colossal clock mechanism, its massive gears spinning violently with a relentless momentum. The air is thick with the scent of oil and metal, and the grinding of metal on metal fills the space, drowning out all other sounds. Shadows flicker across the walls as the colossal clock casts eerie silhouettes, leaving no room for error or passage. The overwhelming presence of the clock creates an atmosphere of dread, as if time itself is an enemy, poised to crush anything that comes too close.",
+        startMessage: "Awakening in this chamber of time, you feel a surge of adrenaline as the deafening sounds of grinding gears reverberate through your bones. Panic sets in as you realize the enormity of the clockwork around you; each tick and tock feels like a countdown to disaster. The relentless whirring and clanking creates an urgent atmosphere, pushing you to act swiftly, lest you become another victim of the clock’s cruel embrace.",
+        impassable: true,
         contents: [
-            { name: 'colossal clock mechanism', description: 'The clock towers above, a monstrous creation of interlocking gears and cogs. Each movement is a reminder of the relentless passage of time, threatening all who dare approach.' },
-            { name: 'grinding metal sounds', description: 'The noise is deafening, a chaotic symphony of grinding and crashing. It echoes through the room, a constant reminder of the peril that awaits the unwary.' },
-            { name: 'crushing danger', description: 'The gears move with terrifying speed, leaving no room for error. Those who linger too long may find themselves crushed beneath the unforgiving clockwork.' }
-        ], impassable: true
-    },
+            { name: "colossal clock mechanism", description: "The clock towers above you, a monstrous creation of interlocking gears and cogs, each one larger than your head. Their surfaces are polished but scarred, a testament to the wear of countless years. As the gears rotate, they catch the dim light, casting glimmers that dance eerily on the walls, reminding you of the relentless passage of time and the danger that looms with each revolution." },
+            { name: "grinding metal sounds", description: "The noise is deafening, a chaotic symphony of grinding, clanking, and crashing that echoes ominously through the room. It feels as though the walls themselves tremble in response to the mechanical fury, amplifying the sense of urgency. Each sound sends vibrations through the ground, adding to the anxiety that grips you as you navigate this perilous space." },
+            { name: "crushing danger", description: "The gears move with terrifying speed, a ballet of destruction that leaves no room for error. You can almost feel the rush of air as they turn, and the thought of being caught in their path sends a shiver down your spine. Those who linger too long may find themselves crushed beneath the unforgiving clockwork, a grim fate that serves as a warning to all who dare approach." }
+        ]
+    },    
     {
-        description: 'a room filled with venomous plants, their thorny vines thrashing as if with a mind of their own. Each one is ready to strike, and the air is thick with the sweet scent of their deadly poison.',
-        contents: [
-            { name: 'venomous plants', description: 'The flora in this room seems to pulse with a life of its own, their thorny vines thrashing and reaching as if to ensnare any intruders.' },
-            { name: 'deadly scent', description: 'The air is heavy with a sickly sweet fragrance that masks the danger within. It lures the unsuspecting closer, drawing them into the plants’ deadly embrace.' },
-            { name: 'ready to strike', description: 'Every vine is a potential weapon, poised to strike at a moment’s notice. It is said that those who underestimate the plants find themselves swiftly overwhelmed.' }
-        ], impassable: true
-    },
+        "name": "The Venomous Thicket",
+        "description": "You find yourself in a foreboding chamber filled with venomous plants, their thorny vines thrashing about as if possessed by a malevolent spirit. The vibrant greens of the flora stand in stark contrast to the dim, flickering light that barely penetrates the dense undergrowth. Each plant seems to pulse with a sinister energy, ready to ensnare any intruder. The air is thick with a sweet, cloying scent that masks the danger lurking within, creating a deceptive atmosphere that beckons the unwary to draw closer. As you assess your surroundings, it becomes painfully clear that traversing this treacherous thicket is an impossibility; every movement sends a ripple of anticipation through the plants, poised to strike and ensnare anyone foolish enough to venture forward.",
+        "startMessage": "Awakening in this treacherous thicket, you are immediately struck by the oppressive atmosphere that surrounds you. The sickly sweet aroma invades your senses, but it’s the rustling of the vines that truly unsettles you. The sensation of being watched is palpable, as though the plants themselves are waiting for the perfect moment to strike. You quickly realize that this place is not merely a room but a living trap, rendering any attempt at escape futile.",
+        "impassable": true,
+        "contents": [
+            { "name": "venomous plants", "description": "The flora in this room thrums with a life of its own, their thorny vines writhing and reaching out as if eager to ensnare any intruders. The leaves shimmer with a faint, toxic sheen, hinting at the deadly nature of their sap." },
+            { "name": "deadly scent", "description": "The air is saturated with a sickly sweet fragrance that hangs heavily, masking the plants' lethal properties. It draws the unsuspecting in, enticing them to venture closer to the dangerous flora." },
+            { "name": "ready to strike", "description": "Every vine in this room acts as a potential weapon, coiling and uncurling with predatory intent. Those who underestimate these sentient plants may find themselves swiftly overwhelmed, ensnared by their relentless grasp." }
+        ]
+    },    
     {
         description: 'a room where strange, otherworldly voices echo constantly, growing louder the closer you approach. The sound seems to invade your mind, making it impossible to think or move forward.',
         contents: [

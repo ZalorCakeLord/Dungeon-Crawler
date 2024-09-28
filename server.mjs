@@ -24,11 +24,21 @@ app.post('/command', (req, res) => {
     }
 
     const { command } = req.body;
-    console.log(command);
-    game.handleAction(command);
-    const gameState = game.render();
-    res.json(gameState);
-    messageLog.clear(); // Ensure messageLog is used correctly
+    if (!command) {
+        return res.status(400).json({ error: 'Command is required.' });
+    }
+
+    try {
+        console.log(command);
+        game.handleAction(command);
+        const gameState = game.render();
+        res.json(gameState);
+        messageLog.clear(); // Ensure messageLog is used correctly
+    } catch (error) {
+        console.error('Error handling command:', error);
+        console.error(error.stack); // Log the stack trace
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 app.listen(port, () => {

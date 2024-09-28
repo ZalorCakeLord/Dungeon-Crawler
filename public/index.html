@@ -16,12 +16,16 @@
         <div id="room"></div>
         <br>
         <div id="enemy"></div>
-        <div id="messages">
-            
-        </div>
+        <div id="messages"></div>
         <div id="controls">
             <input type="text" id="command" placeholder="Enter command">
             <button id="send">Send</button>
+        </div>
+        <div id="direction-buttons">
+            <button id="move-north">North</button>
+            <button id="move-east">East</button>
+            <button id="move-south">South</button>
+            <button id="move-west">West</button>
         </div>
     </div>
 
@@ -33,7 +37,31 @@
                 document.getElementById('send').click(); // Simulate a click on the Send button
             }
         });
+
+        // Function to handle movement in a direction
+        function move(direction) {
+            document.getElementById('command').value = `move ${direction}`;
+            document.getElementById('send').click(); // Simulate clicking the Send button
+        }
+
+        // Add event listeners to the directional buttons
+        document.getElementById('move-north').addEventListener('click', function() {
+            move('north');
+        });
+
+        document.getElementById('move-east').addEventListener('click', function() {
+            move('east');
+        });
+
+        document.getElementById('move-south').addEventListener('click', function() {
+            move('south');
+        });
+
+        document.getElementById('move-west').addEventListener('click', function() {
+            move('west');
+        });
     </script>
 </body>
+
 
 </html>

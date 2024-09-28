@@ -201,7 +201,7 @@ export class Dungeon {
         if (room.enemy && !room.enemy.isDead()) {
             if (Math.random() < 0.5) { // 50% chance to attack
                 room.enemy.attack(this.player);
-                messageLog.add(`==}The ${room.enemy.name} attacks you as you enter the room!{==`);
+                messageLog.add(`<br>==}The <b>${room.enemy.name}</b> attacks you as you enter the room!{==`);
                 if (this.player.health <= 0) {
                     messageLog.deathCause = room.enemy.name; // Set the cause of death
                 }

@@ -17,7 +17,7 @@ export async function intro(name, gender, species) {
     messages.push("Press any key to begin your desperate quest for freedom...");
 
     // Simulate waiting for user to "press any key"
-    await wait(10); // You can adjust this to simulate pressing a key
+    await wait(2); // You can adjust this to simulate pressing a key
 
     // Character creation narrative
     messages.push("You are dreaming...");

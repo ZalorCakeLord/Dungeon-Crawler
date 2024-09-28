@@ -28,11 +28,11 @@ export class Game {
     async start() {
         console.clear()
         this.startTime = new Date();
-        console.log()
-        console.log("Welcome to the Dungeon Crawler!");
-        console.log("Type 'help' for a list of commands.");
-        console.log("Good luck!");
-        console.log()
+        messageLog.add()
+        messageLog.add("Welcome to the Dungeon Crawler!");
+        messageLog.add("Type 'help' for a list of commands.");
+        messageLog.add("Good luck!");
+        messageLog.add()
         this.prompt = (await import('prompt-sync')).default();
         this.gameLoop();
     }
@@ -51,15 +51,15 @@ export class Game {
             const action = this.getPlayerAction();
             this.handleAction(action);
         }
-        console.log("Game Over!");
+        messageLog.add("Game Over!");
         //display time in hh : mm : ss padded to 2 digits
         //display what killed the player
-        console.log(`You explored the dungeon for ${this.calculateTimeSpent()}!`);
-        console.log(`You defeated ${messageLog.enemiesKilled} enemies and found ${this.statistics.itemsFound} items.`);
+        messageLog.add(`You explored the dungeon for ${this.calculateTimeSpent()}!`);
+        messageLog.add(`You defeated ${messageLog.enemiesKilled} enemies and found ${this.statistics.itemsFound} items.`);
         let deathCause = messageLog.deathCause;
-        console.log(randomDeathMessage(deathCause));
+        messageLog.add(randomDeathMessage(deathCause));
         //wait for any key to be pressed
-        console.log('Press any key to restart...');
+        messageLog.add('Press any key to restart...');
         await new Promise(resolve => process.stdin.once('data', resolve));
         messageLog.clear();
         messageLog.add('Restarting game...');
@@ -80,13 +80,15 @@ export class Game {
 
     render() {
         //Spawn Probability: ${Math.max(0.1, 0.35 - (this.dungeon.monsterSpawnCounter * 0.05))}
-        console.log(`            room: this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y)
-`)
+        console.log(`room: ${this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y)}`);
+
         return {
             stats: `Health: ${String(this.player.health).padStart(4, '0')}  Attack Power: ${String(this.player.attackPower).padStart(4, '0')}  Rooms Explored: ${String(this.dungeon.visitedRooms.size).padStart(4, '0')} \n Slain: ${String(messageLog.enemiesKilled).padStart(4, '0')}        Looted: ${String(this.statistics.itemsFound).padStart(4, '0')}  Frames: ${String(messageLog.frames).padStart(4, '0')}`,
             map: this.dungeon.displayMap(),
             messages: messageLog.getMessages(),
-            room: this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y)
+            room: this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y),
+            health: this.player.health,
+            deathMessage: randomDeathMessage(messageLog.deathCause,messageLog.playerName),
         };
     
     }
@@ -96,7 +98,22 @@ export class Game {
     }
 
     handleAction(action) {
+        console.log(action)
+        if (!action || action.length === 0) {
+            console.log(action)
+            messageLog.add("You must enter a command.");
+            return;
+        }
         console.clear()
+    
+        if(this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y).items.length > 0){
+            //check if this item is null
+            if(this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y).items[0] === null){
+                this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y).items.shift();
+            }
+            //this is a temporary fix to remove null items from the items array
+            //eventually I'll fix the issue at the source
+        }
         this.player.restCooldown > 0 ? this.player.restCooldown-- : null;
         const [command, ...args] = action.split(' ');
         const target = args.join(' ');
@@ -156,7 +173,7 @@ export class Game {
                     searchRoom.items? searchRoom.items.forEach((x)=>{x?list.push(x.name):null}): null;
                     searchRoom.contents.forEach(item => list.push(item.name));
                     messageLog.add(`You see: ${[...list,'myself'].join(', ')}`);
-                    messageLog.add(`For further detail use inspect [name].`); 
+                    messageLog.add(`<br>For further detail use inspect [name].`); 
                 }
                 break;
             case 'attack':
@@ -269,7 +286,7 @@ export class Game {
         }
         else if (room.enemy && room.enemy.name.toLowerCase() === target.toLowerCase()) {
             messageLog.nl();
-            messageLog.add(`${room.enemy.name}`);
+            messageLog.add(`<b>${room.enemy.name}</b><br>`);
             messageLog.add(`Health: ${room.enemy.health}  Attack Power: ${room.enemy.attackPower}`);
             messageLog.add(room.enemy.description);
         } else {

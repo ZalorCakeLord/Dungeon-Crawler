@@ -1172,6 +1172,53 @@ const enemyDefinitionsRaw = [
         attackMessages: ['The dire rat bites into your flesh, dealing {amount} damage.', 'It leaps at you with gnashing teeth, inflicting {amount} damage.'], 
         speed: 0.8 
     },
+    { 
+        name: 'Toxic Slime', 
+        health: 55, 
+        attackPower: 11, 
+        behavior: 'aggressive', 
+        description: 'A bubbling mass of green goo that leaves a trail of corrosive liquid. Its very presence is a hazard, corroding anything it touches.', 
+        attackMessages: ['The Toxic Slime engulfs you, inflicting {amount} damage with its corrosive touch.', 'It splatters toxic goo, dealing {amount} damage from the poison.'], 
+        speed: 0.5 
+    },
+    { 
+        name: 'Vengeful Spirit', 
+        health: 70, 
+        attackPower: 14, 
+        behavior: 'aggressive', 
+        description: 'A ghostly figure wrapped in tattered rags, with hollow eyes that burn with fury. It seeks vengeance on those who disturb its eternal rest.', 
+        attackMessages: ['The Vengeful Spirit reaches out, dealing {amount} damage with its icy touch.', 'It screeches in rage, causing a wave of despair that inflicts {amount} damage.'], 
+        speed: 0.8 
+    },
+    { 
+        name: 'Ghastly Apparition', 
+        health: 40, 
+        attackPower: 8, 
+        behavior: 'defensive', 
+        description: 'An ethereal figure that drifts silently through the air, emitting a mournful wail. Its presence chills the air around it, creating an aura of dread.', 
+        attackMessages: ['The Ghastly Apparition unleashes a chilling wail, dealing {amount} damage to your psyche.', 'It hovers close, draining your willpower and inflicting {amount} damage.'], 
+        speed: 0.6 
+    },
+    { 
+        name: 'Shadow Wraith', 
+        health: 50, 
+        attackPower: 10, 
+        behavior: 'aggressive', 
+        description: 'A swirling mass of darkness with glowing red eyes, the Shadow Wraith feeds on fear and despair, striking from the shadows with deadly precision.', 
+        attackMessages: ['The Shadow Wraith lunges at you, inflicting {amount} damage with its dark tendrils.', 'You feel a chill as the Wraith siphons your strength, dealing {amount} damage.'], 
+        speed: 0.75 
+    },
+    { 
+        name: 'Creeping Terror', 
+        health: 60, 
+        attackPower: 15, 
+        behavior: 'stealth', 
+        description: 'A green, hulking creature that silently approaches, ready to unleash an explosive surprise. Its face is blank, save for a pair of haunting eyes that glow in the darkness.', 
+        attackMessages: ['The Creeping Terror detonates in a burst of energy, dealing {amount} damage.', 'It lunges forward, causing a shockwave that inflicts {amount} damage.'], 
+        speed: 0.9 
+    },    
+    
+    
 ];
 
 const createIdedArray = (array) => {
