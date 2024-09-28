@@ -3,6 +3,7 @@ export class MessageLog {
         this.messages = [];
         this.enemiesKilled = 0;
         this.deathCause = 'a dungeon collapse!'//default death cause, means something has gone wrong
+        this.playerName = 'Player'
     }
 
     add(message) {

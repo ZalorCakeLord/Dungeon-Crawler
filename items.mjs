@@ -148,11 +148,12 @@ export const items = [
 
     new Item("Sleeping Bag", { type: "rest" }, "A warm, comfortable sleeping bag. Resting in it can restore a bit of health."),
     new Item("Devil's Dice", { type: "gamble" }, "A set of dice said to be cursed by the devil. Rolling them can bring great fortune or terrible misfortune."),
+    new Item("Lesser Ring of Alias", { type: "oneOff",tag: "genderFlip" }, "One of thousands such bootleg copies of the true Rings of Alias, this one will indeed change your appearance, once and permanently."),
 
     new Item("Ring of Bloodlust", { type: "health", value: 20 }, "A ring that pulses malevolently in your hand.", true, 10, true, "The moment you put on the ring you feel it leech your lifeforce. You lose 20 health, but gain 10 attack."),
 
     new Item("Blighted Blade", { type: "health", value: 15 },
-        "A cursed blade that draws strength from your life force.", true, 12,
+        "A cursed blade that draws strength from your life force.", true, 12, false,
         "You lose 15 health while wielding the blade, but gain 12 attack power."),
 
     new Item("Shattered Mirror", { type: "attack", value: 20 },
@@ -191,8 +192,15 @@ export const items = [
         "A heavy helm that leaves you vulnerable, but restores some of your energy.", true, 10, true,
         "You lose 15 attack, but gain 10 health as the helm dulls your senses but heals your wounds.")
 
+    
+
 ];
 
 export function getItem(name) {
     return items.find(item => item.name.toLowerCase() === name.toLowerCase());
+}
+
+// Check if an item with the given name exists
+export function validateItemName(name) {
+    return items.some(item => item.name.toLowerCase() === name.toLowerCase());
 }

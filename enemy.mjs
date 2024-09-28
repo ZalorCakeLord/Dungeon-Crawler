@@ -1,7 +1,7 @@
 import { messageLog } from './messageLog.mjs';
 
 export class Enemy {
-    constructor(name, health, attackPower, behavior, description, attackMessages, speed, deathMessages) {
+    constructor(name, health, attackPower, behavior, description, attackMessages, speed, deathMessages, id) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
@@ -10,6 +10,7 @@ export class Enemy {
         this.attackMessages = attackMessages || [`The ${name} attacks you for ${attackPower} damage.`];
         this.speed = speed;
         this.deathMessages = deathMessages || [`You killed the ${name}.`, `The ${name} is dead.`,`The ${name} has fallen!`];
+        this.id = id; //Identifies which 'goblin' or 'zombie' or whatever is being referred to. There are duplicates of each enemy type in the list, but I like the higher odds duplicates bring, along with the alternate lore.
     }
 
     

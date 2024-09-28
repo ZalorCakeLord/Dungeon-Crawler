@@ -1,4 +1,4 @@
-import { descriptions, impassableDescriptions, getRandomDescription } from './descriptions.mjs';
+import { descriptions, impassableDescriptions, getRandomDescription, getRandomPassableDescription } from './descriptions.mjs';
 import { createEnemy, getRandomEnemy } from './enemies.mjs';
 import { items } from './items.mjs';
 import { messageLog } from './messageLog.mjs';
@@ -12,7 +12,7 @@ export class Dungeon {
         this.previousDirection = null;
         this.visitedRooms = new Set();
         this.monsterSpawnCounter = 0
-        this.generateRoom(this.currentPosition.x, this.currentPosition.y);
+        this.generateRoom(this.currentPosition.x, this.currentPosition.y, true);
         this.visitedRooms.add(`${this.currentPosition.x},${this.currentPosition.y}`);
     }
 
@@ -24,11 +24,11 @@ export class Dungeon {
         return items[Math.floor(Math.random() * items.length)];
     }
 
-    generateRoom(x, y) {
-        const description = getRandomDescription();
+    generateRoom(x, y, start=false) {
+        const description = start?getRandomPassableDescription():getRandomDescription();
         
         // Adjust enemy spawn probability based on the monsterSpawnCounter
-        const enemySpawnProbability = Math.max(0.1, 0.35 - (this.monsterSpawnCounter * 0.05)); // Minimum probability of 0.1
+        const enemySpawnProbability = Math.max(0.1, 0.35/* - (this.monsterSpawnCounter * 0.05)*/); // Minimum probability of 0.1
         const enemy = Math.random() < enemySpawnProbability ? this.randomEnemy() : null;
         
         if (enemy) {
@@ -36,10 +36,12 @@ export class Dungeon {
         } else {
             this.monsterSpawnCounter = Math.max(0, this.monsterSpawnCounter - 1); // Decrease counter if no enemy spawns
         }
-
+        let items = []
         const item = Math.random() > 0.5 ? this.randomItem() : null; // The lower the number, the higher the odds of item spawn
+        items.push(item);
+        Math.random() > 0.7 ? items.push(this.randomItem()) : null;
         const passable = description.impassable? false : true;
-        this.map.set(`${x},${y}`, { description:description.description, enemy, item, passable,contents:description.contents});
+        this.map.set(`${x},${y}`, { description:(start?description.startMessage:description.description), enemy, items, passable,contents:description.contents, name: description.name, isGate: description.isGate });
     }
 
     getRoom(x, y) {
@@ -71,6 +73,7 @@ export class Dungeon {
     }
 
     moveEnemyToNearbyRoom(x, y) {
+        if(!this.getRoom(x, y).enemy) return;
         const currentRoom = this.getRoom(x, y);
         let likelihood = 1-currentRoom.enemy.speed
         if (Math.random() > likelihood) {
@@ -127,29 +130,34 @@ export class Dungeon {
 
     display() {
         const room = this.getRoom(this.currentPosition.x, this.currentPosition.y);
-        console.log(`You are in ${room.description}.`);
+        messageLog.add(`${room.name?room.name:room.impassable?'Impassable Chamber':'Dungeon Chamber'}\n${room.description}.`);
         if (!room.passable) {
-            console.log('This room is impassable. You can only exit back the way you came.');
+            messageLog.add('This room is impassable. You can only exit back the way you came.');
         }
         if (room.enemy) {
             if (room.enemy.isDead()) {
-                //console.log(`The corpse of a ${room.enemy.name} lies here.`);
+                //messageLog.add(`The corpse of a ${room.enemy.name} lies here.`);
             } else {
-                console.log(`There is a ${room.enemy.name} here.`);
+                messageLog.add(`There is a ${room.enemy.name} here.`);
             }
         }
-        if (room.item) {
-            console.log(`You see a ${room.item.name} here.`);
-        }
+        //if (room.item) {
+        //    messageLog.add(`You see a ${room.item.name} here.`);
+        //}
+        // you actually have to check if there are items in the room now
     }
 
-    search() {
+    grab(target) {
         const room = this.getRoom(this.currentPosition.x, this.currentPosition.y);
-        if (room.item) {
-            console.log(`You found a ${room.item.name}.`);
-            return room.item;
+        const itemIndex = room.items.findIndex(item => item?item.name.toLowerCase() === target.toLowerCase():false);
+    
+        if (itemIndex !== -1) {
+            const item = room.items[itemIndex];
+            messageLog.add(`You found a ${item.name}.`);
+            room.items.splice(itemIndex, 1); // Remove the item from the room
+            return item;
         } else {
-            console.log('You found nothing.');
+            messageLog.add('You found nothing.');
             return null;
         }
     }
@@ -177,16 +185,16 @@ export class Dungeon {
                 this.currentPosition.x -= 1;
                 break;
             default:
-                console.log('Invalid direction!');
+                messageLog.add('Invalid direction!');
                 return;
         }
 
         const room = this.getRoom(this.currentPosition.x, this.currentPosition.y);
         this.visitedRooms.add(`${this.currentPosition.x},${this.currentPosition.y}`);
         if (!room.passable) {
-            console.log('You enter an impassable room. You can only exit back the way you came.');
+            messageLog.add('You enter an impassable room. You can only exit back the way you came.');
         } else {
-            console.log(`You move ${direction}.`);
+            messageLog.add(`You move ${direction}.`);
         }
 
         // Chance for enemy to attack when entering the room
@@ -216,35 +224,43 @@ export class Dungeon {
     }
 
     displayMap() {
-        console.log('Dungeon Map:');
+        let map = '<table border="1">';
         const minX = Math.min(...Array.from(this.visitedRooms).map(key => parseInt(key.split(',')[0])));
         const maxX = Math.max(...Array.from(this.visitedRooms).map(key => parseInt(key.split(',')[0])));
         const minY = Math.min(...Array.from(this.visitedRooms).map(key => parseInt(key.split(',')[1])));
         const maxY = Math.max(...Array.from(this.visitedRooms).map(key => parseInt(key.split(',')[1])));
+    
+        // Iterate from minY to maxY to display the map in the correct direction
         for (let y = minY; y <= maxY; y++) {
-            let row = '';
+            let row = '<tr>';
             for (let x = minX; x <= maxX; x++) {
                 const roomKey = `${x},${y}`;
+                let cellContent = '';
                 if (this.currentPosition.x === x && this.currentPosition.y === y) {
-                    row += '[P] ';
+                    cellContent = '[P]';
                 } else if (this.visitedRooms.has(roomKey)) {
                     const room = this.getRoom(x, y);
-                    if(room.isGate){
-                        row += '[∞] ';
+                    if (room.isGate) {
+                        cellContent = '[∞]';
                     } else if (!room.passable) {
-                        row += '[X] ';
+                        cellContent = '[X]';
                     } else if (room.enemy && !room.enemy.isDead()) {
-                        row += '[☠] ';
-                    } else if (room.item) {
-                        row += '[⋆] ';
+                        cellContent = '[☠]';
+                    } else if (room.items && room.items.length > 0) {
+                        cellContent = '[⋆]';
                     } else {
-                        row += '[ ] ';
+                        cellContent = '[ ]';
                     }
                 } else {
-                    row += '    ';
+                    cellContent = ' ';
                 }
+                row += `<td>${cellContent}</td>`;
             }
-            console.log(row);
+            row += '</tr>';
+            map += row;
         }
+        map += '</table>';
+        return map;
     }
+    
 }

@@ -1,7 +1,7 @@
 import { deathMessages } from './deathMessages.mjs';
 import { Enemy } from './enemy.mjs';
 
-const enemyDefinitions = [
+const enemyDefinitionsRaw = [
     {
         name: 'Dragon', health: 100, attackPower: 20, behavior: 'aggressive', description: 'A massive beast with scales like armor and eyes that burn with ancient fire. Its roar shakes the ground.', attackMessages: [
             'The Dragon roars, spewing fire that deals {amount} damage!',
@@ -992,8 +992,214 @@ const enemyDefinitions = [
     { name: 'Witch Queen', health: 175, attackPower: 65, behavior: 'aggressive', description: 'A malevolent ruler with mastery over dark magic. Her spells twist reality itself, making her foes tremble in fear.', attackMessages: ['The Witch Queen raises her hands, dark energy swirling, dealing {amount} damage.', 'With a sinister laugh, she unleashes a spell that strikes you for {amount} damage.'], speed: 0.5 },
     { name: 'Silverback Gorilla', health: 140, attackPower: 50, behavior: 'aggressive', description: 'A hulking gorilla with silver fur, it pounds its chest before attacking with bone-crushing strength.', attackMessages: ['The silverback pounds its chest and charges, inflicting {amount} damage.', 'It swings its massive fists, dealing {amount} damage with each strike.'], speed: 0.7 },
     { name: 'Void Terror', health: 280, attackPower: 80, behavior: 'aggressive', description: 'A creature from the depths of the void, its form shifting between nightmares. It attacks the mind as much as the body.', attackMessages: ['The void terror lashes out, causing you to question reality itself, dealing {amount} damage.', 'It attacks with a wave of despair, inflicting {amount} damage to your very essence.'], speed: 0.4 },
-
+    { 
+        name: 'Goblin', 
+        health: 35, 
+        attackPower: 8, 
+        behavior: 'aggressive', 
+        description: 'A small but vicious creature with a sharp blade and even sharper teeth.', 
+        attackMessages: ['The goblin slashes wildly with its dagger, dealing {amount} damage.', 'It cackles as it lunges with a crude blade, causing {amount} damage.'], 
+        speed: 0.6 
+    },
+    { 
+        name: 'Cave Bat', 
+        health: 20, 
+        attackPower: 6, 
+        behavior: 'evasive', 
+        description: 'A small, fast creature that strikes from the shadows of the cave ceiling.', 
+        attackMessages: ['The bat swoops down from the darkness, biting you for {amount} damage.', 'With a flutter of wings, it darts past, grazing you for {amount} damage.'], 
+        speed: 0.9 
+    },
+    { 
+        name: 'Zombie', 
+        health: 45, 
+        attackPower: 7, 
+        behavior: 'slow', 
+        description: 'A shambling corpse animated by dark magic. Slow but relentless.', 
+        attackMessages: ['The zombie drags itself toward you, clawing for {amount} damage.', 'It groans and lunges forward, rotting hands dealing {amount} damage.'], 
+        speed: 0.3 
+    },
+    { 
+        name: 'Slime', 
+        health: 30, 
+        attackPower: 5, 
+        behavior: 'defensive', 
+        description: 'A mindless blob of acidic goo. Difficult to harm, but not very dangerous.', 
+        attackMessages: ['The slime stretches out, burning your skin with acid for {amount} damage.', 'It splashes toward you, the goo searing your flesh for {amount} damage.'], 
+        speed: 0.4 
+    },
+    { 
+        name: 'Skeleton', 
+        health: 40, 
+        attackPower: 10, 
+        behavior: 'aggressive', 
+        description: 'An animated skeleton wielding a rusted sword. It fights without fear or pain.', 
+        attackMessages: ['The skeleton swings its sword, cutting you for {amount} damage.', 'It thrusts its sword at you with a rattle of bones, dealing {amount} damage.'], 
+        speed: 0.5 
+    },
+    { 
+        name: 'Giant Spider', 
+        health: 50, 
+        attackPower: 12, 
+        behavior: 'evasive', 
+        description: 'A venomous spider that strikes quickly and retreats into the shadows.', 
+        attackMessages: ['The spider bites you with venomous fangs, causing {amount} damage.', 'It leaps at you, injecting venom and dealing {amount} damage.'], 
+        speed: 0.8 
+    },
+    { 
+        name: 'Bandit', 
+        health: 55, 
+        attackPower: 15, 
+        behavior: 'aggressive', 
+        description: 'A lawless rogue looking to make a quick profit at your expense.', 
+        attackMessages: ['The bandit slashes with a rusty blade, causing {amount} damage.', 'It swings wildly, aiming for your throat and dealing {amount} damage.'], 
+        speed: 0.7 
+    },
+    { 
+        name: 'Swarm of Insects', 
+        health: 20, 
+        attackPower: 4, 
+        behavior: 'evasive', 
+        description: 'A buzzing cloud of biting and stinging insects, hard to hit but not very strong.', 
+        attackMessages: ['The swarm engulfs you, biting and stinging for {amount} damage.', 'Insects bite and claw at your skin, causing {amount} damage.'], 
+        speed: 1.0 
+    },
+    { 
+        name: 'Fire Beetle', 
+        health: 25, 
+        attackPower: 9, 
+        behavior: 'aggressive', 
+        description: 'A beetle that spits small bursts of fire when threatened.', 
+        attackMessages: ['The fire beetle spits a small flame, scorching you for {amount} damage.', 'It launches a burst of fire from its mandibles, causing {amount} damage.'], 
+        speed: 0.6 
+    },
+    { 
+        name: 'Wild Boar', 
+        health: 60, 
+        attackPower: 18, 
+        behavior: 'aggressive', 
+        description: 'A powerful and fast wild animal with dangerous tusks.', 
+        attackMessages: ['The boar charges forward, goring you with its tusks for {amount} damage.', 'It rushes at you in a rage, slamming into you for {amount} damage.'], 
+        speed: 0.7 
+    },
+    { 
+        name: 'Living Vine', 
+        health: 40, 
+        attackPower: 7, 
+        behavior: 'defensive', 
+        description: 'A sentient vine that wraps around its victims and strangles them.', 
+        attackMessages: ['The vine wraps around you, constricting you for {amount} damage.', 'It lashes out, slapping you with its thorny tendrils, causing {amount} damage.'], 
+        speed: 0.5 
+    },
+    { 
+        name: 'Mud Golem', 
+        health: 70, 
+        attackPower: 15, 
+        behavior: 'defensive', 
+        description: 'A creature formed from mud and stone, slow but resilient.', 
+        attackMessages: ['The mud golem slams its heavy fists into you, dealing {amount} damage.', 'It throws a chunk of mud at you, causing {amount} damage.'], 
+        speed: 0.3 
+    },
+    { 
+        name: 'Dire Wolf', 
+        health: 55, 
+        attackPower: 20, 
+        behavior: 'aggressive', 
+        description: 'A large and ferocious wolf with sharp teeth and a hunger for blood.', 
+        attackMessages: ['The dire wolf lunges at you, biting deeply for {amount} damage.', 'It growls as it leaps, sinking its fangs into your flesh, dealing {amount} damage.'], 
+        speed: 0.8 
+    },
+    { 
+        name: 'Shade', 
+        health: 25, 
+        attackPower: 12, 
+        behavior: 'evasive', 
+        description: 'A shadowy figure that slips in and out of existence. It strikes with chilling force.', 
+        attackMessages: ['The shade moves through you, chilling your bones for {amount} damage.', 'It strikes from the shadows, sapping your strength for {amount} damage.'], 
+        speed: 0.9 
+    },
+    { 
+        name: 'Wild Dog', 
+        health: 40, 
+        attackPower: 10, 
+        behavior: 'aggressive', 
+        description: 'A feral dog with rabid tendencies. Its bite is nasty and diseased.', 
+        attackMessages: ['The wild dog bites viciously, dealing {amount} damage.', 'It snarls and lunges, teeth bared, causing {amount} damage.'], 
+        speed: 0.6 
+    },
+    { 
+        name: 'Feral Cat', 
+        health: 25, 
+        attackPower: 8, 
+        behavior: 'evasive', 
+        description: 'A wild, agile cat. It scratches and bites before fleeing into the shadows.', 
+        attackMessages: ['The feral cat slashes at you with its claws, causing {amount} damage.', 'It bites and scratches before darting away, dealing {amount} damage.'], 
+        speed: 0.9 
+    },
+    { 
+        name: 'Will-o\'-Wisp', 
+        health: 15, 
+        attackPower: 6, 
+        behavior: 'evasive', 
+        description: 'A floating, glowing orb of ghostly light. It drains life force from those it encounters.', 
+        attackMessages: ['The wisp flickers around you, drawing away {amount} health.', 'It pulses with energy, draining your life force for {amount} damage.'], 
+        speed: 0.9 
+    },
+    { 
+        name: 'Gnoll', 
+        health: 50, 
+        attackPower: 14, 
+        behavior: 'aggressive', 
+        description: 'A hyena-like humanoid with a sadistic thirst for battle.', 
+        attackMessages: ['The gnoll strikes with its axe, laughing as it deals {amount} damage.', 'It bites and claws in a frenzy, inflicting {amount} damage.'], 
+        speed: 0.7 
+    },
+    { 
+        name: 'Cursed Armor', 
+        health: 65, 
+        attackPower: 16, 
+        behavior: 'defensive', 
+        description: 'An empty suit of armor, animated by a malevolent spirit.', 
+        attackMessages: ['The armor swings its heavy sword, clanging as it deals {amount} damage.', 'It bashes into you with its shield, causing {amount} damage.'], 
+        speed: 0.4 
+    },
+    { 
+        name: 'Dire Rat', 
+        health: 45, 
+        attackPower: 12, 
+        behavior: 'aggressive', 
+        description: 'A larger and deadlier version of the common plague rat, with the same infectious bite.', 
+        attackMessages: ['The dire rat bites into your flesh, dealing {amount} damage.', 'It leaps at you with gnashing teeth, inflicting {amount} damage.'], 
+        speed: 0.8 
+    },
 ];
+
+const createIdedArray = (array) => {
+    return array.map((item, index) => {
+        item.id = index;
+        return item;
+    });
+}
+
+const enemyDefinitions = createIdedArray(enemyDefinitionsRaw);
+
+export function createEnemyById(id){
+    const definition = enemyDefinitions.find(enemy => enemy.id === id);
+    if (definition) {
+        return new Enemy(
+            definition.name,
+            definition.health,
+            definition.attackPower,
+            definition.behavior,
+            definition.description,
+            definition.attackMessages, // Pass attackMessages here
+            definition.speed,
+            definition.deathMessages,
+            definition.id
+        );
+    }
+}
+
 
 export function createEnemy(name) {
     const definition = enemyDefinitions.find(enemy => enemy.name === name);
@@ -1006,7 +1212,8 @@ export function createEnemy(name) {
             definition.description,
             definition.attackMessages, // Pass attackMessages here
             definition.speed,
-            definition.deathMessages
+            definition.deathMessages,
+            definition.id
         );
     }
     return null;

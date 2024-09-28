@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon Crawler</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="game">
+        <a href="help.html">Help</a>
+        <div id="stats"></div>
+        <div id="map"></div>
+        <div id="room"></div>
+        <br>
+        <div id="enemy"></div>
+        <div id="messages">
+            
+        </div>
+        <div id="controls">
+            <input type="text" id="command" placeholder="Enter command">
+            <button id="send">Send</button>
+        </div>
+    </div>
+
+    <script type="module" src="game.mjs"></script>
+    <script>
+        // Trigger click event on the Send button when "Enter" is pressed
+        document.getElementById('command').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                document.getElementById('send').click(); // Simulate a click on the Send button
+            }
+        });
+    </script>
+</body>
+
+</html>

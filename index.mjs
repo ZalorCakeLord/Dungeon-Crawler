@@ -2,6 +2,6 @@
 import { Game } from './game.mjs';
 import { intro } from './intro.mjs';
 
-await intro();
-const game = new Game();
+let playerInput = await intro();
+const game = new Game(playerInput);
 game.start();

@@ -29,7 +29,7 @@ export class Player {
     displayInventory() {
         messageLog.add('Your inventory:');
         this.inventory.forEach(item => {
-            messageLog.add(item.name);
+            messageLog.add(`${item.name}: ${item.description} Effect:  ${item.effect.value} ${item.effect.type} ${item.isCursed ? '(cursed)' : ''}`);
         });
     }
 

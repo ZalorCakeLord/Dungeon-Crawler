@@ -11,56 +11,93 @@ export class Item {
     }
 
     applyEffect(player) {
-        if(this.isCursed){
+
+        const applyHealthEffect = (value, beneficial = false) => {
+            player.health += value;
+            if (beneficial) {
+                player.attackPower += this.pityValue;
+            }
+            messageLog.add(`Your health changed by ${value}.`);
+        };
+    
+        const applyAttackEffect = (value, beneficial = false) => {
+            player.attackPower += value;
+            if (beneficial) {
+                player.health += this.pityValue;
+            }
+            messageLog.add(`Your attack power changed by ${value}.`);
+        };
+    
+        const handleGambleEffect = () => {
+            let chance = Math.random();
+            if (chance < 0.2) {
+                player.attackPower *= 2;
+                messageLog.add(`You doubled your attack power!`);
+            } else if (chance < 0.4) {
+                player.attackPower /= 2;
+                messageLog.add(`You halved your attack power!`);
+            } else {
+                messageLog.add(`You gambled and spawned a random enemy!`);
+                player.dungeon.spawnEnemy(`${player.dungeon.currentPosition.x},${player.dungeon.currentPosition.y}`);
+            }
+        };
+    
+        const handleCursedEffect = () => {
             switch (this.effect.type) {
                 case 'health':
-                    player.health -= this.effect.value;
-                    if(this.isBeneficial){
-                        player.attackPower += this.pityValue;
-                    }
+                    applyHealthEffect(-this.effect.value, this.isBeneficial);
                     messageLog.add(this.curseDescription);
-                    player.isDead()? messageLog.deathCause = this.name : null;
+                    if (player.isDead()) messageLog.deathCause = this.name;
                     break;
                 case 'attack':
-                    player.attackPower -= this.effect.value;
-                    if(this.effect.isBeneficial){
-                        player.health += this.pityValue;
-                    }
+                    applyAttackEffect(-this.effect.value, this.isBeneficial);
                     messageLog.add(this.curseDescription);
                     break;
                 default:
                     messageLog.add('Invalid effect type!');
             }
+        };
+
+        const handleOneOffEffects = () => {
+            switch (this.effect.tag) {
+                case 'genderFlip':
+                    messageLog.add('You feel a strange sensation washing over you...');
+                    //m becomes f, f becomes m, o stays o
+                    messageLog.playerGender = messageLog.playerGender === 'M' ? 'F' : messageLog.playerGender === 'F' ? 'M' : 'O';
+                    break;
+                default:
+                    messageLog.add('Invalid effect type!');
+            }
         }
-
-        else if (this.effect.type === 'health') {
-            player.health += this.effect.value;
-            messageLog.add(`Your health increased by ${this.effect.value}.`);
-        } else if (this.effect.type === 'attack') {
-            player.attackPower += this.effect.value;
-            messageLog.add(`Your attack power increased by ${this.effect.value}.`);
-        } else if(this.effect.type === 'rest'){
-            player.canRest = true
-            player.restCooldown = 0
-            messageLog.add(`You can now rest once every five turns. Resting will restore 10 health points.`);
-        }else if(this.effect.type === 'gamble'){
-            // 20% chance to double attack power. 20% chance to halve attack power. 60% chance to spawn a random enemy.
-            let chance = Math.random();
-            if(chance < 0.2){
-                player.attackPower *= 2;
-                messageLog.add(`You doubled your attack power!`);
+    
+        const handleBeneficialEffect = () => {
+            switch (this.effect.type) {
+                case 'health':
+                    applyHealthEffect(this.effect.value);
+                    break;
+                case 'attack':
+                    applyAttackEffect(this.effect.value);
+                    break;
+                case 'rest':
+                    player.canRest = true;
+                    player.restCooldown = 0;
+                    messageLog.add(`You can now rest once every five turns. Resting will restore 10 health points.`);
+                    break;
+                case 'gamble':
+                    handleGambleEffect();
+                    break;
+                case 'oneOff':
+                    handleOneOffEffects();
+                    break;
+                default:
+                    messageLog.add('Invalid effect type!');
             }
-            else if(chance < 0.4){
-                player.attackPower /= 2;
-                messageLog.add(`You halved your attack power!`);
-            }
-            else{
-                messageLog.add(`You gambled and spawned a random enemy!`);
-                player.dungeon.spawnEnemy(`${player.dungeon.currentPosition.x},${player.dungeon.currentPosition.y}`);
-            }
-
-        }else {
-            messageLog.add('Invalid effect type!');
+        };
+    
+        if (this.isCursed) {
+            handleCursedEffect();
+        } else {
+            handleBeneficialEffect();
         }
     }
 }

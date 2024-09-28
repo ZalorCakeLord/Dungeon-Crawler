@@ -1,10 +1,13 @@
 {
   "dependencies": {
+    "express": "^4.21.0",
     "prompt-sync": "^4.2.0"
   },
   "pkg": {
     "scripts": "*.mjs",
-    "targets": [ "node20" ],
+    "targets": [
+      "node20"
+    ],
     "outputPath": "dist"
   }
 }

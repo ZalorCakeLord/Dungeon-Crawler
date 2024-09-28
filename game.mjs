@@ -4,8 +4,15 @@ import { messageLog } from './messageLog.mjs';
 import { items } from './items.mjs';
 import { randomDeathMessage } from './deathMessages.mjs';
 
+
+
 export class Game {
-    constructor() {
+    constructor({name, gender, species}) {
+        if(name){
+            messageLog.playerName = name?name:'Adventurer'
+            messageLog.playerGender = gender?gender:'F'
+            messageLog.playerSpecies = species?species:'Human'
+        }
         this.player = new Player();
         this.dungeon = new Dungeon(this.player);
         this.player.dungeon = this.dungeon;
@@ -15,6 +22,7 @@ export class Game {
             enemiesDefeated: 0,
             itemsFound: 0
         };
+        messageLog.frames = 0;
     }
 
     async start() {
@@ -71,11 +79,16 @@ export class Game {
     }
 
     render() {
-        console.log(`Health: ${String(this.player.health).padStart(4, '0')}  Attack Power: ${String(this.player.attackPower).padStart(4, '0')}  Rooms Explored: ${String(this.dungeon.visitedRooms.size).padStart(4, '0')} \n Slain: ${String(messageLog.enemiesKilled).padStart(4, '0')}        Looted: ${String(this.statistics.itemsFound).padStart(4, '0')}  Spawn Probability: ${Math.max(0.1, 0.35 - (this.dungeon.monsterSpawnCounter * 0.05))}\n`);
-        this.dungeon.displayMap();
-        this.dungeon.display();
-        messageLog.getMessages().forEach(message => console.log(message));
-        messageLog.clear();
+        //Spawn Probability: ${Math.max(0.1, 0.35 - (this.dungeon.monsterSpawnCounter * 0.05))}
+        console.log(`            room: this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y)
+`)
+        return {
+            stats: `Health: ${String(this.player.health).padStart(4, '0')}  Attack Power: ${String(this.player.attackPower).padStart(4, '0')}  Rooms Explored: ${String(this.dungeon.visitedRooms.size).padStart(4, '0')} \n Slain: ${String(messageLog.enemiesKilled).padStart(4, '0')}        Looted: ${String(this.statistics.itemsFound).padStart(4, '0')}  Frames: ${String(messageLog.frames).padStart(4, '0')}`,
+            map: this.dungeon.displayMap(),
+            messages: messageLog.getMessages(),
+            room: this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y)
+        };
+    
     }
 
     getPlayerAction() {
@@ -90,7 +103,7 @@ export class Game {
         switch (command) {
             case 'restart':
                 messageLog.clear();
-                messageLog.add('Restarting game...');
+                messageLog.add('Game Restarted!');
                 messageLog.add('You explored the dungeon for ' + this.calculateTimeSpent() + '!');
                 messageLog.add('You defeated ' + messageLog.enemiesKilled + ' enemies and found ' + this.statistics.itemsFound + ' items.');
                 messageLog.nl();
@@ -140,9 +153,9 @@ export class Game {
                     messageLog.nl()
                     let list = [];
                     searchRoom.enemy? list.push(searchRoom.enemy.name): null;
-                    searchRoom.item? list.push(searchRoom.item.name): null;
+                    searchRoom.items? searchRoom.items.forEach((x)=>{x?list.push(x.name):null}): null;
                     searchRoom.contents.forEach(item => list.push(item.name));
-                    messageLog.add(`You see: ${list.join(', ')}`);
+                    messageLog.add(`You see: ${[...list,'myself'].join(', ')}`);
                     messageLog.add(`For further detail use inspect [name].`); 
                 }
                 break;
@@ -167,11 +180,11 @@ export class Game {
                 this.player.die();
                 break;
             case 'grab':
-                const item = this.dungeon.search();
+                const item = this.dungeon.grab(target);
                 if (item) {
                     this.player.addItem(item);
                     this.statistics.itemsFound++;
-                    this.dungeon.removeItem();
+                    //this.dungeon.removeItem();
                 }
                 break;
             case 'rest':
@@ -200,7 +213,7 @@ export class Game {
                 if (thisroom) {
                     let thisItem = items.find(item => item.name.toLowerCase() === target.toLowerCase());
                     if (thisItem) {
-                        thisroom.item = thisItem;
+                        thisroom.items.push(thisItem);
                         messageLog.add(`Spawned a ${thisItem.name} at your current location.`);
                     } else {
                         messageLog.add(`Item ${target} not found.`);
@@ -233,40 +246,63 @@ export class Game {
                 }
             }
         }
+        messageLog.frames++;
     }
 
     inspect(target) {
         const room = this.dungeon.getRoom(this.dungeon.currentPosition.x, this.dungeon.currentPosition.y);
-
-        /*if(target === ''){
-            messageLog.nl()
-            let list = [];
-            room.enemy? list.push(room.enemy.name): null;
-            room.item? list.push(room.item.name): null;
-            room.contents.forEach(item => list.push(item.name));
-            messageLog.add(`You see: ${list.join(', ')}`);
-            messageLog.add(`For further detail use inspect [name].`); 
-        }*/
-
-        if (room.enemy && room.enemy.name.toLowerCase() === target.toLowerCase()) {
-
-            messageLog.nl()
+        if(target === 'myself'){
+            const encouragingPhrases = [
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} who was unexpectedly torn from ${messageLog.playerGender === 'M' ? 'his' : 'her'} home and cast into this dungeon! You possess ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} snatched from ${messageLog.playerGender === 'M' ? 'his' : 'her'} cozy abode and hurled into this dungeon! You have ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} wrenched from ${messageLog.playerGender === 'M' ? 'his' : 'her'} safe haven and tossed into this dungeon! You hold ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} who was unceremoniously dragged from ${messageLog.playerGender === 'M' ? 'his' : 'her'} home and thrown into this dungeon! You have ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} suddenly abducted from ${messageLog.playerGender === 'M' ? 'his' : 'her'} home and cast into this dungeon! You have ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} who was harshly taken from ${messageLog.playerGender === 'M' ? 'his' : 'her'} residence and thrown into this dungeon! You possess ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} yanked from ${messageLog.playerGender === 'M' ? 'his' : 'her'} home and tossed into this dungeon! You have ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} who was roughly taken from ${messageLog.playerGender === 'M' ? 'his' : 'her'} dwelling and thrown into this dungeon! You have ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} who found ${messageLog.playerGender === 'M' ? 'his' : 'her'} home invaded and was subsequently cast into this dungeon! You have ${this.player.health} health points and an attack power of ${this.player.attackPower}.`,
+                `You are ${messageLog.playerName}, a ${messageLog.playerGender === 'M' ? 'male' : 'female'} ${messageLog.playerSpecies} forcibly removed from ${messageLog.playerGender === 'M' ? 'his' : 'her'} home and thrown into this dungeon! You have ${this.player.health} health points and an attack power of ${this.player.attackPower}.`
+              ];
+            messageLog.nl();
+            messageLog.add(encouragingPhrases[Math.floor(Math.random() * encouragingPhrases.length)]);
+        }
+        else if (room.enemy && room.enemy.name.toLowerCase() === target.toLowerCase()) {
+            messageLog.nl();
             messageLog.add(`${room.enemy.name}`);
             messageLog.add(`Health: ${room.enemy.health}  Attack Power: ${room.enemy.attackPower}`);
             messageLog.add(room.enemy.description);
-
-        } else if (room.item && room.item.name.toLowerCase() === target.toLowerCase()) {
-            messageLog.nl()
-            messageLog.add(`${room.item.name}`);
-            messageLog.add(`Effect: Adds ${room.item.effect.value} points to your ${room.item.effect.type}.`);
-            messageLog.add(room.item.description);
-
         } else {
-            room.contents.filter(item => item.name.toLowerCase() === target.toLowerCase()).forEach(item => {
-                messageLog.nl()
+            const item = room.items.filter(item => item).find(item => item.name.toLowerCase() === target.toLowerCase());
+            if (item) {
+                messageLog.nl();
                 messageLog.add(`${item.name}`);
-                messageLog.add(`${item.description}`);
-            })
+                switch(item.effect.type){
+                    case 'health':
+                        messageLog.add(`Grants ${item.effect.value} health points.`);
+                        break;
+                    case 'attack':
+                        messageLog.add(`Grants ${item.effect.value} attack power.`);
+                        break;
+                    case 'gamble':
+                        messageLog.add(`A gamble, picking this up means putting your life at risk.`);
+                        break;
+                    case 'rest':
+                        messageLog.add(`Unlocks the ability to rest once every five turns.`);
+                        break;
+                    default:
+                        messageLog.add('Invalid effect type!');
+                }
+                messageLog.add(item.description);
+            } else if (room.contents.find(item => item.name.toLowerCase() === target.toLowerCase())) {
+                room.contents.filter(item => item.name.toLowerCase() === target.toLowerCase()).forEach(item => {
+                    messageLog.nl();
+                    messageLog.add(`<b>${item.name}</b><br>`);
+                    messageLog.add(`${item.description}`);
+                });
+            } else {
+                messageLog.add('You found nothing.');
+            }
         }
     }
 }
