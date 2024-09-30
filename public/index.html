@@ -54,10 +54,19 @@
         const observer = new MutationObserver(function (mutations, me) {
             const startButton = document.getElementById('start');
             if (startButton) {
-                startButton.addEventListener('click', function() {
-                    document.getElementById('command').value = `search`;
-                    document.getElementById('send').click();
-                });
+                // Show the start button after a delay (simulating the 2-second delay for player info)
+                setTimeout(() => {
+                    startButton.style.display = 'block';
+                    startButton.addEventListener('click', function() {
+                        document.getElementById('command').value = `search`;
+                        document.getElementById('send').click();
+
+                        // Start updating the map every second using the global window.updateMap
+                        setInterval(() => {
+                            window.gameFunctions.updateMap();
+                        }, 1000);
+                    });
+                }, 2000);
                 me.disconnect(); // Stop observing
                 return;
             }

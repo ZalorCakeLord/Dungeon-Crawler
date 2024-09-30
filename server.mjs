@@ -56,6 +56,16 @@ app.post('/command', (req, res) => {
     }
 });
 
+app.get('/map', (req, res) => {
+    const game = games[req.sessionID];
+    if (!game) {
+        return res.status(400).json({ error: 'Game not initialized. Please start with /intro.' });
+    }
+
+    const gameState = game.render();
+    res.json({ map: gameState.map });
+});
+
 
 app.post('/dead', (req, res) => {
     const game = games[req.sessionID];
@@ -69,7 +79,7 @@ app.post('/dead', (req, res) => {
     messageLog.add(`Player ${thisPlayer.name} has died.`);
     messageLog.removePlayer(playerId);
     let deathRoom = dungeon.getRoom(thisPlayer.currentPosition.x, thisPlayer.currentPosition.y);
-    deathRoom.contents.push({name: `Corpse of ${thisPlayer.name}`, description: 'A lifeless body.'});
+    deathRoom.contents.push({ name: `Corpse of ${thisPlayer.name}`, description: 'A lifeless body.' });
 })
 
 app.listen(port, () => {

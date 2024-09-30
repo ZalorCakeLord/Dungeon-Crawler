@@ -74,6 +74,7 @@ export class Game {
 
     render() {
         //Spawn Probability: ${Math.max(0.1, 0.35 - (this.dungeon.monsterSpawnCounter * 0.05))}
+        //I don't remember what the above commented line was for
         const player = this.player;
         const searchRoom = this.dungeon.getRoom(player.currentPosition.x, player.currentPosition.y)
 
