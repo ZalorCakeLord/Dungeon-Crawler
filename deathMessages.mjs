@@ -39,6 +39,6 @@ export const deathMessages = [
 
 export function randomDeathMessage(cause,name) {
     let response = deathMessages[Math.floor(Math.random() * deathMessages.length)];
-    let causeFiltered = response.replace('{cause}', cause || messageLog.deathCause);
+    let causeFiltered = response.replace('{cause}', cause || "Dungeon Collapse");
     return causeFiltered.replace('{name}', name || messageLog.playerName);
 }

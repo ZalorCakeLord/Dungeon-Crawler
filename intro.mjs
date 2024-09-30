@@ -68,7 +68,7 @@ export async function intro(name, gender, species) {
 
     // Conclude the intro
     messages.push("Prepare yourself, adventurer. The dungeon awaits...");
-    messages.push(`<button id="send">Click Here</button>`)
+    messages.push(`<button id="start">Click Here</button>`)
     return { name, gender, species, messages };
 }
 

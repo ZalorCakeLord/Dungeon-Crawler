@@ -11,13 +11,13 @@ export class Item {
     }
 
     applyEffect(player) {
-
+        const playerId = player.id;
         const applyHealthEffect = (value, beneficial = false) => {
             player.health += value;
             if (beneficial) {
                 player.attackPower += this.pityValue;
             }
-            messageLog.add(`Your health changed by ${value}.`);
+            messageLog.add(`Your health changed by ${value}.`,playerId);
         };
     
         const applyAttackEffect = (value, beneficial = false) => {
@@ -25,19 +25,19 @@ export class Item {
             if (beneficial) {
                 player.health += this.pityValue;
             }
-            messageLog.add(`Your attack power changed by ${value}.`);
+            messageLog.add(`Your attack power changed by ${value}.`,playerId);
         };
     
         const handleGambleEffect = () => {
             let chance = Math.random();
             if (chance < 0.2) {
                 player.attackPower *= 2;
-                messageLog.add(`You doubled your attack power!`);
+                messageLog.add(`You doubled your attack power!`,playerId);
             } else if (chance < 0.4) {
                 player.attackPower /= 2;
-                messageLog.add(`You halved your attack power!`);
+                messageLog.add(`You halved your attack power!`,playerId);
             } else {
-                messageLog.add(`You gambled and spawned a random enemy!`);
+                messageLog.add(`You gambled and spawned a random enemy!`,playerId);
                 player.dungeon.spawnEnemy(`${player.dungeon.currentPosition.x},${player.dungeon.currentPosition.y}`);
             }
         };
@@ -46,27 +46,27 @@ export class Item {
             switch (this.effect.type) {
                 case 'health':
                     applyHealthEffect(-this.effect.value, this.isBeneficial);
-                    messageLog.add(this.curseDescription);
-                    if (player.isDead()) messageLog.deathCause = this.name;
+                    messageLog.add(this.curseDescription,playerId);
+                    if (player.isDead()) player.deathCause = this.name;
                     break;
                 case 'attack':
                     applyAttackEffect(-this.effect.value, this.isBeneficial);
-                    messageLog.add(this.curseDescription);
+                    messageLog.add(this.curseDescription,playerId);
                     break;
                 default:
-                    messageLog.add('Invalid effect type!');
+                    messageLog.add('Invalid effect type!',playerId);
             }
         };
 
         const handleOneOffEffects = () => {
             switch (this.effect.tag) {
                 case 'genderFlip':
-                    messageLog.add('You feel a strange sensation washing over you...');
+                    messageLog.add('You feel a strange sensation washing over you...',playerId);
                     //m becomes f, f becomes m, o stays o
-                    messageLog.playerGender = messageLog.playerGender === 'M' ? 'F' : messageLog.playerGender === 'F' ? 'M' : 'O';
+                    player.gender = player.gender === 'M' ? 'F' : player.gender === 'F' ? 'M' : 'O';
                     break;
                 default:
-                    messageLog.add('Invalid effect type!');
+                    messageLog.add('Invalid effect type!',playerId);
             }
         }
     
@@ -81,7 +81,7 @@ export class Item {
                 case 'rest':
                     player.canRest = true;
                     player.restCooldown = 0;
-                    messageLog.add(`You can now rest once every five turns. Resting will restore 10 health points.`);
+                    messageLog.add(`You can now rest once every five turns. Resting will restore 10 health points.`,playerId);
                     break;
                 case 'gamble':
                     handleGambleEffect();
@@ -90,7 +90,7 @@ export class Item {
                     handleOneOffEffects();
                     break;
                 default:
-                    messageLog.add('Invalid effect type!');
+                    messageLog.add('Invalid effect type!',playerId);
             }
         };
     

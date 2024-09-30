@@ -14,18 +14,21 @@
         <div id="stats"></div>
         <div id="map"></div>
         <div id="room"></div>
+        <div id="roomMap"></div>
+        <div id="players"></div>
         <br>
         <div id="enemy"></div>
+        <br>
         <div id="messages"></div>
         <div id="controls">
             <input type="text" id="command" placeholder="Enter command">
             <button id="send">Send</button>
         </div>
         <div id="direction-buttons">
-            <button id="move-north">North</button>
-            <button id="move-east">East</button>
-            <button id="move-south">South</button>
-            <button id="move-west">West</button>
+            <button id="move-north">N</button>
+            <button id="move-east">E</button>
+            <button id="move-south">S</button>
+            <button id="move-west">W</button>
         </div>
     </div>
 
@@ -43,6 +46,32 @@
             document.getElementById('command').value = `move ${direction}`;
             document.getElementById('send').click(); // Simulate clicking the Send button
         }
+
+        //wait for the button with id start to exist
+        // Add event listener to the start button
+        // When the button is clicked, send the "search" command to start the game
+        // Wait for the button with id start to exist
+        const observer = new MutationObserver(function (mutations, me) {
+            const startButton = document.getElementById('start');
+            if (startButton) {
+                startButton.addEventListener('click', function() {
+                    document.getElementById('command').value = `search`;
+                    document.getElementById('send').click();
+                });
+                me.disconnect(); // Stop observing
+                return;
+            }
+        });
+
+        observer.observe(document, {
+            childList: true,
+            subtree: true
+        });
+
+        
+        
+        
+      
 
         // Add event listeners to the directional buttons
         document.getElementById('move-north').addEventListener('click', function() {

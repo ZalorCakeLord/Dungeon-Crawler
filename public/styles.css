@@ -36,3 +36,32 @@ body {
 #send {
     padding: 10px;
 }
+
+#direction-buttons {
+    display: grid;
+    grid-template-columns: 20px 20px 20px;
+    grid-template-rows: 30px 30px 30px;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+#move-north {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#move-east {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#move-south {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#move-west {
+    grid-column: 1;
+    grid-row: 2;
+}

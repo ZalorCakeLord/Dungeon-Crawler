@@ -1,3 +1,5 @@
+import { getRandomBooks } from './books.mjs';
+
 export const descriptions = [
     {
         name: 'The Damp Crypt',
@@ -76,6 +78,7 @@ export const descriptions = [
         ],
         impassable: false,
         startMessage: `The library welcomes you with an eerie silence, broken only by the faint rustle of unseen pages turning somewhere deep within. The towering shelves, crammed with forgotten tomes, cast long, flickering shadows in the candlelight, making the air feel heavy with knowledge both sacred and forbidden. You sense an unseen presence, as if the books themselves are watching, waiting for you to disturb their ancient slumber.`,
+        roomType: 'library'
     },
 
     {
@@ -113,6 +116,7 @@ export const descriptions = [
         ],
         impassable: false,
         startMessage: `The library welcomes you with an eerie silence, broken only by the faint rustle of unseen pages turning somewhere deep within. The towering shelves, crammed with forgotten tomes, cast long, flickering shadows in the candlelight, making the air feel heavy with knowledge both sacred and forbidden. You sense an unseen presence, as if the books themselves are watching, waiting for you to disturb their ancient slumber.`,
+        roomType: 'library'
     },
     {
         name: "The Hearth of Respite",
@@ -150,23 +154,52 @@ export const descriptions = [
     },    
     {
         name: "The Rune Chamber",
-        description: 'You stand inside a room with ancient runes carved into the stone walls, glowing faintly with an otherworldly light, the atmosphere charged with mysterious energy. The runes pulse softly, as though alive with secrets long forgotten.',
+        description: 'You stand inside a room with ancient runes carved into the stone walls, glowing faintly with an otherworldly light. The atmosphere is charged with mysterious energy, thick enough that the air seems to vibrate around you. The runes pulse softly, as though alive with secrets long forgotten, and the faint echo of distant chants reverberates through the chamber.',
         contents: [
-            { name: 'runes', description: 'The ancient runes carved into the stone walls glow faintly, pulsing with an eerie light that suggests they are more than just markings—they are alive with power, whispering forgotten secrets.' }
+            { 
+                name: 'runes', 
+                description: 'The ancient runes carved into the stone walls glow faintly, pulsing with an eerie light. Each symbol seems to hold an untold power, whispering forgotten secrets to those who can hear them. They shift slightly as you stare at them, as if the runes themselves are alive, and changing with each breath.' 
+            },
+            { 
+                name: 'broken altar', 
+                description: 'In the center of the room, a broken altar lies in disrepair, its stone surface cracked and worn. The once-pristine carvings are now faded, but a faint glow still radiates from its core. Whatever ritual was once performed here has long since passed, but the remnants of power still linger, waiting to be reignited.' 
+            },
+            { 
+                name: 'dust-covered tomes', 
+                description: 'A small pile of ancient tomes rests in the corner of the chamber, covered in thick layers of dust. The bindings are cracked, and the pages are brittle with age. Despite their fragile state, the faint glow of the runes on the walls seems to keep them preserved, as if they still hold knowledge too dangerous to be forgotten.' 
+            },
+            { 
+                name: 'strange markings', 
+                description: 'Strange markings are etched into the floor, spiraling outward from the altar. Unlike the runes on the walls, these symbols feel erratic, chaotic, as though they were carved in a frenzy. They pulse irregularly, as if they are out of sync with the rest of the room’s magic, hinting at an experiment gone wrong or a ritual interrupted.' 
+            }
         ],
         impassable: false,
-        startMessage: `The air crackles with energy as you step into the room. The stone walls are carved with glowing runes, each pulse of light hinting at ancient power. This place feels alive, and the very walls seem to hum with secrets long forgotten, waiting for someone daring enough to uncover them.`,
+        startMessage: `The air crackles with energy as you step into the chamber. The ancient stone walls are etched with glowing runes that pulse faintly, casting shadows that seem to twist and flicker with every breath you take. A strange, low hum vibrates through the ground beneath your feet, and you can almost feel the weight of ancient rituals pressing down on you. The center of the room is dominated by a broken altar, its cracked surface still glowing faintly, while in the far corner, dust-covered tomes lie abandoned. The walls hum with secrets, their power tangible, as though daring you to reach out and grasp it.`,
     },
     {
         name: "The Lake of Echoes",
-        description: 'You rest upon the shore of a vast, echoing cavern with a crystal-clear underground lake, the water shimmering with an ethereal glow. The cavern’s ceiling disappears into darkness, and the stillness of the water creates an eerie sense of calm.',
+        description: 'You rest upon the shore of a vast, echoing cavern. An underground lake stretches out before you, its crystal-clear waters shimmering with an ethereal glow that seems to come from deep within its depths. The ceiling of the cavern disappears into darkness, its height unfathomable, while the stillness of the lake creates an eerie sense of calm. Strange, melodic echoes ripple across the water, as though the cavern itself is humming a forgotten tune. The air is thick with moisture, and the faint scent of minerals rises from the rocky shore.',
         contents: [
-            { name: 'underground lake', description: 'The crystal-clear water of the underground lake shimmers with a soft, ethereal glow, casting faint reflections on the cavern walls. Its still surface is undisturbed, amplifying the eerie silence.' }
+            { 
+                name: 'underground lake', 
+                description: 'The crystal-clear water of the underground lake shimmers with a soft, ethereal glow, casting faint reflections on the cavern walls. Its still surface is so calm it appears almost like glass, amplifying every sound in the cavern. Occasionally, the surface ripples with no apparent cause, as if something beneath the surface stirs.' 
+            },
+            { 
+                name: 'stone pillars', 
+                description: 'Massive stone pillars rise from the depths of the lake, their surfaces slick with moisture. They extend upwards into the darkness above, their tops disappearing into the unseen ceiling of the cavern. Strange markings cover their bases, worn away by time and water, hinting at an ancient civilization that once inhabited this place.' 
+            },
+            { 
+                name: 'echoes', 
+                description: 'The cavern is filled with strange echoes that ripple across the water’s surface. They do not seem to come from your own movements, but rather exist independently, as if the cavern itself is alive and singing in a language long forgotten. The echoes grow louder the longer you listen, until they almost become words.' 
+            },
+            { 
+                name: 'glowing stones', 
+                description: 'Scattered along the shore are small, glowing stones that pulse faintly with the same ethereal light as the lake. They seem warm to the touch and hum softly in your hand. The light they give off flickers and fades when moved too far from the lake, as if their energy is tied to the water itself.' 
+            }
         ],
         impassable: false,
-        startMessage: `The cavern is vast and echoes with your every step. A crystal-clear underground lake lies still before you, its surface shimmering with a faint glow that lights the cavern walls`
+        startMessage: `The cavern is vast and echoes with your every step. A crystal-clear underground lake lies still before you, its surface shimmering with a faint glow that lights the cavern walls. The silence is broken only by the soft hum of the lake’s rippling echoes, creating an atmosphere both serene and unnerving. Massive stone pillars rise from the water’s depths, disappearing into the darkness above, their surfaces etched with ancient markings. The air is thick with mystery, and the faint light of glowing stones scattered along the shore provides the only guide in this haunting place.`,
     },
-
     {
         name: 'Reflections of the Abyss',
         description: 'The walls are entirely made of mirrors, reflecting countless versions of yourself in dizzying patterns. The reflections seem slightly delayed, as if the mirror-world is just out of sync with your reality. Occasionally, you catch movement in a mirror out of the corner of your eye, but nothing seems to be there when you turn to look directly.',
@@ -179,13 +212,36 @@ export const descriptions = [
     },
     {
         name: "The Forgotten Nest",
-        description: 'The chamber is cramped and claustrophobic, filled with thick cobwebs that cling to your skin with every movement. The scuttling of unseen creatures echoes from the dark corners, and the faint scent of decay fills the stale air, making it feel as though the room itself is rotting.',
+        description: "The chamber is cramped and claustrophobic, with walls slick with dampness and covered in a labyrinth of thick cobwebs that cling to your skin with every movement. Faint glimmers of light struggle to pierce through the dense webs, casting eerie shadows across the uneven stone floor. The scuttling of unseen creatures echoes from the dark corners, while the faint scent of decay fills the stale air, making it feel as though the room itself is rotting from within.",
         contents: [
-            { name: 'cobwebs', description: 'Thick cobwebs hang from every corner of the room, swaying gently as unseen creatures scuttle within them, hidden by the heavy shadows.' }
+            { 
+                name: "cobwebs", 
+                description: "Thick cobwebs hang from every corner of the room, swaying gently as unseen creatures scuttle within them, hidden by the heavy shadows. Some webs appear ancient and brittle, while others are fresh, shimmering with dew and lined with tiny, pulsating cocoons." 
+            },
+            { 
+                name: "rotting bones", 
+                description: "Beneath the layers of dust and webs lie the decayed remains of some forgotten creature. The bones are cracked and brittle, half-consumed by the nest's denizens. A skull peeks out from the mess, its hollow eyes staring endlessly into the dark, adding to the oppressive sense of death in the room." 
+            },
+            { 
+                name: "chitinous shell", 
+                description: "A cracked and discarded shell of some insectoid creature rests in one corner, half-buried beneath the cobwebs. It is thick, black, and glossy, and large enough to have belonged to something much bigger than you dare imagine." 
+            },
+            { 
+                name: "web cocoon", 
+                description: "Dangling from the ceiling, a tightly woven cocoon sways gently. Its surface is translucent, revealing something inside that shifts slightly as though alive, or perhaps it’s just your imagination. Dark streaks of dried blood stain the bottom of the cocoon, and a faint, irregular sound emanates from within, like a slow heartbeat." 
+            },
+            { 
+                name: "scratched walls", 
+                description: "The stone walls of the room are scratched and gouged as though something with many claws tried to escape. The marks are deep, and the stone is crumbling in places, revealing old, dark stains in the grooves. Whoever or whatever made them was desperate." 
+            },
+            { 
+                name: "nest of eggs", 
+                description: "In a darkened corner, hidden beneath layers of cobwebs, you spot a cluster of pale, glistening eggs nestled into a sticky nest. They pulse softly with a faint light, as though something inside is slowly stirring, waiting to hatch." 
+            }
         ],
         impassable: false,
-        startMessage: 'You jolt awake to the oppressive, stale air of a cramped, cobweb-filled room. The scuttling of unseen creatures creeps up your spine, and with every breath, the scent of decay clings to your senses. It feels as though you’ve been buried alive.'
-    },
+        startMessage: "You jolt awake to the oppressive, stale air of a cramped, cobweb-filled room. The scuttling of unseen creatures creeps up your spine, and with every breath, the scent of decay clings to your senses. Cobwebs catch on your skin, pulling you further into their sticky embrace. As your eyes adjust to the dim light, you spot rotting bones half-buried in dust, and the walls around you bear the desperate scratches of something long gone. It feels as though you’ve been buried alive, trapped in a forgotten corner of the world, abandoned even by time itself."
+    },    
     {
         name: "Sanctum of Serenity",
         description: 'A peaceful garden-like room filled with the soft sound of trickling water from a stone fountain. Vines hang lazily from the ceiling, and the air smells of fresh earth. The faint glow of bioluminescent flowers casts a soothing light, making this space feel like a sanctuary from the dangers outside.',
@@ -444,15 +500,32 @@ export const descriptions = [
     },
     {
         name: "The Crystal Caverns",
-        description: 'You enter a cavern adorned with glimmering crystals that catch the light and bounce it off the walls in a dazzling kaleidoscope of colors. The air hums with a strange, melodic energy, creating an enchanting atmosphere that captivates your senses and draws you deeper into the heart of the cavern.',
-        startMessage: 'Awakening in this crystalline realm, you are struck by the beauty that surrounds you. The melodic hum resonates in your chest, urging you to explore further, as the vibrant colors dance playfully in your periphery, promising secrets untold.',
+        description: 'As you step into the cavern, you are immediately enveloped by the breathtaking sight of glimmering crystals embedded in the stone walls. These crystals catch the light from the flickering torches you carry, bouncing it off the surfaces in a dazzling kaleidoscope of colors that shifts and dances with every movement. The air is rich with a strange, melodic energy, creating an enchanting atmosphere that captivates your senses. Echoes of the crystalline hum resonate against the cavern walls, weaving an intricate tapestry of sound that beckons you to venture deeper into this mesmerizing realm.',
+        startMessage: 'Awakening in this crystalline realm, you are struck by the breathtaking beauty that envelops you. The melodic hum reverberates in your chest, urging you to explore the hidden depths of this magical place. Vivid colors swirl and flicker in your peripheral vision, drawing your gaze to the intricate patterns formed by the light. Each crystal seems to whisper secrets untold, promising revelations that lie beyond your current understanding. You feel a sense of both wonder and trepidation, as if the very essence of the cavern is aware of your presence and eager to reveal its mysteries.',
         impassable: false,
         contents: [
-            { name: 'crystals', description: 'The walls are lined with glimmering crystals of every color, their surfaces smooth and reflective. They emit a soft, melodic hum that resonates throughout the cavern, creating a symphony of light and sound that enchants your very soul.' },
-            { name: 'crystal shards', description: 'Sharp shards of crystal litter the floor, each one catching the light in a dazzling array of colors. They seem fragile yet powerful, pulsing with the energy of the cavern, inviting you to tread carefully amidst their beauty.' },
-            { name: 'pulsating veins', description: 'Veins of energy run through the cavern walls, glowing faintly beneath the crystals. They pulse rhythmically, as though the entire cave is alive with some hidden power, lending an eerie yet alluring atmosphere to the surroundings.' }
+            { 
+                name: 'crystals', 
+                description: 'The walls are lined with shimmering crystals, ranging from deep azure to vibrant magenta. Their smooth, reflective surfaces catch the light and scatter it throughout the cavern, creating a breathtaking display of color and brilliance. Each crystal emits a soft, melodic hum that resonates in harmony with the other stones, forming a symphony of light and sound that enchants your very soul. The larger crystals stand majestically, resembling ancient sentinels that have guarded this place for millennia, while smaller ones twinkle like stars, waiting to be discovered.' 
+            },
+            { 
+                name: 'crystal shards', 
+                description: 'Sharp shards of crystal litter the floor, each one catching the light in a dazzling array of colors. They seem delicate yet powerful, their sharp edges reflecting light in unpredictable patterns. As you navigate through them, you can feel a faint vibration in the air, a pulse of energy that hints at the immense potential they hold. Tread carefully, for while their beauty is alluring, the shards are jagged and can easily cut the unwary traveler. Rumor has it that these shards can be harnessed for magical purposes, making them both a treasure and a danger.' 
+            },
+            { 
+                name: 'pulsating veins', 
+                description: 'Veins of radiant energy snake through the cavern walls, glowing faintly beneath the layer of crystals. They pulse rhythmically, reminiscent of a heartbeat, as though the entire cave is alive with some hidden power. The glow shifts in intensity, creating a mesmerizing effect that captivates your attention. As you approach, you can almost hear a low thrum that harmonizes with the melodic hum of the crystals, adding an eerie yet alluring atmosphere to your surroundings. Some believe these veins are remnants of an ancient magic, a force that imbues the cavern with its enchanting properties.' 
+            },
+            { 
+                name: 'hidden alcoves', 
+                description: 'Scattered throughout the cavern are small alcoves, each one draped with delicate crystal formations. These secluded spaces provide a sense of tranquility amidst the vibrant chaos of color and sound. Upon closer inspection, you notice faint inscriptions carved into the stone, hinting at a forgotten civilization that once revered this place. Exploring these alcoves may yield forgotten treasures or ancient knowledge waiting to be uncovered, inviting adventurers to delve into the history etched in the very stone around them.' 
+            },
+            { 
+                name: 'illuminated pools', 
+                description: 'At the far end of the cavern, you discover shallow pools of water that glimmer like liquid glass. The surface of each pool reflects the colorful light from the surrounding crystals, creating a surreal effect. It is said that these waters possess healing properties, capable of rejuvenating those who drink from them. However, caution is advised, for the depths may conceal unseen dangers lurking beneath the surface, ready to ensnare the unwary.' 
+            }
         ]
-    },
+    },    
     {
         name: "The Verdant Sanctuary",
         description: 'You find yourself in a lush jungle room where vibrant vines cascade from every surface, and the air is thick with the scent of damp earth and exotic plants. The distant calls of unseen animals fill the atmosphere with a sense of wildness and untamed beauty, making you feel both curious and cautious.',
@@ -607,7 +680,8 @@ export const descriptions = [
             { name: 'The Art of Reality Weaving', description: 'This unusual tome teaches the lost art of manipulating the very fabric of reality through incantations and visualization. Those who dare to master it risk becoming architects of their own worlds, for better or worse.' },
             { name: 'Whispers from Beyond the Veil', description: 'Bound in dark leather, this book is filled with eerie accounts of encounters with the spectral realm. Each tale serves as a chilling reminder of the thin barrier between the living and the dead.' },
             { name: "The Alchemist's Compendium", description: 'A detailed guide to the art of alchemy, containing recipes for potions and transmutations. However, many of the entries are written in riddles, hinting at dark secrets and the price of knowledge.' }
-        ]
+        ],
+        roomType: 'library',
     },
     {
         name: "The Gaol of Lost Souls",
@@ -940,7 +1014,8 @@ export const descriptions = [
             { name: 'holographic displays', description: 'Advanced holograms flicker, revealing star maps and celestial phenomena that invite exploration and study.' },
             { name: 'ancient scrolls', description: 'Rolls of ancient parchment lie stacked on tables, filled with forgotten lore and long-lost languages, hinting at stories waiting to be discovered.' },
             { name: 'data streams', description: 'Streams of light flow through the walls, creating a visual representation of knowledge transferring and evolving in real-time.' }
-        ]
+        ],
+        roomType: 'library'
     },
     {
         name: 'The Cybernetic Lab',
@@ -1124,13 +1199,17 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
-        description: 'a room submerged in dark, murky water, the surface rippling but no safe way to pass visible. The water is cold and foreboding, hiding whatever dangers lurk beneath its opaque surface.',
+        name: "The Abyssal Pool",
+        description: 'You enter a cavernous chamber, submerged in dark, murky water that stretches from wall to wall, obscuring whatever lies beneath its foreboding surface. The air is damp and heavy, carrying a faint, metallic scent that clings to your lungs with every breath. The water ripples without cause, as if something below stirs in response to your presence. A deep cold emanates from the pool, sapping the warmth from the air and seeping into your bones, filling you with an inexplicable dread. The chamber is silent, save for the occasional sound of water dripping from the ceiling, adding to the oppressive atmosphere.',
+        startMessage: 'Awakening in this cold and desolate place, the suffocating silence presses in on you from all sides. The dark water ripples in the dim light, hinting at dangers lurking just beneath the surface. There is no visible path forward, only the chilling realization that the way back may be as treacherous as what lies ahead.',
+        impassable: true,
         contents: [
-            { name: 'murky water', description: 'The water is thick and dark, concealing whatever lies beneath. It whispers of ancient secrets, but those secrets come at a terrible cost for those brave enough to seek them.' },
-            { name: 'cold temperature', description: 'A chill radiates from the water, penetrating to your bones. Many who have ventured here have not returned, claimed by the depths that seem to hunger for their warmth.' },
-            { name: 'rippling surface', description: 'The surface quivers as though something stirs below. The sounds of distant thrumming suggest that this water is not just a barrier, but a gateway to something far more sinister.' }
-        ], impassable: true
-    },
+            { name: 'murky water', description: 'The water is thick and dark, its depths impossible to see through. It swallows the light and whispers of ancient secrets hidden below. But those secrets come at a price, for the water is said to be cursed, devouring all who dare to plunge into its depths.' },
+            { name: 'cold temperature', description: 'The air itself is frigid, but the water is colder still. The icy temperature drains the warmth from your body with every second you stand near it, warning you that many who have ventured into this abyss never returned.' },
+            { name: 'rippling surface', description: 'The surface of the water quivers as though disturbed by some unseen force beneath. It ripples outward in uneven patterns, suggesting movement far below, as if something waits in the dark, watching for anyone foolish enough to enter its domain.' },
+            { name: 'dripping echoes', description: 'Water drips from the ceiling in slow, rhythmic drops, echoing loudly in the otherwise silent chamber. Each droplet splashes into the pool, disturbing the stillness, heightening the sense that you are not alone here.' }
+        ]
+    },    
     {
         description: 'a chamber filled with rapidly shifting sand, sinking deeper the longer you stand, impossible to escape by foot. The sand swirls and shifts, as though alive, dragging anything caught in it to certain doom.',
         contents: [
@@ -1164,13 +1243,17 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
-        description: 'a room completely filled with thick, thorny vines, their barbs sharp enough to tear through flesh. The vines pulse and twist, as though they’re waiting to ensnare any who attempt to cross.',
+        name: "The Bramble Snare",
+        description: 'You enter a chamber overrun with thick, thorny vines, their twisted lengths stretching across every inch of the floor, walls, and ceiling. The air is stifling, filled with the musty scent of vegetation that seems far too alive for comfort. Each vine pulses as though it carries a heartbeat, twisting and coiling in place like serpents lying in wait. Sharp barbs, glinting in the dim light, cover their lengths, poised to tear through anything—or anyone—who dares to approach. The room feels almost alive, as if the plants themselves are watching, waiting for their next victim.',
+        startMessage: 'Waking in this tangled nightmare, the oppressive weight of the vines presses in from all sides. You feel them shifting, as if they can sense your movements, tightening their grip on the room with each breath you take. The thought of crossing through them fills you with dread, as though they are biding their time, waiting for the perfect moment to strike.',
+        impassable: true,
         contents: [
-            { name: 'thorny vines', description: 'The room is a tangle of thick vines, their barbs glinting ominously in the dim light. Tales tell of a vengeful spirit who once roamed these halls, now embodied in the very plants that guard this chamber.' },
-            { name: 'pulsing vines', description: 'The vines seem to breathe, twisting and shifting as if aware of your presence. They wait patiently, ready to ensnare anyone foolish enough to step closer.' },
-            { name: 'sharp barbs', description: 'The sharp barbs glisten with a malevolent sheen, promising pain to any who dare to venture into their grasp. The legends suggest these vines are infused with the essence of the fallen.' }
-        ], impassable: true
-    },
+            { name: 'thorny vines', description: 'Thick, gnarled vines fill the room from floor to ceiling, each one covered in razor-sharp barbs that gleam wickedly in the scant light. Local legends speak of a vengeful spirit that once haunted this dungeon, now trapped in the vines, seeking revenge on all who wander into its lair.' },
+            { name: 'pulsing vines', description: 'The vines seem to possess a life of their own, slowly twisting and shifting as though they can feel your presence. They pulse rhythmically, like the steady beat of a heart, hinting that something far more sinister may be controlling their movements.' },
+            { name: 'sharp barbs', description: 'The barbs lining the vines are long and jagged, their edges gleaming as they twitch in the air. It is said that these barbs are infused with the blood and essence of the dungeon\'s many victims, making each wound they inflict a painful reminder of those who perished before you.' },
+            { name: 'creeping shadows', description: 'Shadows dance in the flickering light, moving unnervingly in tandem with the vines. Whether they are real or an illusion brought on by fear, it is impossible to tell. But they serve as a reminder: there is no easy way out of this deadly snare.' }
+        ]
+    },    
     {
         description: 'a room with a whirlpool of black water spinning in the center, the pull too strong to resist. The water churns violently, and the air is filled with the roar of its deadly current.',
         contents: [
@@ -1216,13 +1299,29 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
-        description: 'a room where a swarm of spectral beings flicker in and out of existence, their touch lethal to the living. Their ghostly whispers fill the air, and the temperature drops drastically in their presence.',
+        name: "The Swarm of Lost Souls",
+        description: 'You step into a chilling chamber, where the very air seems to shimmer with the presence of countless spectral beings. They flicker in and out of existence, their hollow forms like tattered remnants of long-forgotten lives. Each movement is accompanied by a sudden drop in temperature, as if they are pulling warmth from the world around them. Their cold, ghostly whispers swirl through the room, sending an involuntary shiver down your spine as they speak of vengeance, betrayal, and anguish. The ground beneath you is cold and uneven, the remnants of others who have wandered too close still lingering in the air. It is a place of suffering, where the living are unwelcome, and the dead are restless.',
+        startMessage: 'You awaken to an unnatural cold that grips your very soul. Around you, figures flicker like dying embers, filling the room with an oppressive presence. The whispers of countless souls brush against your ears, their sorrowful cries pleading for something lost, leaving you no doubt that this is a place of doom. Escape feels distant, and survival uncertain.',
+        impassable: true,
         contents: [
-            { name: 'spectral beings', description: 'The air is thick with ghostly figures, flickering like dying flames. They are souls trapped between realms, seeking vengeance against the living for their untimely demise.' },
-            { name: 'lethal touch', description: 'Their ethereal forms can drain the life from the living with a mere brush, making it perilous to venture too close. Legends warn that many have perished here, their essences absorbed into the swarm.' },
-            { name: 'ghostly whispers', description: 'The whispers echo in your ears, chilling you to the bone. They speak of betrayal and loss, reminding all who enter of the heavy price of crossing their domain.' }
-        ], impassable: true
-    },
+            { 
+                name: 'spectral beings', 
+                description: 'Ghostly figures hover and flicker with an eerie glow, their bodies transparent and shifting like mist. Their forms are broken and fragmented, remnants of souls long lost to time. They appear as shadows of their former selves, their faces twisted in expressions of torment and pain. Each one is a story of untimely death, drawn to this place as if by some invisible force, seeking vengeance on the living for the injustices they suffered in life.' 
+            },
+            { 
+                name: 'lethal touch', 
+                description: 'The spectral beings move with unnatural grace, but their presence is deadly. Their touch is like the cold hand of death itself, capable of draining the life from any living being with a mere brush. Legends tell of adventurers who ventured too close, only to have their life forces consumed by the swarm, their very souls torn from their bodies and absorbed into the spectral horde.' 
+            },
+            { 
+                name: 'ghostly whispers', 
+                description: 'The air is thick with the eerie whispers of the spectral beings, a constant murmur of regret, sorrow, and betrayal. The voices are indistinct, but the emotions they carry are unmistakable—grief, anger, and a longing for revenge. The sound weaves through the room, gnawing at your mind, making it impossible to shake the feeling that these lost souls hold you responsible for their suffering.' 
+            },
+            { 
+                name: 'remnants of the fallen', 
+                description: 'Scattered across the cold stone floor are the remnants of those who came before, now nothing more than brittle bones and forgotten belongings. Their bodies have long since withered away, but their souls remain, forever trapped in this nightmarish cycle. Among the debris, the glint of tarnished metal catches your eye—a rusted sword, a cracked shield, once held by someone who thought they could survive this place.' 
+            }
+        ]
+    },    
     {
         description: 'a room flooded with poisonous fumes, the air unbreathable, with no way to clear the suffocating gas. The fumes coil like living things, and even the faintest whiff would be enough to paralyze.',
         contents: [
@@ -1506,11 +1605,28 @@ export const impassableDescriptions = [
 export function getRandomDescription() {
     const impassableChance = 0.3;
     const isImpassable = Math.random() < impassableChance;
-
+    let room = {}
     if (isImpassable) {
-        return getRandomImpassableDescription();
+        room = getRandomImpassableDescription();
     } else {
-        return getRandomPassableDescription();
+        room = getRandomPassableDescription();
+    }
+
+    if(!room.roomType) {
+        return room
+    }
+    else {
+        switch(room.roomType){
+            case "library":
+                let books
+                room.name == "The Grand Databank" ? books = getRandomBooks(3) : books = getRandomBooks(6)
+                room.contents = [...room.contents, ...books]
+                return room
+            break;
+            default:
+                return room
+            break;
+        }
     }
 
 }

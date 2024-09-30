@@ -42,6 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(data);
 
             if (data.health <= 0) {
+                //transmit that this player is dead
+                fetch('/dead', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify
+                        ({
+                            playerId: data.id,
+
+                        })
+                })
+
                 document.getElementById('map').innerHTML = `<h1>Game Over</h1>`;
                 document.getElementById('stats').innerText = '';
                 document.getElementById('messages').innerHTML = `${data.deathMessage}<br><br><button onclick="location.reload()">Restart</button>`;
@@ -59,6 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 '<br>' + data.room.description;
             document.getElementById('enemy').innerHTML = data.room.enemy ?
                 `<b>${data.room.enemy.name}</b><br>${data.room.enemy.health > 0 ? `${data.room.enemy.description}` : `The corpse of a ${data.room.enemy.name}.`}` : '';
+            if(data.room.players>1){
+                document.getElementById('players').innerHTML = `There are ${data.room.players-1} other players in this room.`;
+            }else{
+                document.getElementById('players').innerHTML = '';
+            }
         } catch (error) {
             console.error('Error sending command:', error);
         }

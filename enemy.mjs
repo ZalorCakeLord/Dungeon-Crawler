@@ -34,7 +34,7 @@ export class Enemy {
         messageLog.add(message);
         player.health -= this.attackPower;
         if (player.health <= 0) {
-            messageLog.deathCause = this.name;
+            player.deathCause = this.name;
         } else {
             messageLog.add(`You have ${player.health} health left.`);
         }
@@ -43,7 +43,7 @@ export class Enemy {
     takeDamage(damage,player) {
         this.health -= damage;
         if (this.health <= 0) {
-            messageLog.enemiesKilled++;
+            player.kills++;
 
             // increase stats when enemy is killed
             // increase is based on the enemy's attack power and health, as well as how many enemies have been killed.
