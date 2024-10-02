@@ -190,9 +190,9 @@ export const items = [
 
     new Item("Helm of Sacrifice", { type: "attack", value: 15 },
         "A heavy helm that leaves you vulnerable, but restores some of your energy.", true, 10, true,
-        "You lose 15 attack, but gain 10 health as the helm dulls your senses but heals your wounds.")
+        "You lose 15 attack, but gain 10 health as the helm dulls your senses but heals your wounds."),
 
-    
+    new Item("Radio", { type: "oneOff", tag: "radio" }, "A small, portable radio that crackles to life when turned on."),
 
 ];
 
@@ -203,4 +203,20 @@ export function getItem(name) {
 // Check if an item with the given name exists
 export function validateItemName(name) {
     return items.some(item => item.name.toLowerCase() === name.toLowerCase());
+}
+
+
+export function getRandomItems(num) {
+    const randomItems = [];
+    for (let i = 0; i < num; i++) {
+        const randomIndex = Math.floor(Math.random() * items.length);
+        randomItems.push(items[randomIndex]);
+    }
+    return randomItems;
+}
+
+
+export function getRandomItem() {
+    const randomIndex = Math.floor(Math.random() * items.length);
+    return items[randomIndex];
 }

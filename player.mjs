@@ -56,10 +56,23 @@ export class Player {
     }
 
     displayInventory() {
-        messageLog.add('Your inventory:', this.id);
-        this.inventory.forEach(item => {
-            messageLog.add(`${item.name}: ${item.description} Effect:  ${item.effect.value} ${item.effect.type} ${item.isCursed ? '(cursed)' : ''}`);
-        });
+        let out = 'Your inventory: <br>'
+        let items = []
+        for(let i=0;i<this.inventory.length;i++){
+            items.push(this.inventory[i].name)
+        }
+        return out + items.join('<br>');
+    }
+
+    checkInventory(itemName){
+        //inventory is an array of item objects
+        //return true if the item is in the inventory
+        for(let i=0;i<this.inventory.length;i++){
+            if(this.inventory[i].name === itemName){
+                return true;
+            }
+        }
+        return false;
     }
 
     attack(enemy) {

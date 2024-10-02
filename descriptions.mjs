@@ -855,15 +855,61 @@ export const descriptions = [
     },
     {
         name: "The Last Stand of Man",
-        description: 'You stand in a ruined fortress where shattered walls crumble and the ground is littered with debris. The wind howls through broken windows, carrying the scent of decay. The remnants of a once-mighty stronghold loom around you, casting shadows of a forgotten era.',
-        startMessage: 'You awaken in the ruins, your heart racing as the howling wind pierces the silence. Confusion grips you, the echoes of past battles whispering in your ears, leaving you to question how you ended up in this desolate place.',
+        description: 'You stand in a ruined fortress where shattered walls crumble and the ground is littered with debris. The wind howls through broken windows, carrying the scent of decay. The remnants of a once-mighty stronghold loom around you, casting shadows of a forgotten era. Weathered banners flutter feebly in the gusts, their colors faded, hinting at the proud lineage of those who once defended this place. The echoes of battle resonate in the air, each whispering of sacrifices made and the courage that once filled these halls. Crumbling stone statues, now covered in moss, silently watch over the desolation, guardians of a legacy that is all but lost.',
+        startMessage: 'You awaken in the ruins, your heart racing as the howling wind pierces the silence. Confusion grips you, the echoes of past battles whispering in your ears, leaving you to question how you ended up in this desolate place. A sense of foreboding fills the air, as if the fortress itself holds secrets waiting to be uncovered. As you stand amidst the ruins, fleeting shadows flicker at the edges of your vision, remnants of the brave souls who once called this fortress home, urging you to discover the truth of their fate.',
         impassable: false,
         contents: [
-            { name: 'shattered walls', description: 'The fortress walls are crumbling, their stones strewn about like fallen soldiers. Vines creep through the cracks, reclaiming the structure for nature.' },
-            { name: 'howling wind', description: 'The wind whistles through the broken windows, creating an eerie symphony of sound that echoes the fortress’s past glory and current ruin.' },
-            { name: 'scent of decay', description: 'A musty smell fills the air, a blend of damp earth and rotting wood, reminding you that time has not been kind to this once-majestic stronghold.' }
+            { 
+                name: 'shattered walls', 
+                description: 'The fortress walls are crumbling, their stones strewn about like fallen soldiers. Vines creep through the cracks, reclaiming the structure for nature. Each jagged edge tells a story of a fierce defense against relentless invaders, and the remnants of arrows and broken weapons litter the ground, hinting at the desperation of the final battle.' 
+            },
+            { 
+                name: 'howling wind', 
+                description: 'The wind whistles through the broken windows, creating an eerie symphony of sound that echoes the fortress’s past glory and current ruin. It carries with it the distant cries of those who fought bravely, their voices forever intertwined with the gusts, as if warning you of the dangers that lurk in the shadows.' 
+            },
+            { 
+                name: 'scent of decay', 
+                description: 'A musty smell fills the air, a blend of damp earth and rotting wood, reminding you that time has not been kind to this once-majestic stronghold. The aroma clings to the walls, a testament to the years of neglect and abandonment, as if the fortress itself mourns the loss of its defenders.' 
+            },
+            { 
+                name: 'weathered banners', 
+                description: 'Faded banners hang limply from the remnants of the fortress, their once-vibrant colors now muted by time and weather. They bear the sigils of ancient houses, symbols of loyalty and valor that once inspired fear in the hearts of enemies. As the wind catches them, they flutter gently, whispering stories of glory and tragedy to those who dare to listen.' 
+            },
+            { 
+                name: 'crumbling statues', 
+                description: 'Stone statues of legendary knights stand guard among the ruins, their features worn and eroded by the passage of time. Once proud protectors of the realm, they now seem to sag under the weight of their own history, their gazes fixed on the ground as if in mourning for their fallen comrades. Lichen and moss cling to their surfaces, blending nature and stone in a haunting display of beauty and decay.' 
+            }
         ]
     },
+    {
+        name: "Apocalypse Observatory",
+        description: 'You stand in the remnants of an observatory, once a pinnacle of knowledge and celestial study, now a fractured monument to the devastation unfolding beyond. Broken instruments lie scattered like fallen sentinels, their lights flickering dimly amidst shattered glass. The walls, now cracked and oozing an eerie liquid, seem to resonate with the agony of the dying world below. A massive observation window dominates one side, showcasing the planet’s molten surface, torn asunder by cracks that belch fire and smoke. Ash swirls through the air like a dark storm, creeping into the observatory, while smaller windows offer glimpses of the calm, starry void beyond—silent witnesses to the chaos unfolding before your eyes.',
+        startMessage: 'You awaken in the aftermath of cataclysmic destruction, the air thick with ash and smoke. Through a shattered window, you see the planet below writhing in its death throes, the ground split apart and spewing molten rock. Confusion and dread grip you as the oppressive atmosphere presses down. Somewhere within this observatory, the purpose of the destruction below may still be found amidst the ruin.',
+        impassable: false,
+        contents: [
+            { 
+                name: 'shattered instruments', 
+                description: 'Once tools of discovery, these consoles are now little more than wreckage, their displays frozen on distorted readouts. They hum faintly, as if recalling the lost wisdom they once held.' 
+            },
+            { 
+                name: 'planetary viewport', 
+                description: 'The enormous viewing window showcases the planet’s molten surface, riven with fiery cracks and blanketed by smoke. The heat feels almost palpable, radiating through the cracks in the glass.' 
+            },
+            { 
+                name: 'cracked walls', 
+                description: 'The walls ooze a viscous liquid, pooling in dark corners of the room. They groan and pulse faintly, as if the building itself struggles against the catastrophe happening below.' 
+            },
+            { 
+                name: 'void windows', 
+                description: 'Through these smaller windows, the expanse of space twinkles serenely, a beautiful contrast to the fiery destruction of the planet below. The stars seem impossibly distant, yet comforting in their silence.' 
+            },
+            { 
+                name: 'ash-choked air', 
+                description: 'The atmosphere within is thick and acrid, filled with the smell of burning rock. Every breath is labored as ash drifts in through the cracks, coating the floor in a thin layer of dust.' 
+            }
+            //when done with room overhaul will have consoles you can interact with.
+        ]
+    },    
     {
         name: "Glimmering Glade",
         description: 'You find yourself in a cave with walls lined by bioluminescent fungi, casting a soft blue glow. The sound of water dripping echoes through the stillness, and the air smells faintly of damp earth. The gentle light offers a surreal beauty, yet the isolation feels unnerving.',
@@ -1355,13 +1401,33 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
-        description: 'a room filled with webs thicker than ropes, stretching from wall to wall, impossible to cut through. The air is stifling, and the faint scuttle of unseen creatures adds to the unease.',
+        name: 'The Webbed Sanctum', // Added room name
+        description: 'You stand in a room engulfed by webs thicker than ropes, stretching from wall to wall like the very fabric of nightmares. The air is stifling, heavy with an oppressive humidity that clings to your skin, making each breath feel like a struggle. In the dim light, the silken threads shimmer with an unsettling beauty, and the faint scuttle of unseen creatures skitters through the darkness, sending chills down your spine. Shadows dance along the walls, seemingly alive as if they are sentient manifestations of the room’s eerie presence. It is a space where time stands still, and the weight of countless souls lingers, forever ensnared in the web of fate.',
+        
         contents: [
-            { name: 'thick webs', description: 'The room is ensnared in a vast network of webs, their silken threads glistening in the dim light. It is said that a great spider goddess watches over this chamber, feasting on the souls of the trapped.' },
-            { name: 'stifling air', description: 'The air feels heavy, thick with dread and the scent of decay. Each breath is a reminder that you are not alone; the spiders are always watching.' },
-            { name: 'unseen creatures', description: 'The faint sound of scuttling legs echoes in the silence, heightening your sense of dread. Many have entered this room, but few have escaped the clutches of its guardians.' }
-        ], impassable: true
-    },
+            {
+                name: 'thick webs',
+                description: 'The room is ensnared in a vast network of webs, their silken threads glistening like strands of silver in the dim light. Each web is intricately woven, displaying a craftsmanship that suggests a being of immense power has created this chamber. It is said that a great spider goddess watches over this dark sanctuary, feasting on the souls of the trapped. Her presence can almost be felt in the suffocating air, as if she is lurking just beyond your vision, eager to add you to her collection.'
+            },
+            {
+                name: 'stifling air',
+                description: 'The air feels heavy, thick with dread and the scent of decay, a putrid reminder of those who have come before you. Each breath is a reminder that you are not alone; the spiders are always watching. The oppressive atmosphere weighs down on you, making movement sluggish and your thoughts clouded with unease. The staleness of the air carries whispers of long-forgotten screams and the muted pleas of the trapped, echoing in your mind as you struggle to remain calm.'
+            },
+            {
+                name: 'unseen creatures',
+                description: 'The faint sound of scuttling legs echoes in the silence, heightening your sense of dread. The walls seem to pulse with life, and the feeling of being watched grows stronger with each passing moment. Many have entered this room, drawn by the allure of its dark secrets, but few have escaped the clutches of its guardians. It is rumored that the unseen creatures are the remnants of those who fell victim to the spider goddess, now transformed into her loyal servants, forever hunting in the shadows for the next unfortunate soul to ensnare.'
+            },
+            {
+                name: 'sacred altar',
+                description: 'In the center of the room lies a sacred altar draped in cobwebs, adorned with offerings of bones and small trinkets left by previous visitors. It is said that those who dare to leave a token at the altar may earn the spider goddess’s favor or invoke her wrath, depending on her whims. The altar radiates a dark energy, an invitation and a warning all at once, beckoning you to approach while also instilling a deep sense of foreboding.'
+            },
+            {
+                name: 'murmurs of the web',
+                description: 'If you listen closely, you can hear the whispers of the web itself, a chorus of despair that seems to resonate with the heartbeat of the chamber. The murmurs tell tales of lost adventurers, cautioning you to turn back before it’s too late. Each strand of silk vibrates with the energy of the past, and those who heed the warnings might just find a way to escape.'
+            }
+        ],
+        impassable: true
+    },    
     {
         description: 'a room where lightning arcs continuously from wall to wall, crackling with deadly energy. The air is charged, and every step toward the center is met with an unbearable, buzzing heat.',
         contents: [
@@ -1427,13 +1493,17 @@ export const impassableDescriptions = [
         ], impassable: true
     },
     {
-        description: 'a room where massive chains dangle from the ceiling, swinging unpredictably with crushing force. Each heavy link thunders against the ground, threatening to flatten anything in its path.',
+        name: "The Chamber of Unyielding Chains",
+        description: 'A room where massive chains dangle from the ceiling, swinging unpredictably with crushing force. Each heavy link thunders against the ground, threatening to flatten anything in its path. The air is thick with the metallic scent of rust, and the faint echoes of past struggles linger like ghosts in the shadows. Dim light flickers across the walls, revealing dark stains that hint at a violent history—a place where captives were once held in torment, their cries lost to the ages.',
+        startMessage: 'You awaken in a dimly lit chamber, the chilling sound of chains clanking fills your ears. Confusion grips you as you realize you are not alone; the looming chains sway dangerously close, as if they possess a will of their own. Fear coils in your gut as you take your first tentative steps, the weight of despair hanging heavy in the air, a constant reminder of the fate that may await you.',
+        impassable: true,
         contents: [
-            { name: 'massive chains', description: 'The chains hang like ominous serpents, their heavy links swaying with a life of their own. They create a foreboding atmosphere, hinting at a grim history of captivity.' },
-            { name: 'swinging unpredictably', description: 'Each swing of the chains creates a thunderous noise, reverberating through the room. The unpredictability of their movement adds to the sense of danger lurking in every corner.' },
-            { name: 'crushing force', description: 'The weight of the chains threatens to crush anything caught beneath them, making every step feel like a gamble. It is said that many have met their end in this chamber, their remains lost to the echoes of time.' }
-        ], impassable: true
-    },
+            { name: 'massive chains', description: 'The chains hang like ominous serpents, their heavy links swaying with a life of their own. They create a foreboding atmosphere, hinting at a grim history of captivity. Each link is adorned with rust and wear, bearing the marks of countless struggles and an unrelenting weight.' },
+            { name: 'swinging unpredictably', description: 'Each swing of the chains creates a thunderous noise, reverberating through the room. The unpredictability of their movement adds to the sense of danger lurking in every corner, making it nearly impossible to predict where they will strike next.' },
+            { name: 'crushing force', description: 'The weight of the chains threatens to crush anything caught beneath them, making every step feel like a gamble. It is said that many have met their end in this chamber, their remains lost to the echoes of time. You can almost hear their whispers, warning you of the peril that lies ahead.' },
+            { name: 'rusted shackles', description: 'Scattered across the floor are rusted shackles, remnants of those who once endured the torment of this place. Their presence serves as a grim reminder of the dark past that lingers here, each one telling a story of pain and suffering.' }
+        ]
+    },    
     {
         description: 'a room filled with thick, glowing mist that clings to everything, slowly draining the life from whatever it touches. The very air feels oppressive, and the mist pulses as if alive with intent.',
         contents: [

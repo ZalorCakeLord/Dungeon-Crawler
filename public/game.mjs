@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = prompt('Enter your name: ');
     const gender = prompt('Enter your gender (M/F): ');
     const species = prompt('Choose your species (Human/Elf/...): ');
-
+    const messagesHist = []
     fetch('/intro', {
         method: 'POST',
         headers: {
@@ -24,35 +24,64 @@ document.addEventListener('DOMContentLoaded', () => {
     // Periodic update every 5 seconds
     //setInterval(periodicUpdate, 5000);
     // Periodic update every 5 seconds for updating the map only
+
     function updateMap() {
+        const sendTime = Date.now(); // Get the current time in milliseconds
         fetch('/map', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('map').innerHTML = data.map;
-                // Add any other updates specific to the map here if needed
-                //once I finish updating rooms roomMap will go here as well
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Server response was not ok');
+                }
+                return response.json();
             })
-            .catch(error => console.error('Error updating map:', error));
+            .then(data => {
+                const receiveTime = Date.now(); // Get the current time when the response is received
+                const timeDiff = receiveTime - sendTime; // Calculate the ping in milliseconds
+
+                document.getElementById('map').innerHTML = data.map;
+                console.log(data.messages, `ping: ${timeDiff}ms`);
+
+                let newMessage = data.messages.filter(message => !messagesHist.includes(message));
+                messagesHist.push(...newMessage);
+                document.getElementById('messages').innerHTML += newMessage.join('<br>');
+
+                // Reset the failure count on successful response
+                failureCount = 0;
+            })
+            .catch(error => {
+                console.error('Error updating map:', error);
+                failureCount++;
+
+                if (failureCount >= maxFailures) {
+                    clearInterval(mapUpdateInterval); // Stop the updates
+                    document.getElementById('messages').innerHTML += `<br><span style="color:red;">Failed to connect to the server. Please refresh, or try again later.</span>`;
+                }
+            });
     }
-    
+
     // Declare the interval variable but don't start it yet
     let mapUpdateInterval;
-    
+
+    // Set a max failure limit
+    let failureCount = 0;
+    const maxFailures = 3; // Adjust as necessary
+
     // Function to start the map update interval
     function startMapUpdate() {
         mapUpdateInterval = setInterval(updateMap, 5000);
     }
-    
+
+
     // Function to stop the map update interval if needed
     function stopMapUpdate() {
         clearInterval(mapUpdateInterval);
     }
-    
+
     // Expose the functions to the global window object
     window.gameFunctions = {
         updateMap,
@@ -101,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('map').innerHTML = data.map;
             document.getElementById('stats').innerText = data.stats;
             document.getElementById('messages').innerHTML = data.messages.join('\n');
-            document.getElementById('room').innerHTML = `<h3>${data.room.name}</h3>` +
+            document.getElementById('room').innerHTML = `<h3>${`${data.room.name}` == `undefined` ? 'Dungeon Chamber' : data.room.name}</h3>` +
                 `<img src="media/images/rooms/${data.room.name}.jfif" alt="${data.room.name}" style="width: 30%; height: auto;">` +
                 '<br>' + data.room.description;
             document.getElementById('enemy').innerHTML = data.room.enemy ?
@@ -111,8 +140,60 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 document.getElementById('players').innerHTML = '';
             }
+            messagesHist.push(...data.messages);
         } catch (error) {
             console.error('Error sending command:', error);
         }
     });
+
+
+    // Function to add ripple effect to existing buttons
+    function addRippleEffectToButtons(buttons) {
+        buttons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                const ANIMATION_SPEED = 1000;
+
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+
+                const ripple = document.createElement('div');
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                button.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, ANIMATION_SPEED);
+            });
+        });
+    }
+
+    // Initially apply ripple effect to buttons on page load
+    const existingButtons = document.querySelectorAll('.ripple-effect');
+    addRippleEffectToButtons(existingButtons);
+
+    // Use event delegation for dynamically created buttons
+    const buttonContainer = document.getElementById('messages');
+
+    buttonContainer.addEventListener('click', (e) => {
+        // Check if the clicked element is a button with the ripple-effect class
+        if (e.target.classList.contains('ripple-effect')) {
+            const ANIMATION_SPEED = 1000;
+
+            let x = e.clientX - e.target.offsetLeft;
+            let y = e.clientY - e.target.offsetTop;
+
+            const ripple = document.createElement('div');
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            e.target.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, ANIMATION_SPEED);
+        }
+    });
+
+
+
 });

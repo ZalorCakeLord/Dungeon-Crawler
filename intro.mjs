@@ -1,10 +1,19 @@
 import { messageLog } from './messageLog.mjs';
 
-export async function intro(name, gender, species) {
+export async function intro(name="Jane Doe", gender='F', species='Human') {
+    //ensure species is capitalized
+    species = species.charAt(0).toUpperCase() + species.slice(1).toLowerCase();
+    //ensure gender is valid
+    let genderList = ['M','F'];
+    let f='F',m='M';
+    !gender?gender=f:gender.length>1?gender=f:!genderList.includes(gender.toUpperCase())?gender=f:messageLog.playerGender = gender.toUpperCase();
+
     messageLog.playerName = name; // Set the name in message
-    messageLog.playerGender = gender;
+    
     messageLog.playerSpecies = species;
     
+
+
     const messages = [];
 
     // Opening narrative, similar to the old intro

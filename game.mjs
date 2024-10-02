@@ -3,7 +3,7 @@ import { Dungeon } from './dungeon.mjs';
 import { messageLog } from './messageLog.mjs';
 import { items } from './items.mjs';
 import { randomDeathMessage } from './deathMessages.mjs';
-
+import {grabButton, inspectButton, attackButton} from './htmlHelper.mjs';
 
 
 export class Game {
@@ -12,11 +12,11 @@ export class Game {
         this.player.name = name ? name : 'Adventurer';
         this.player.gender = gender ? gender : 'F';
         this.player.species = species ? species : 'Human';
-
+        
         messageLog.addPlayer(id, this.player);
         this.dungeon = dungeon; // Use the shared dungeon instance
         this.dungeon.addPlayer(this.player); // Add player to the dungeon
-
+        this.player.dungeon = this.dungeon;
         this.startTime = null;
         this.endTime = null;
         this.statistics = {
@@ -132,6 +132,7 @@ export class Game {
                 messageLog.nl();
                 this.player = new Player();
                 this.dungeon.addPlayer(this.player); // Add player to the dungeon
+                this.player.dungeon = this.dungeon;
                 this.startTime = new Date();
                 messageLog[playerId].enemiesKilled = 0;
                 player.statistics = {
@@ -156,7 +157,18 @@ export class Game {
                 }
                 break;
             case 'inventory':
-                this.player.displayInventory();
+                console.log(this.player.inventory)
+                messageLog.add(this.player.displayInventory(),playerId);
+                break;
+            case 'broadcast':
+                let hasRadio = this.player.checkInventory('Radio')
+                if (hasRadio) {
+                    let message = args.join(' ');
+                    messageLog.add(`You broadcast: ${message}`,playerId);
+                    messageLog.add(`${this.player.name}: ${message}`, "GLOBAL", "timed", true, 4);
+                } else {
+                    messageLog.add('You need a radio to broadcast.',playerId);
+                }
                 break;
             case 'help':
                 messageLog.nl()
@@ -186,11 +198,11 @@ export class Game {
                 if (target === '') {
                     messageLog.nl()
                     let list = [];
-                    searchRoom.enemy ? list.push(searchRoom.enemy.name) : null;
-                    searchRoom.items ? searchRoom.items.forEach((x) => { x ? list.push(x.name) : null }) : null;
-                    searchRoom.contents.forEach(item => list.push(item.name));
-                    searchRoom.players > 1 ? searchRoom.players.forEach(player => list.push(player.name)) : null;
-                    messageLog.add(`You see: ${[...list, 'myself'].join(', ')}`,playerId);
+                    searchRoom.enemy ? list.push(inspectButton(searchRoom.enemy.name)) : null;
+                    searchRoom.items ? searchRoom.items.forEach((x) => { x ? list.push(inspectButton(x.name)) : null }) : null;
+                    searchRoom.contents.forEach(item => list.push(inspectButton(item.name)));
+                    searchRoom.players > 1 ? searchRoom.players.forEach(player => list.push(inspectButton(player.name))) : null;
+                    messageLog.add(`You see: ${[...list, inspectButton('myself')].join(' ')}`,playerId);
                     messageLog.add(`<br>For further detail use inspect [name].`,playerId);
                 }
                 break;
@@ -243,7 +255,7 @@ export class Game {
                 }
                 break;
             case 'spawnitem':
-                let coords = `${this.dungeon.currentPosition.x},${this.dungeon.currentPosition.y}`;
+                let coords = `${this.player.currentPosition.x},${this.player.currentPosition.y}`;
                 let thisroom = this.dungeon.map.get(coords);
                 if (thisroom) {
                     let thisItem = items.find(item => item.name.toLowerCase() === target.toLowerCase());
@@ -308,7 +320,7 @@ export class Game {
         } else if (room.players.size > 1 && room.players.find(player => player.name.toLowerCase() === target.toLowerCase())) {
             messageLog.nl();
             messageLog.add(`You see ${target}.`,this.player.id);
-            let targetPlayer = room.players.find(player => player.name.toLowerCase() === target.toLowerCase());
+            let targetPlayer = room.players.find(player => player.name === playerName);
             const playerDescription = `${targetPlayer.name} is a ${targetPlayer.gender} ${targetPlayer.species} with ${targetPlayer.health} health points and an attack power of ${targetPlayer.attackPower}.`;
             messageLog.add(playerDescription,this.player.id);
         }
@@ -317,6 +329,7 @@ export class Game {
             messageLog.add(`<b>${room.enemy.name}</b><br>`,this.player.id);
             messageLog.add(`Health: ${room.enemy.health}  Attack Power: ${room.enemy.attackPower}`,this.player.id);
             messageLog.add(room.enemy.description,this.player.id);
+            messageLog.add(attackButton(room.enemy.name),this.player.id);
         } else {
             const item = room.items.filter(item => item).find(item => item.name.toLowerCase() === target.toLowerCase());
             if (item) {
@@ -339,6 +352,7 @@ export class Game {
                         messageLog.add('Invalid effect type!',this.player.id);
                 }
                 messageLog.add(item.description,this.player.id);
+                messageLog.add(grabButton(item.name,'grab'),this.player.id);
             } else if (room.contents.find(item => item.name.toLowerCase() === target.toLowerCase())) {
                 room.contents.filter(item => item.name.toLowerCase() === target.toLowerCase()).forEach(item => {
                     messageLog.nl();

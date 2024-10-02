@@ -20,15 +20,26 @@
         <div id="enemy"></div>
         <br>
         <div id="messages"></div>
+        <div id="quickbar">
+            <button class="button-33" onclick="document.getElementById('command').value = 'search'; document.getElementById('send').click();">
+                search
+            </button>
+            <button class="button-33" onclick="document.getElementById('command').value = 'inventory'; document.getElementById('send').click();">
+                inventory
+            </button>
+            <button class="button-33" onclick="document.getElementById('command').value = '' ">
+                clear
+            </button>
+        </div>
         <div id="controls">
             <input type="text" id="command" placeholder="Enter command">
             <button id="send">Send</button>
         </div>
         <div id="direction-buttons">
-            <button id="move-north">N</button>
-            <button id="move-east">E</button>
-            <button id="move-south">S</button>
-            <button id="move-west">W</button>
+            <button class="button-33" id="move-north">N</button>
+            <button class="button-33" id="move-east">E</button>
+            <button class="button-33" id="move-south">S</button>
+            <button class="button-33" id="move-west">W</button>
         </div>
     </div>
 

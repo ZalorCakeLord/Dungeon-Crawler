@@ -2,6 +2,7 @@ import { descriptions, impassableDescriptions, getRandomDescription, getRandomPa
 import { createEnemy, getRandomEnemy } from './enemies.mjs';
 import { items } from './items.mjs';
 import { messageLog } from './messageLog.mjs';
+//import { roomMap } from './room.mjs';
 
 export class Dungeon {
     constructor(player) {
@@ -65,7 +66,8 @@ export class Dungeon {
         items.push(item);
         Math.random() > 0.7 ? items.push(this.randomItem()) : null;
         const passable = description.impassable ? false : true;
-        this.map.set(`${x},${y}`, { description: (start ? description.startMessage : description.description), enemy, items, passable, contents: description.contents, name: description.name, isGate: description.isGate, players: new Set() });
+        //let roomMap = new roomMap(description)
+        this.map.set(`${x},${y}`, { description: (start ? description.startMessage : description.description), enemy, items, passable, contents: description.contents, name: description.name, isGate: description.isGate, players: new Set() , roomType: description.roomType, roomMap: null});
     }
 
     getRoom(x, y) {
@@ -315,9 +317,15 @@ export class Dungeon {
                 let cellContent = '';
                 let room = this.getRoom(x, y);
                 if (player.currentPosition.x === x && player.currentPosition.y === y) {
-                    cellContent = `${player.gender === 'M'?' 🧍‍♂️ ':' 🧍‍♀️ '}`;
+                    cellContent = `{${player.gender === 'M'?'🧍‍♂️':'🧍‍♀️'}}`;
                 } else if (room.players.size > 0) {
-                    room.players.size>1?celllContent=' 👥 ':cellContent = '[P]';
+                    room.players.size>1?cellContent=' 👥 ':cellContent = '[P]';
+                    if(room.players.size===1){
+                        //get gender of only player in room 
+                        let playerID = Array.from(room.players)[0];
+                        let evenlowerplayer = this.getPlayer(playerID);
+                        cellContent = `${evenlowerplayer.gender === 'M'?' 🧍‍♂️ ':' 🧍‍♀️ '}`;
+                    }
                 } else if (this.visitedRooms.has(roomKey)) {
                     const room = this.getRoom(x, y);
                     if (room.isGate) {
