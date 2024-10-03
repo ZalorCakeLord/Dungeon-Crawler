@@ -113,6 +113,10 @@ export class Dungeon {
         return Math.abs(x1 - x2) + Math.abs(y1 - y2);
     }
 
+    calculateDistance(x1, y1, x2, y2) {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
+
     moveEnemyToNearbyRoom(x, y) {
         if (!this.getRoom(x, y).enemy) return;
         const currentRoom = this.getRoom(x, y);

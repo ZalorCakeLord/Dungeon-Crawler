@@ -458,5 +458,6 @@ export class Game {
                 messageLog.add('You found nothing.', this.player.id);
             }
         }
-    }
+    }        
+    
 }
