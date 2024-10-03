@@ -193,7 +193,7 @@ export const items = [
         "You lose 15 attack, but gain 10 health as the helm dulls your senses but heals your wounds."),
 
     new Item("Radio", { type: "oneOff", tag: "radio" }, "A small, portable radio that crackles to life when turned on."),
-
+    new Item("Torch", { type: "health", value: 5 }, "A wooden torch that casts flickering light in the darkness."),
 ];
 
 export function getItem(name) {

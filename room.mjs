@@ -68,6 +68,16 @@ export class roomMap {
         //this will be used to generate room maps that are not endless
         //a room map will be a 2d array of tiles
 
+        //this is a single room, as a reminder.
+        //tiles on the edge of the room will have edge set to true.
+
+        const roomMap = [];
+        for(let i = 0; i < size; i++){
+            roomMap.push([]);
+            for(let j = 0; j < size; j++){
+                roomMap[i].push(new tile({x:i,y:j,room:room}));
+            }
+        }
     }
 
 

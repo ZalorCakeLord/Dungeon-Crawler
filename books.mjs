@@ -785,7 +785,7 @@ export const books = [
         excerpt: "“And lo, in the beginning, the Great Spirit breathed life into the void, and from the dust of the earth arose the first beings, blessed with the essence of the divine. Thus spoke the Elders of the Healing Church, ‘As the sun rises and sets, so must we cherish the life that flourishes beneath its gaze. Gather ye, faithful, and heed the sacred rites, for in the act of healing, we weave the tapestry of existence anew.’ The faithful shall gather under the ancient oaks, where the whispers of nature intertwine with the hymns of gratitude, and the sacred waters shall flow freely, cleansing the hearts of the weary. For the Healing Church is a beacon of hope, a sanctuary for the lost, where love and compassion reign eternal, and the bond of life is sanctified by the hands of those who believe.”",
         ability: function (player) {
             // Apply healing
-            player.health += 200;
+            player.health.increaseBy(200);
 
             // Update the description
             this.description = "A sacred text detailing the rituals and teachings of the Healing Church, dedicated to the preservation of life and the balance of nature. This copy no longer carries that healing glow, it's energies spent.";
@@ -831,7 +831,7 @@ export const books = [
         ability: function (player) {
             // Wait for 15 seconds before setting health to zero
             setTimeout(() => {
-                player.health = 0;
+                player.health.kill(); // Kill the player
                 player.deathCause = this.name; // Set death cause to the book's name
     
                 // Update the description to reflect the tome's impact

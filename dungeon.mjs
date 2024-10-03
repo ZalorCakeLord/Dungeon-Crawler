@@ -1,7 +1,8 @@
 import { descriptions, impassableDescriptions, getRandomDescription, getRandomPassableDescription } from './descriptions.mjs';
-import { createEnemy, getRandomEnemy } from './enemies.mjs';
+import { createEnemy, getRandomEnemy, getRandomBoss } from './enemies.mjs';
 import { items } from './items.mjs';
 import { messageLog } from './messageLog.mjs';
+import { inspectButton } from './htmlHelper.mjs';
 //import { roomMap } from './room.mjs';
 
 export class Dungeon {
@@ -54,7 +55,20 @@ export class Dungeon {
 
         // Adjust enemy spawn probability based on the monsterSpawnCounter
         const enemySpawnProbability = Math.max(0.1, 0.35/* - (this.monsterSpawnCounter * 0.05)*/); // Minimum probability of 0.1
-        const enemy = Math.random() < enemySpawnProbability ? this.randomEnemy() : null;
+        let enemy = null
+        if(Math.random()<enemySpawnProbability){
+            enemy = getRandomEnemy()
+        }
+
+        /*if(Math.random()<enemySpawnProbability){
+            bossSpawnProbability = Math.max(0.1, 0.15)
+            if(Math.random()<bossSpawnProbability){
+                enemy = getRandomBoss()
+            } else {
+                enemy = getRandomEnemy()
+            }
+        }*/
+        
 
         if (enemy) {
             this.monsterSpawnCounter++;
@@ -174,26 +188,26 @@ export class Dungeon {
         const room = this.getRoom(player.currentPosition.x, player.currentPosition.y);
         //messageLog.add(`${room.name ? room.name : room.impassable ? 'Impassable Chamber' : 'Dungeon Chamber'}\n${room.description}.`);
         if (!room.passable) {
-            messageLog.add('This room is impassable. You can only exit back the way you came.', playerId);
+            messageLog.add('This room is impassable. You can only exit back the way you came, from the '+player.previousDirection, playerId);
         }
         if (room.enemy) {
             if (room.enemy.isDead()) {
-                messageLog.add(`The corpse of a ${room.enemy.name} lies here.`, playerId);
+                messageLog.add(`The corpse of a ${inspectButton(room.enemy.name)} lies here.`, playerId);
             } else {
-                messageLog.add(`There is a ${room.enemy.name} here.`, playerId);
+                messageLog.add(`There is a ${inspectButton(room.enemy.name)} here.`, playerId);
             }
         }
         if (room.items && room.items.length > 0) {
             room.items = room.items.filter(item => item !== null); // Remove null items
             room.items.forEach(item => {
-                messageLog.add(`You see a ${item.name} here.`, playerId);
+                messageLog.add(`You see a ${inspectButton(item.name)} here.`, playerId);
             });
         }
         if (room.players.size > 0) {
             room.players.forEach(id => {
                 if (id !== playerId) {
                     const otherPlayer = this.getPlayer(id);
-                    messageLog.add(`Player ${otherPlayer.name} is here.`, playerId);
+                    messageLog.add(`Player ${inspectButton(otherPlayer.name)} is here.`, playerId);
                 }
             });
         }
@@ -230,7 +244,7 @@ export class Dungeon {
     
         const currentRoom = this.getRoom(player.currentPosition.x, player.currentPosition.y);
         if (!this.canMove(direction, player)) {
-            messageLog.add(`You can't move ${direction} from here.`, playerId);
+            messageLog.add(`You can't move ${direction} from here. You must go ${player.previousDirection}.`, playerId);
             return;
         }
     
@@ -278,7 +292,7 @@ export class Dungeon {
             if (Math.random() < 0.5) { // 50% chance to attack
                 newRoom.enemy.attack(player);
                 messageLog.add(`The ${newRoom.enemy.name} attacks Player ${player.name} as they enter the room!`, playerId);
-                if (player.health <= 0) {
+                if (player.health.value <= 0) {
                     player.deathCause = newRoom.enemy.name; // Set the cause of death
                 }
             }
@@ -324,7 +338,13 @@ export class Dungeon {
                         //get gender of only player in room 
                         let playerID = Array.from(room.players)[0];
                         let evenlowerplayer = this.getPlayer(playerID);
-                        cellContent = `${evenlowerplayer.gender === 'M'?' 🧍‍♂️ ':' 🧍‍♀️ '}`;
+                        console.log(evenlowerplayer)
+                        try {
+                            cellContent = `${evenlowerplayer.gender === 'M'?' 🧍‍♂️ ':' 🧍‍♀️ '}`;
+                        } catch (error) {
+                            console.log('error')
+                        }
+                        
                     }
                 } else if (this.visitedRooms.has(roomKey)) {
                     const room = this.getRoom(x, y);

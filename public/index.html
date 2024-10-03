@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="/socket.io/socket.io.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -21,11 +22,17 @@
         <br>
         <div id="messages"></div>
         <div id="quickbar">
-            <button class="button-33" onclick="document.getElementById('command').value = 'search'; document.getElementById('send').click();">
+            <button class="button-33"
+                onclick="document.getElementById('command').value = 'search'; document.getElementById('send').click();">
                 search
             </button>
-            <button class="button-33" onclick="document.getElementById('command').value = 'inventory'; document.getElementById('send').click();">
+            <button class="button-33"
+                onclick="document.getElementById('command').value = 'inventory'; document.getElementById('send').click();">
                 inventory
+            </button>
+            <button class="button-33"
+                onclick="document.getElementById('command').value = 'afflictions'; document.getElementById('send').click();">
+                afflictions
             </button>
             <button class="button-33" onclick="document.getElementById('command').value = '' ">
                 clear
@@ -46,11 +53,11 @@
     <script type="module" src="game.mjs"></script>
     <script>
         // Trigger click event on the Send button when "Enter" is pressed
-        document.getElementById('command').addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                document.getElementById('send').click(); // Simulate a click on the Send button
-            }
-        });
+        //document.getElementById('command').addEventListener('keydown', function (event) {
+        //    if (event.key === 'Enter') {
+        //        document.getElementById('send').click(); // Simulate a click on the Send button
+        //    }
+        //});
 
         // Function to handle movement in a direction
         function move(direction) {
@@ -68,14 +75,14 @@
                 // Show the start button after a delay (simulating the 2-second delay for player info)
                 setTimeout(() => {
                     startButton.style.display = 'block';
-                    startButton.addEventListener('click', function() {
+                    startButton.addEventListener('click', function () {
                         document.getElementById('command').value = `search`;
                         document.getElementById('send').click();
 
                         // Start updating the map every second using the global window.updateMap
-                        setInterval(() => {
-                            window.gameFunctions.updateMap();
-                        }, 1000);
+                        //setInterval(() => {
+                        //window.gameFunctions.updateMap();
+                        //}, 1000);
                     });
                 }, 2000);
                 me.disconnect(); // Stop observing
@@ -87,26 +94,139 @@
             childList: true,
             subtree: true
         });
+        window.keys = {
+            pressed: []
+        };
 
-        
-        
-        
-      
+
+
+        // Function to play a tone with a specific frequency and simulate a piano sound
+
+
+        // Function to play a tone with a specific frequency and simulate a deeper piano sound
+        function playDeeperPianoTone(frequency, duration = 1) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const masterGain = audioContext.createGain();
+            masterGain.connect(audioContext.destination);
+            masterGain.gain.setValueAtTime(0, audioContext.currentTime); // Start with no volume
+
+            // Create and configure multiple oscillators for richer sound (simulating harmonics)
+            const oscillators = [];
+            const harmonicRatios = [1, 2]; // Fewer harmonics for a deeper tone
+            harmonicRatios.forEach((ratio, index) => {
+                const oscillator = audioContext.createOscillator();
+                oscillator.frequency.value = frequency * ratio; // Set frequency for each harmonic
+                const gainNode = audioContext.createGain();
+                gainNode.gain.value = 1 / (index + 1); // Lower volume for higher harmonics
+                oscillator.connect(gainNode);
+                gainNode.connect(masterGain);
+                oscillator.type = 'sine'; // Use sine waves for a smoother, less harsh sound
+                oscillators.push(oscillator);
+            });
+
+            // Envelope for Attack, Decay, Sustain, Release (ADSR)
+            const attackTime = 0.02;  // Fast attack like a piano key strike
+            const decayTime = 0.2;    // Short decay
+            const sustainLevel = 0.4; // Sustain level (how loud it remains)
+            const releaseTime = 0.5;  // Release when the key is released
+
+            // ADSR Envelope
+            masterGain.gain.setValueAtTime(0, audioContext.currentTime);
+            masterGain.gain.linearRampToValueAtTime(1, audioContext.currentTime + attackTime);  // Attack
+            masterGain.gain.linearRampToValueAtTime(sustainLevel, audioContext.currentTime + attackTime + decayTime); // Decay and Sustain
+            masterGain.gain.linearRampToValueAtTime(0, audioContext.currentTime + duration + releaseTime); // Release
+
+            // Start all oscillators
+            oscillators.forEach(oscillator => {
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + duration + releaseTime);
+            });
+        }
+
+        // Lower frequency mapping for a deeper, more grand-piano-like sound
+        const pianoFrequencies = [65.41, 73.42, 82.41, 87.31, 98.00, 110.00, 123.47, 130.81, 146.83, 164.81, 174.61, 196.00];
+
+        // Initialize the piano and map keys to notes
+        function initializePiano() {
+            let pianoContainer = document.getElementsByClassName("piano-container");
+
+            if (pianoContainer.length > 0) {
+                // Add keys to the piano
+                for (let index = 0; index < pianoFrequencies.length; index++) {
+                    let div = document.createElement("div");
+                    div.classList.add("key", index < 5 ? "black-key" : "white-key");
+
+                    // Play the corresponding tone on click
+                    div.addEventListener("click", () => {
+                        playDeeperPianoTone(pianoFrequencies[index]);
+                        window.keys.pressed.push(index);
+                        let lastTwelve = window.keys.pressed.slice(-Math.min(window.keys.pressed.length, 12));
+                        window.keys.pressed = lastTwelve;
+                        console.log(window.infoEmit)
+                        let subject = 'pianoKeys';
+                        window.infoEmit({subject, lastTwelve})
+                        console.log(window.keys.pressed);
+                    });
+
+                    pianoContainer[0].appendChild(div);
+                }
+
+                // Create the close button
+                let closeButton = document.createElement("a");
+                closeButton.href = "#";
+                closeButton.classList.add("close");
+                closeButton.onclick = function () {
+                    pianoContainer[0].remove();
+                };
+
+                // Add click event to remove the piano
+
+
+                // Append the close button to the piano container
+                pianoContainer[0].appendChild(closeButton);
+            }
+        }
+
+        // Create a MutationObserver instance
+        const pianObserver = new MutationObserver((mutationsList, observer) => {
+            for (const mutation of mutationsList) {
+                // Check if the piano-container div is added to the DOM
+                if (mutation.addedNodes.length > 0) {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.classList && node.classList.contains('piano-container')) {
+                            // Initialize piano when the div is detected
+                            initializePiano();
+                            // Optionally disconnect the observer if you only want it to trigger once
+                            //observer.disconnect();
+                        }
+                    });
+                }
+            }
+        });
+
+        // Start observing the document's body for added child elements
+        pianObserver.observe(document.body, { childList: true, subtree: true });
+
+
+
+
+
+
 
         // Add event listeners to the directional buttons
-        document.getElementById('move-north').addEventListener('click', function() {
+        document.getElementById('move-north').addEventListener('click', function () {
             move('north');
         });
 
-        document.getElementById('move-east').addEventListener('click', function() {
+        document.getElementById('move-east').addEventListener('click', function () {
             move('east');
         });
 
-        document.getElementById('move-south').addEventListener('click', function() {
+        document.getElementById('move-south').addEventListener('click', function () {
             move('south');
         });
 
-        document.getElementById('move-west').addEventListener('click', function() {
+        document.getElementById('move-west').addEventListener('click', function () {
             move('west');
         });
     </script>

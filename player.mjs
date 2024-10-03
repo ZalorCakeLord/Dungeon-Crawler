@@ -2,7 +2,37 @@ import { messageLog } from "./messageLog.mjs";
 
 export class Player {
     constructor(id, name) {
-        this.health = 100;
+        
+        function getPlayerHealth() {
+            let health = 100; // Initial health
+
+            return {
+                get value() { // Getter for health value
+                    return health;
+                },
+                set value(newValue) { // Setter for health value
+                    health = newValue;
+                },
+                decrement() { // Decrement health
+                    health--;
+                },
+                decreaseBy(amount = 1) { // Decrease health by specified amount
+                    health -= amount;
+                },
+                increment() { // Increment health
+                    health++;
+                },
+                increaseBy(amount = 1) { // Increase health by specified amount
+                    health += amount;
+                },
+                kill() { // Set health to zero
+                    health = 0;
+                }
+            };
+        }
+
+        this.health = getPlayerHealth();
+        console.log(this.health.value);
         this.attackPower = 10;
         this.inventory = [];
         this.xp = 0;
@@ -12,9 +42,67 @@ export class Player {
         this.currentPosition = { x: 0, y: 0 };
         this.previousPosition = { x: 0, y: 0 };
         this.previousDirection = null;
-        this.health = 100;
+        
         this.kills = 0
         this.deathCause = "Dungeon Collapse"
+        //generate timestamp for the most recent action
+        this.lastAction = Date.now();
+        this.speed = 1 //can only be 1 or 0 for players. 1 is normal speed, 0 is frozen.
+        this.afflictions = [] //array of afflictions that the player has
+        this.visible = true;
+        this.lastGoodHealth = 100;
+    }
+
+
+    
+
+    message(str) {
+        messageLog.add(str, this.id)
+    }
+
+    canBeAttacked() {
+        let trueList = ["visible"]
+        let falseList = ["invincible"]
+        for (let i = 0; i < falseList.length; i++) {
+            if (this[falseList[i]]) {
+                return false;
+            }
+        }
+        for (let i = 0; i < trueList.length; i++) {
+            if (!this[trueList[i]]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    getAfflictionsNames() {
+        let out = []
+        for (let i = 0; i < this.afflictions.length; i++) {
+            out.push(this.afflictions[i].type)
+        }
+        return out;
+    }
+
+
+    hasAffliction(afflictionName) {
+        for (let i = 0; i < this.afflictions.length; i++) {
+            if (this.afflictions[i].type === afflictionName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    getAfflictions() {
+        let out = "You are afflicted with: <br>"
+        let afflictions = []
+        for (let i = 0; i < this.afflictions.length; i++) {
+            afflictions.push(`${this.afflictions[i].type}: ${this.afflictions[i].duration} seconds remaining.`)
+        }
+        return out + afflictions.join('<br>');
     }
 
     move(direction) {
@@ -42,7 +130,7 @@ export class Player {
     }
 
     isDead() {
-        return this.health <= 0;
+        return this.health.value <= 0;
     }
 
     die() {
@@ -58,17 +146,26 @@ export class Player {
     displayInventory() {
         let out = 'Your inventory: <br>'
         let items = []
-        for(let i=0;i<this.inventory.length;i++){
+        for (let i = 0; i < this.inventory.length; i++) {
             items.push(this.inventory[i].name)
         }
         return out + items.join('<br>');
     }
 
-    checkInventory(itemName){
+    checkInventory(itemName) {
         //inventory is an array of item objects
         //return true if the item is in the inventory
-        for(let i=0;i<this.inventory.length;i++){
-            if(this.inventory[i].name === itemName){
+        for (let i = 0; i < this.inventory.length; i++) {
+            if (this.inventory[i].name === itemName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    checkInventoryMultipleAny(itemNames) {
+        for (let i = 0; i < itemNames.length; i++) {
+            if (this.checkInventory(itemNames[i])) {
                 return true;
             }
         }
@@ -77,9 +174,9 @@ export class Player {
 
     attack(enemy) {
         console.log(`You attack the ${enemy.name}.1`);
-        enemy.takeDamage(this.attackPower,this);
+        enemy.takeDamage(this.attackPower, this);
         if (!enemy.isDead()) {
-            enemy.attack(this);
+            //enemy.attack(this);
         }
     }
 }

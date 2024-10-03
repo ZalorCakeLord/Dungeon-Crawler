@@ -1,5 +1,5 @@
 import { deathMessages } from './deathMessages.mjs';
-import { Enemy } from './enemy.mjs';
+import { Enemy, Boss } from './enemy.mjs';
 
 const enemyDefinitionsRaw = [
     {
@@ -459,7 +459,7 @@ const enemyDefinitionsRaw = [
         ],
         speed: 0
     },
-    {
+    /*{
         name: 'Basilisk',
         health: 70,
         attackPower: 22,
@@ -476,7 +476,7 @@ const enemyDefinitionsRaw = [
             'The creature succumbs, its serpentine body going limp as the venom runs dry.'
         ],
         speed: 0.6
-    },
+    },*/
     {
         name: 'Ogre',
         health: 60,
@@ -1221,6 +1221,43 @@ const enemyDefinitionsRaw = [
     
 ];
 
+const bosses = [
+    {
+        name: 'Basilisk',
+        health: 70,
+        attackPower: 22,
+        behavior: 'aggressive',
+        description: 'A serpent-like creature with deadly eyes that can turn any who meet its gaze to stone.',
+        attackMessages: [
+            "The Basilisk lunges forward, its fangs glinting ominously, and sinks them into your flesh, dealing {amount} damage!",
+            "With a swift motion, the Basilisk wraps its powerful coils around you, tightening its grip and inflicting {amount} damage!",
+            "As you glance into its cold, unfeeling eyes, the Basilisk hisses and lunges, causing {amount} damage as its scales scrape against you.",
+            "The Basilisk's serpentine body twists and turns with unsettling speed, delivering a bite that rends your skin for {amount} damage!",
+            "You feel a jolt of pain as the Basilisk strikes, its venom seeping into your bloodstream and dealing {amount} damage with each heartbeat."
+        ],
+        deathMessages: [
+            "In a final, desperate attempt to strike, the Basilisk lets out a chilling hiss before collapsing, its deadly gaze forever lost.",
+            "With a shudder, the Basilisk succumbs to its wounds, its body going limp, leaving only the echo of its menacing presence.",
+            "As the last breath leaves the Basilisk’s body, its once-vibrant scales dim, and the dungeon falls eerily silent.",
+            "The Basilisk thrashes one last time, a spasm of fury and pain, before it lies still, the threat it once posed now extinguished.",
+            "Its serpentine form sprawls on the ground, the malevolent power it once wielded now just a memory in the dark."
+        ],
+        speed: 0.6,
+        specialAttack: {
+            effect:'fleshToStone',
+            chance: 0.9,
+            duration: 15,
+            messages: [
+                "Your heart races as you meet the Basilisk's gaze. Time seems to slow as you feel your body beginning to stiffen, transforming into stone!",
+                "The world around you blurs as the Basilisk locks eyes with you, its petrifying gaze seeping into your very essence, leaving you breathless.",
+                "With a wicked grin, the Basilisk unleashes its gaze, and you feel your muscles tightening, caught in the throes of a sinister transformation.",
+                "As you gaze into the Basilisk's eyes, the air thickens, and panic floods your mind; your body is betraying you as you begin to turn to stone!",
+                "A shiver runs down your spine as the Basilisk's eyes meet yours. You gasp in horror as your limbs start to freeze in place, becoming cold and unyielding."
+            ]
+        }
+    }, 
+]
+
 const createIdedArray = (array) => {
     return array.map((item, index) => {
         item.id = index;
@@ -1269,4 +1306,19 @@ export function createEnemy(name) {
 export function getRandomEnemy() {
     const definition = enemyDefinitions[Math.floor(Math.random() * enemyDefinitions.length)];
     return new Enemy(definition.name, definition.health, definition.attackPower, definition.behavior, definition.description, definition.attackMessages, definition.speed, definition.deathMessages);
+}
+
+export function getRandomBoss() {
+    const definition = bosses[Math.floor(Math.random() * bosses.length)];
+    return new Boss(
+        definition.name,
+        definition.health,
+        definition.attackPower,
+        definition.behavior,
+        definition.description,
+        definition.attackMessages,
+        definition.speed,
+        definition.deathMessages,
+        definition.specialAttack // Include specialAttack when creating the Boss
+    ); 
 }

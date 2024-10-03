@@ -15,11 +15,15 @@ body {
     border: 1px solid #fff;
     padding: 20px;
     background-color: #444;
-    overflow-y: auto; /* Add this line to enable vertical scrolling */
-    max-height: 90vh; /* Add this line to limit the height of the div */
+    overflow-y: auto;
+    /* Add this line to enable vertical scrolling */
+    max-height: 90vh;
+    /* Add this line to limit the height of the div */
 }
 
-#map, #stats, #messages {
+#map,
+#stats,
+#messages {
     margin-bottom: 20px;
 }
 
@@ -44,6 +48,7 @@ body {
     gap: 5px;
     justify-content: center;
     align-items: center;
+    margin-top: 5px;
 }
 
 #move-north {
@@ -69,58 +74,442 @@ body {
 
 /* CSS */
 .button-62 {
-  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
-  border: 0;
-  border-radius: 12px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 2.5;
-  outline: transparent;
-  padding: 0 1rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .2s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
+    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
 }
 
 .button-62:not([disabled]):focus {
-  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
 }
 
 .button-62:not([disabled]):hover {
-  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
 }
 
 
 
 /* CSS */
 .button-33 {
-  background-color: #c2fbd7;
-  border-radius: 100px;
-  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
-  color: green;
-  cursor: pointer;
-  display: inline-block;
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
-  padding: 7px 20px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 250ms;
-  border: 0;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .button-33:hover {
-  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
+    box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
 }
+
+
+
+
+
+.btn-76,
+.btn-76 *,
+.btn-76 :after,
+.btn-76 :before,
+.btn-76:after,
+.btn-76:before {
+    border: 0 solid;
+    box-sizing: border-box;
+}
+
+.btn-76 {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: button;
+    background-color: #000;
+    background-image: none;
+    color: #fff;
+    cursor: pointer;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+        Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-size: 100%;
+    line-height: 1.5;
+    margin: 0;
+    -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+    padding: 0;
+}
+
+.btn-76:disabled {
+    cursor: default;
+}
+
+.btn-76:-moz-focusring {
+    outline: auto;
+}
+
+.btn-76 svg {
+    display: block;
+    vertical-align: middle;
+}
+
+.btn-76 [hidden] {
+    display: none;
+}
+
+.btn-76 {
+    --neon: #0ea5e9;
+    box-sizing: border-box;
+    display: block;
+    font-weight: 900;
+    -webkit-mask-image: none;
+    outline: 4px solid #fff;
+    outline-offset: -4px;
+    overflow: hidden;
+    padding: 0.6rem 1.7rem;
+    position: relative;
+    text-transform: uppercase;
+    transition: 0.2s linear 0.1s;
+    margin: auto;
+}
+
+.btn-76:hover {
+    background: var(--neon);
+    box-shadow: 0 0 5px var(--neon), 0 0 25px var(--neon), 0 0 50px var(--neon),
+        0 0 100px var(--neon);
+    color: #fff;
+    outline-color: transparent;
+    transition: 0.2s linear 0.6s;
+}
+
+.btn-76 span {
+    display: block;
+    inset: 0;
+    position: absolute;
+}
+
+.btn-76 .top {
+    border-top: 4px solid var(--neon);
+    opacity: 0;
+    transform: translateX(calc(-100% + var(--progress, 0%)));
+    transition: none;
+}
+
+.btn-76:hover .top {
+    --progress: 100%;
+    opacity: 1;
+    transition: transform 0.2s linear;
+}
+
+.btn-76 .right {
+    border-right: 4px solid var(--neon);
+    opacity: 0;
+    transform: translateY(calc(-100% + var(--progress, 0%)));
+    transition: none;
+}
+
+.btn-76:hover .right {
+    --progress: 100%;
+    opacity: 1;
+    transition: transform 0.2s linear 0.2s;
+}
+
+.btn-76 .bottom {
+    border-bottom: 4px solid var(--neon);
+    opacity: 0;
+    transform: translateX(calc(100% - var(--progress, 0%)));
+    transition: none;
+}
+
+.btn-76:hover .bottom {
+    --progress: 100%;
+    opacity: 1;
+    transition: transform 0.2s linear 0.4s;
+}
+
+.btn-76 .left {
+    border-left: 4px solid var(--neon);
+    opacity: 0;
+    transform: translateY(calc(100% - var(--progress, 0%)));
+    transition: none;
+}
+
+.btn-76:hover .left {
+    --progress: 100%;
+    opacity: 1;
+    transition: transform 0.2s linear 0.6s;
+}
+
+
+.decorative-line {
+    border: 0;
+    height: 1px;
+    background: #0a0290;
+    /* Color of the line */
+    margin: 20px 0;
+    /* Space above and below */
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+/* Example fantasy font */
+
+.book-container {
+    position: relative;
+    /* Enables positioning of child elements */
+    display: inline-block;
+    /* Optional: to make the container fit the image size */
+}
+
+.book-image {
+    display: block;
+    /* Removes bottom space/gap */
+    width: 100%;
+    /* Adjust as needed */
+    height: auto;
+    /* Keeps the aspect ratio */
+}
+
+.book-text {
+    position: absolute;
+    /* Position relative to the container */
+    top: 50%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Adjust position to truly center */
+    color: white;
+    /* Text color */
+    font-size: 1.5rem;
+    /* Adjust text size as needed */
+    text-align: center;
+    /* Center text alignment */
+    font-family: 'Zeyada', serif;
+    /* Use the fancy font */
+    /* Remove background for transparency */
+    background: none;
+    padding: 10px;
+    /* Optional: padding for text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    /* Optional: add shadow for better readability */
+}
+
+
+
+.piano-container {
+    display: flex;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    padding: 4em 1em 1em 1em;
+    border-radius: 0.62em;
+    background-color: #24272e;
+    box-shadow: 0 2em 4em rgba(7, 0, 53, 0.25);
+}
+
+.white-key {
+    width: 4.37em;
+    height: 17.5em;
+    background-color: #ffffff;
+    border-radius: 0 0 0.3em 0.3em;
+    border: 2px solid #24272e;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.white-key:hover {
+    background-color: #ebebeb;
+}
+
+.black-key {
+    width: 2.5em;
+    height: 10em;
+    border-radius: 0 0 0.3em 0.3em;
+    box-sizing: border-box;
+    position: absolute;
+    background-color: #070a0f;
+    cursor: pointer;
+}
+
+.black-key:hover {
+    background-color: #24272e;
+}
+
+.black-key:nth-child(1) {
+    left: 4em;
+}
+
+.black-key:nth-child(2) {
+    left: 8.37em;
+}
+
+.black-key:nth-child(3) {
+    left: 17.12em;
+}
+
+.black-key:nth-child(4) {
+    left: 21.5em;
+}
+
+.black-key:nth-child(5) {
+    left: 25.87em;
+}
+
+.black-key:nth-child(6) {
+    left: 34.62em;
+}
+
+.black-key:nth-child(7) {
+    left: 39em;
+}
+
+.black-key:nth-child(8) {
+    left: 47.75em;
+}
+
+.black-key:nth-child(9) {
+    left: 52.12em;
+}
+
+.black-key:nth-child(10) {
+    left: 56.5em;
+}
+
+@media screen and (max-width: 1000px) {
+    .piano-container {
+        font-size: 0.7em;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .piano-container {
+        font-size: 0.5em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .piano-container {
+        font-size: 0.3em;
+    }
+}
+  
+.close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #ff1616;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  
+
+
+
+
+
+
+
+
+
+
+  .glitch {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+      0.025em 0.04em 0 #fffc00;
+    animation: glitch 725ms infinite;
+  }
+  
+  .glitch span {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .glitch span:first-child {
+    animation: glitch 500ms infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translate(-0.04em, -0.03em);
+    opacity: 0.75;
+  }
+  
+  .glitch span:last-child {
+    animation: glitch 375ms infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translate(0.04em, 0.03em);
+    opacity: 0.75;
+  }
+  
+  @keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+        0.025em 0.04em 0 #fffc00;
+    }
+    15% {
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+        0.025em 0.04em 0 #fffc00;
+    }
+    16% {
+      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+        -0.05em -0.05em 0 #fffc00;
+    }
+    49% {
+      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+        -0.05em -0.05em 0 #fffc00;
+    }
+    50% {
+      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+        0 -0.04em 0 #fffc00;
+    }
+    99% {
+      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+        0 -0.04em 0 #fffc00;
+    }
+    100% {
+      text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+        -0.04em -0.025em 0 #fffc00;
+    }
+  }
+  

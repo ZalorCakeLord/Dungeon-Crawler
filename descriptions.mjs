@@ -1,11 +1,19 @@
 import { getRandomBooks } from './books.mjs';
+import { Item } from './item.mjs';
 
 export const descriptions = [
     {
         name: 'The Damp Crypt',
         description: 'You find yourself in a dark, damp room with flickering torches casting long shadows, the air thick with the scent of mold. The oppressive silence is broken only by the occasional drip of water echoing in the distance. The walls are slick with moisture, and the ground beneath you feels uneven and treacherous. A faint draft whispers through unseen cracks, carrying with it the smell of rot.',
         contents: [
-            { name: 'torches', description: 'The torches flicker weakly, casting long, ominous shadows that dance across the damp stone walls, as if the darkness itself is alive.' },
+            {
+                name: 'torches', description: 'The torches flicker weakly, casting long, ominous shadows that dance across the damp stone walls, as if the darkness itself is alive.',
+                interactive: true,
+                action: (player) => {
+                    player.message('You reach out to touch the torch, but the flames dance just out of reach, casting eerie shadows that seem to move of their own accord.');
+                },
+                buttonText: 'Touch the flames.'
+            },
             { name: 'stone walls', description: 'The stone walls are cold and damp, slick with moisture, their surface uneven as if worn by centuries of neglect.' },
             { name: 'ground', description: 'The floor beneath your feet is uneven, with patches of slippery stone and treacherous cracks, making every step a risk.' }
         ],
@@ -69,12 +77,6 @@ export const descriptions = [
         description: 'You quietly lurk in a quiet library with towering bookshelves, their contents covered in dust, the scent of ancient paper hanging in the air. A soft rustling sound comes from somewhere deep within, as though the books themselves are restless. The dim light of a single flickering candle creates long shadows, making the towering shelves feel even more imposing.',
         contents: [
             { name: 'bookshelves', description: 'The towering bookshelves stretch to the ceiling, crammed with dusty tomes that have not been disturbed in centuries, their pages thick with the weight of time.' },
-            { name: 'The Unauthorized Autobiography of The Wizard Zalor', description: 'This tome chronicles the life of the enigmatic wizard Zalor, filled with self-aggrandizing tales and half-truths. Each page whispers secrets of arcane rituals and lost spells, with annotations in the margins hinting at the true nature of Zalor\'s power—dark and unsettling.' },
-            { name: 'How Not To Skin A Cat', description: 'A surprisingly humorous take on the delicate art of cat preservation, filled with bizarre illustrations and absurd tips. Beyond its comedic exterior lies a deeper truth about the futility of taming wild spirits, and the consequences of attempting to do so. The final chapters are rumored to contain spells of transmutation, hidden among the jokes.' },
-            { name: 'The Idiot\'s Guide to Telekinesis', description: 'This seemingly simple guide offers practical advice on the art of moving objects with one\'s mind. However, as one delves deeper, the text reveals a shocking truth: every telekinetic attempt comes with a cost, draining the user\'s willpower. Readers have reported strange occurrences, as items around them seem to move independently, drawn by an unseen force.' },
-            { name: 'The Grimoire of Forgotten Dreams', description: 'A collection of long-lost dreams penned by those who dared to dream too vividly. Each entry opens a portal to an alternate reality where the impossible becomes possible. The book is said to curse its readers with fragmented dreams that blend reality and fantasy, trapping them in an endless loop of haunting visions.' },
-            { name: 'The Art of Eldritch Weaving', description: 'An ancient manual detailing the intricate art of weaving spells into fabrics and textiles. The book\'s pages shimmer with interwoven threads of magic, and the illustrations seem to shift and change, revealing the garments that grant their wearers unimaginable powers—yet, they come at a perilous price.' },
-            { name: 'Chronicles of the Ethereal Path', description: 'A travelogue detailing the journeys of a mystical wanderer who traversed between dimensions. Each chapter unveils breathtaking landscapes filled with creatures of pure energy and reflections of worlds untouched by time. It holds the key to accessing these hidden realms, but those who seek it must be prepared to face the existential horrors that await.' }
         ],
         impassable: false,
         startMessage: `The library welcomes you with an eerie silence, broken only by the faint rustle of unseen pages turning somewhere deep within. The towering shelves, crammed with forgotten tomes, cast long, flickering shadows in the candlelight, making the air feel heavy with knowledge both sacred and forbidden. You sense an unseen presence, as if the books themselves are watching, waiting for you to disturb their ancient slumber.`,
@@ -107,12 +109,6 @@ export const descriptions = [
         description: 'You find yourself in a quiet library with towering bookshelves, their contents covered in dust, the scent of ancient paper hanging in the air. A soft rustling sound comes from somewhere deep within, as though the books themselves are restless. The dim light of a single flickering candle creates long shadows, making the towering shelves feel even more imposing.',
         contents: [
             { name: 'bookshelves', description: 'The towering bookshelves stretch to the ceiling, crammed with dusty tomes that have not been disturbed in centuries, their pages thick with the weight of time.' },
-            { name: 'The Unauthorized Autobiography of The Wizard Zalor', description: 'This tome chronicles the life of the enigmatic wizard Zalor, filled with self-aggrandizing tales and half-truths. Each page whispers secrets of arcane rituals and lost spells, with annotations in the margins hinting at the true nature of Zalor\'s power—dark and unsettling.' },
-            { name: 'How Not To Skin A Cat', description: 'A surprisingly humorous take on the delicate art of cat preservation, filled with bizarre illustrations and absurd tips. Beyond its comedic exterior lies a deeper truth about the futility of taming wild spirits, and the consequences of attempting to do so. The final chapters are rumored to contain spells of transmutation, hidden among the jokes.' },
-            { name: 'The Idiot\'s Guide to Telekinesis', description: 'This seemingly simple guide offers practical advice on the art of moving objects with one\'s mind. However, as one delves deeper, the text reveals a shocking truth: every telekinetic attempt comes with a cost, draining the user\'s willpower. Readers have reported strange occurrences, as items around them seem to move independently, drawn by an unseen force.' },
-            { name: 'The Grimoire of Forgotten Dreams', description: 'A collection of long-lost dreams penned by those who dared to dream too vividly. Each entry opens a portal to an alternate reality where the impossible becomes possible. The book is said to curse its readers with fragmented dreams that blend reality and fantasy, trapping them in an endless loop of haunting visions.' },
-            { name: 'The Art of Eldritch Weaving', description: 'An ancient manual detailing the intricate art of weaving spells into fabrics and textiles. The book\'s pages shimmer with interwoven threads of magic, and the illustrations seem to shift and change, revealing the garments that grant their wearers unimaginable powers—yet, they come at a perilous price.' },
-            { name: 'Chronicles of the Ethereal Path', description: 'A travelogue detailing the journeys of a mystical wanderer who traversed between dimensions. Each chapter unveils breathtaking landscapes filled with creatures of pure energy and reflections of worlds untouched by time. It holds the key to accessing these hidden realms, but those who seek it must be prepared to face the existential horrors that await.' }
         ],
         impassable: false,
         startMessage: `The library welcomes you with an eerie silence, broken only by the faint rustle of unseen pages turning somewhere deep within. The towering shelves, crammed with forgotten tomes, cast long, flickering shadows in the candlelight, making the air feel heavy with knowledge both sacred and forbidden. You sense an unseen presence, as if the books themselves are watching, waiting for you to disturb their ancient slumber.`,
@@ -123,11 +119,18 @@ export const descriptions = [
         description: 'a small, cozy room bathed in the warm glow of a crackling fireplace, with plush chairs inviting you to rest. The gentle crackle of the fire is soothing, and for a moment, it feels as if all your worries could melt away.',
         contents: [
             { name: 'fireplace', description: 'The fireplace crackles softly, casting a warm, flickering glow across the room, filling the space with a comforting heat that makes the plush chairs seem even more inviting.' },
-            { name: 'chairs', description: 'The plush chairs, with their deep cushions and worn fabric, beckon you to sit and rest, offering a moment of peace in an otherwise dangerous world.' }
+            { name: 'chairs', description: 'The plush chairs, with their deep cushions and worn fabric, beckon you to sit and rest, offering a moment of peace in an otherwise dangerous world.',
+                interactive: true,
+                action: (player) => {
+                    player.message('You sink into one of the plush chairs, the soft cushions enveloping you in warmth and comfort. For a moment, the dangers of the outside world fade away, and you feel a sense of peace wash over you.');
+                },
+                buttonText: 'Take a seat.'
+             }
         ],
         impassable: false,
         startMessage: `A cozy warmth greets you as you step into this small room. The fireplace crackles gently, filling the air with a soothing glow, while plush chairs offer a much-needed respite from your journey. For a fleeting moment, it feels as though the dangers of the outside world cannot reach you here.`,
     },
+
     {
         "name": "The Alchemical Chamber",
         "description": "You find yourself in a dimly lit chamber, cluttered with bubbling cauldrons that hiss and spit, their contents simmering with unknown concoctions. The shelves that line the walls are filled with an array of glowing potions, each one casting an ethereal light that dances across the stone surfaces. The air is thick with the scent of pungent herbs, mingling with the acrid tang of sulfur, creating an atmosphere both intriguing and foreboding. Strange, arcane symbols flicker on the walls, pulsating with an energy that feels alive, as if the very stones are whispering secrets of ancient magic. A large, ornate table stands in the center, strewn with parchment covered in scrawled notes and diagrams of bizarre creatures and elements. In the corners, various strange devices hum quietly, their purpose obscured by time and dust, hinting at the experiments that have transpired in this mystical space.",
@@ -140,7 +143,25 @@ export const descriptions = [
             },
             {
                 "name": "potions",
-                "description": "Lining the shelves are an assortment of glowing potions, their vibrant colors ranging from deep emerald greens to shimmering purples. Each bottle is sealed with a cork, and some emit soft sounds, as if they are eager to be released from their glass prisons. The labels are written in elegant script, hinting at their mysterious effects."
+                "description": "Lining the shelves are an assortment of glowing potions, their vibrant colors ranging from deep emerald greens to shimmering purples. Each bottle is sealed with a cork, and some emit soft sounds, as if they are eager to be released from their glass prisons. The labels are written in elegant script, hinting at their mysterious effects.",
+                "interactive": true,
+                "action": (player) => {
+
+                    //random number between 1 and 30
+                    let rand = Math.floor(Math.random() * 30) + 1;
+                    if (rand < 10) {
+                        const healthIncrease = Math.floor(Math.random() * 30) + 1;
+                        player.health.increaseBy(healthIncrease);
+                        player.message(`You uncork a potion and take a cautious sip. The liquid is surprisingly sweet, and you feel a surge of vitality as your health increases by ${healthIncrease}.`);
+                    } else if(rand < 20){
+                        const healthDecrease = Math.floor(Math.random() * 30) + 1;
+                        player.health.decreaseBy(healthDecrease);
+                        player.message(`You uncork a potion and take a cautious sip. The liquid burns your throat, and you feel a sudden weakness as your health decreases by ${healthDecrease}.`);
+                    } else {
+                        player.message(`You uncork a potion and take a cautious sip. The liquid tastes like nothing you've ever experienced, and you feel... nothing. It seems this potion had no effect.`);
+                    }
+                },
+                "buttonText": "Feeling brave? Drink a potion."
             },
             {
                 "name": "ornate table",
@@ -151,26 +172,26 @@ export const descriptions = [
                 "description": "In the corners of the chamber, various strange devices hum and whir, their purpose a mystery. Some resemble twisted metal contraptions, while others are delicate glass instruments filled with swirling liquids, hinting at their role in the alchemical processes that once took place here."
             }
         ]
-    },    
+    },
     {
         name: "The Rune Chamber",
         description: 'You stand inside a room with ancient runes carved into the stone walls, glowing faintly with an otherworldly light. The atmosphere is charged with mysterious energy, thick enough that the air seems to vibrate around you. The runes pulse softly, as though alive with secrets long forgotten, and the faint echo of distant chants reverberates through the chamber.',
         contents: [
-            { 
-                name: 'runes', 
-                description: 'The ancient runes carved into the stone walls glow faintly, pulsing with an eerie light. Each symbol seems to hold an untold power, whispering forgotten secrets to those who can hear them. They shift slightly as you stare at them, as if the runes themselves are alive, and changing with each breath.' 
+            {
+                name: 'runes',
+                description: 'The ancient runes carved into the stone walls glow faintly, pulsing with an eerie light. Each symbol seems to hold an untold power, whispering forgotten secrets to those who can hear them. They shift slightly as you stare at them, as if the runes themselves are alive, and changing with each breath.'
             },
-            { 
-                name: 'broken altar', 
-                description: 'In the center of the room, a broken altar lies in disrepair, its stone surface cracked and worn. The once-pristine carvings are now faded, but a faint glow still radiates from its core. Whatever ritual was once performed here has long since passed, but the remnants of power still linger, waiting to be reignited.' 
+            {
+                name: 'broken altar',
+                description: 'In the center of the room, a broken altar lies in disrepair, its stone surface cracked and worn. The once-pristine carvings are now faded, but a faint glow still radiates from its core. Whatever ritual was once performed here has long since passed, but the remnants of power still linger, waiting to be reignited.'
             },
-            { 
-                name: 'dust-covered tomes', 
-                description: 'A small pile of ancient tomes rests in the corner of the chamber, covered in thick layers of dust. The bindings are cracked, and the pages are brittle with age. Despite their fragile state, the faint glow of the runes on the walls seems to keep them preserved, as if they still hold knowledge too dangerous to be forgotten.' 
+            {
+                name: 'dust-covered tomes',
+                description: 'A small pile of ancient tomes rests in the corner of the chamber, covered in thick layers of dust. The bindings are cracked, and the pages are brittle with age. Despite their fragile state, the faint glow of the runes on the walls seems to keep them preserved, as if they still hold knowledge too dangerous to be forgotten.'
             },
-            { 
-                name: 'strange markings', 
-                description: 'Strange markings are etched into the floor, spiraling outward from the altar. Unlike the runes on the walls, these symbols feel erratic, chaotic, as though they were carved in a frenzy. They pulse irregularly, as if they are out of sync with the rest of the room’s magic, hinting at an experiment gone wrong or a ritual interrupted.' 
+            {
+                name: 'strange markings',
+                description: 'Strange markings are etched into the floor, spiraling outward from the altar. Unlike the runes on the walls, these symbols feel erratic, chaotic, as though they were carved in a frenzy. They pulse irregularly, as if they are out of sync with the rest of the room’s magic, hinting at an experiment gone wrong or a ritual interrupted.'
             }
         ],
         impassable: false,
@@ -180,21 +201,21 @@ export const descriptions = [
         name: "The Lake of Echoes",
         description: 'You rest upon the shore of a vast, echoing cavern. An underground lake stretches out before you, its crystal-clear waters shimmering with an ethereal glow that seems to come from deep within its depths. The ceiling of the cavern disappears into darkness, its height unfathomable, while the stillness of the lake creates an eerie sense of calm. Strange, melodic echoes ripple across the water, as though the cavern itself is humming a forgotten tune. The air is thick with moisture, and the faint scent of minerals rises from the rocky shore.',
         contents: [
-            { 
-                name: 'underground lake', 
-                description: 'The crystal-clear water of the underground lake shimmers with a soft, ethereal glow, casting faint reflections on the cavern walls. Its still surface is so calm it appears almost like glass, amplifying every sound in the cavern. Occasionally, the surface ripples with no apparent cause, as if something beneath the surface stirs.' 
+            {
+                name: 'underground lake',
+                description: 'The crystal-clear water of the underground lake shimmers with a soft, ethereal glow, casting faint reflections on the cavern walls. Its still surface is so calm it appears almost like glass, amplifying every sound in the cavern. Occasionally, the surface ripples with no apparent cause, as if something beneath the surface stirs.'
             },
-            { 
-                name: 'stone pillars', 
-                description: 'Massive stone pillars rise from the depths of the lake, their surfaces slick with moisture. They extend upwards into the darkness above, their tops disappearing into the unseen ceiling of the cavern. Strange markings cover their bases, worn away by time and water, hinting at an ancient civilization that once inhabited this place.' 
+            {
+                name: 'stone pillars',
+                description: 'Massive stone pillars rise from the depths of the lake, their surfaces slick with moisture. They extend upwards into the darkness above, their tops disappearing into the unseen ceiling of the cavern. Strange markings cover their bases, worn away by time and water, hinting at an ancient civilization that once inhabited this place.'
             },
-            { 
-                name: 'echoes', 
-                description: 'The cavern is filled with strange echoes that ripple across the water’s surface. They do not seem to come from your own movements, but rather exist independently, as if the cavern itself is alive and singing in a language long forgotten. The echoes grow louder the longer you listen, until they almost become words.' 
+            {
+                name: 'echoes',
+                description: 'The cavern is filled with strange echoes that ripple across the water’s surface. They do not seem to come from your own movements, but rather exist independently, as if the cavern itself is alive and singing in a language long forgotten. The echoes grow louder the longer you listen, until they almost become words.'
             },
-            { 
-                name: 'glowing stones', 
-                description: 'Scattered along the shore are small, glowing stones that pulse faintly with the same ethereal light as the lake. They seem warm to the touch and hum softly in your hand. The light they give off flickers and fades when moved too far from the lake, as if their energy is tied to the water itself.' 
+            {
+                name: 'glowing stones',
+                description: 'Scattered along the shore are small, glowing stones that pulse faintly with the same ethereal light as the lake. They seem warm to the touch and hum softly in your hand. The light they give off flickers and fades when moved too far from the lake, as if their energy is tied to the water itself.'
             }
         ],
         impassable: false,
@@ -214,34 +235,50 @@ export const descriptions = [
         name: "The Forgotten Nest",
         description: "The chamber is cramped and claustrophobic, with walls slick with dampness and covered in a labyrinth of thick cobwebs that cling to your skin with every movement. Faint glimmers of light struggle to pierce through the dense webs, casting eerie shadows across the uneven stone floor. The scuttling of unseen creatures echoes from the dark corners, while the faint scent of decay fills the stale air, making it feel as though the room itself is rotting from within.",
         contents: [
-            { 
-                name: "cobwebs", 
-                description: "Thick cobwebs hang from every corner of the room, swaying gently as unseen creatures scuttle within them, hidden by the heavy shadows. Some webs appear ancient and brittle, while others are fresh, shimmering with dew and lined with tiny, pulsating cocoons." 
+            {
+                name: "cobwebs",
+                description: "Thick cobwebs hang from every corner of the room, swaying gently as unseen creatures scuttle within them, hidden by the heavy shadows. Some webs appear ancient and brittle, while others are fresh, shimmering with dew and lined with tiny, pulsating cocoons."
             },
-            { 
-                name: "rotting bones", 
-                description: "Beneath the layers of dust and webs lie the decayed remains of some forgotten creature. The bones are cracked and brittle, half-consumed by the nest's denizens. A skull peeks out from the mess, its hollow eyes staring endlessly into the dark, adding to the oppressive sense of death in the room." 
+            {
+                name: "rotting bones",
+                description: "Beneath the layers of dust and webs lie the decayed remains of some forgotten creature. The bones are cracked and brittle, half-consumed by the nest's denizens. A skull peeks out from the mess, its hollow eyes staring endlessly into the dark, adding to the oppressive sense of death in the room."
             },
-            { 
-                name: "chitinous shell", 
-                description: "A cracked and discarded shell of some insectoid creature rests in one corner, half-buried beneath the cobwebs. It is thick, black, and glossy, and large enough to have belonged to something much bigger than you dare imagine." 
+            {
+                name: "chitinous shell",
+                description: "A cracked and discarded shell of some insectoid creature rests in one corner, half-buried beneath the cobwebs. It is thick, black, and glossy, and large enough to have belonged to something much bigger than you dare imagine."
             },
-            { 
-                name: "web cocoon", 
-                description: "Dangling from the ceiling, a tightly woven cocoon sways gently. Its surface is translucent, revealing something inside that shifts slightly as though alive, or perhaps it’s just your imagination. Dark streaks of dried blood stain the bottom of the cocoon, and a faint, irregular sound emanates from within, like a slow heartbeat." 
+            {
+                name: "web cocoon",
+                description: "Dangling from the ceiling, a tightly woven cocoon sways gently. Its surface is translucent, revealing something inside that shifts slightly as though alive, or perhaps it’s just your imagination. Dark streaks of dried blood stain the bottom of the cocoon, and a faint, irregular sound emanates from within, like a slow heartbeat."
             },
-            { 
-                name: "scratched walls", 
-                description: "The stone walls of the room are scratched and gouged as though something with many claws tried to escape. The marks are deep, and the stone is crumbling in places, revealing old, dark stains in the grooves. Whoever or whatever made them was desperate." 
+            {
+                name: "scratched walls",
+                description: "The stone walls of the room are scratched and gouged as though something with many claws tried to escape. The marks are deep, and the stone is crumbling in places, revealing old, dark stains in the grooves. Whoever or whatever made them was desperate."
             },
-            { 
-                name: "nest of eggs", 
-                description: "In a darkened corner, hidden beneath layers of cobwebs, you spot a cluster of pale, glistening eggs nestled into a sticky nest. They pulse softly with a faint light, as though something inside is slowly stirring, waiting to hatch." 
+            {
+                name: "nest of eggs",
+                description: "In a darkened corner, hidden beneath layers of cobwebs, you spot a cluster of pale, glistening eggs nestled into a sticky nest. They pulse softly with a faint light, as though something inside is slowly stirring, waiting to hatch.",
+                interactive: true,
+                action: (player) => {
+                    const burnyItems = ["Torch","Sword Of Eternal Flame","Fireball Scroll"]
+                    const hasBurnyItem = player.checkInventoryMultipleAny(burnyItems);
+                    if(hasBurnyItem){
+                        player.message("You use your torch to set the nest ablaze, the flames quickly consuming the sticky webbing and the eggs within. The room fills with the acrid scent of burning flesh, and the shadows seem to writhe in agony as the nest is reduced to ash.");
+                        let room = player.dungeon.getRoom(player.currentPosition.x, player.currentPosition.y)
+                        let nest = room.contents.find(item => item.name === "nest of eggs")
+                        if (nest) {
+                            nest.description = "The nest has been completely incinerated, leaving only charred remains and ash.";
+                        }
+                    }else{
+                        player.message("You reach out to touch the eggs, but a sudden sense of dread washes over you, and you quickly pull your hand back. Something about the pulsing light within the eggs fills you with unease, and you decide it might be best to leave them undisturbed for now.");
+                    }
+                },
+                buttonText: "Burn them."
             }
         ],
         impassable: false,
         startMessage: "You jolt awake to the oppressive, stale air of a cramped, cobweb-filled room. The scuttling of unseen creatures creeps up your spine, and with every breath, the scent of decay clings to your senses. Cobwebs catch on your skin, pulling you further into their sticky embrace. As your eyes adjust to the dim light, you spot rotting bones half-buried in dust, and the walls around you bear the desperate scratches of something long gone. It feels as though you’ve been buried alive, trapped in a forgotten corner of the world, abandoned even by time itself."
-    },    
+    },
     {
         name: "Sanctum of Serenity",
         description: 'A peaceful garden-like room filled with the soft sound of trickling water from a stone fountain. Vines hang lazily from the ceiling, and the air smells of fresh earth. The faint glow of bioluminescent flowers casts a soothing light, making this space feel like a sanctuary from the dangers outside.',
@@ -255,13 +292,14 @@ export const descriptions = [
     },
     {
         name: "Eternal Feast",
-        description: 'A grand banquet hall stretches before you, its long table set for a feast that appears untouched. Lavish plates gleam under the flickering candlelight, yet the eerie silence gives the sense that this hall hasn’t seen a guest in centuries. The scene is frozen in time, waiting for something—or someone—to break the spell.',
+        description: 'A grand banquet hall stretches before you, its long table set for a feast that appears untouched. Lavish plates gleam under the flickering candlelight, their surfaces reflecting the dim glow like forgotten memories. Yet, the eerie silence gives the sense that this hall hasn’t seen a guest in centuries. Dust dances in the air, caught in the light, and the heavy scent of aged wine lingers, suggesting revelry long past. The scene is frozen in time, waiting for something—or someone—to break the spell, as shadows cling to the corners, hinting at secrets hidden just out of sight.',
         contents: [
-            { name: 'banquet table', description: 'A long, elegant table stretches across the room, adorned with lavish plates and silverware, as though a grand feast was prepared for guests who never arrived.' },
-            { name: 'chandeliers', description: 'Above, grand chandeliers hang from the ceiling, their crystal pendants catching the candlelight, casting glittering reflections across the empty hall.' }
+            { name: 'banquet table', description: 'A long, elegant table stretches across the room, adorned with lavish plates and silverware, as though a grand feast was prepared for guests who never arrived. The dishes are piled high with sumptuous food that has not decayed, giving off an unsettling aroma of both richness and decay, like a promise unfulfilled.' },
+            { name: 'chandeliers', description: 'Above, grand chandeliers hang from the ceiling, their crystal pendants catching the candlelight, casting glittering reflections across the empty hall. Each flicker of light seems to whisper secrets of the past, and the soft creaking of the wood beneath your feet echoes the weight of lost celebrations.' },
+            { name: 'candelabras', description: 'Several ornate candelabras stand sentinel along the table, their waxen forms twisted in grotesque shapes. The candles flicker as if breathing, casting dancing shadows that stretch and retract, as though the hall itself is alive with memories of laughter and mirth.' }
         ],
         impassable: false,
-        startMessage: 'You awaken at the head of a vast banquet table, its plates gleaming with an eerie perfection. Though the hall is set for a grand feast, no one is here, and the silence presses in, as if time itself has stopped in anticipation of your next move.'
+        startMessage: 'You awaken at the head of a vast banquet table, its plates gleaming with an eerie perfection. Though the hall is set for a grand feast, no one is here, and the silence presses in, as if time itself has stopped in anticipation of your next move. A chill runs down your spine, and the faint sound of distant laughter echoes, or perhaps it’s just your imagination...'
     },
     {
         name: "Tomb of Whispers",
@@ -288,60 +326,92 @@ export const descriptions = [
         description: 'The forge-like chamber is sweltering, the heat from the nearby fire making the air shimmer. The constant clang of metal striking metal echoes through the room, and the smell of molten steel and sweat hangs thick in the air. Sparks fly in the dim light, creating a harsh, relentless rhythm.',
         contents: [
             { name: 'anvil', description: 'At the center of the room, a blackened anvil bears the scars of countless hammer blows, its surface glowing faintly from the nearby forge’s heat.' },
-            { name: 'tools', description: 'Hammers, tongs, and other smithing tools lie scattered across a workbench, worn and battered, their handles slick with sweat and grime from years of use.' }
+            { name: 'tools', description: 'Hammers, tongs, and other smithing tools lie scattered across a workbench, worn and battered, their handles slick with sweat and grime from years of use.',
+                interactive: true,
+                action: (player) => {
+                    player.message('You sift through the tools on the workbench, the metal cool and heavy in your hands. Among the worn hammers and tongs, you find a gleaming Forgemaster\'s Hammer, its weight comforting in your grip.');
+                    let ForgemastersHammer = new Item("Forgemaster's Hammer", { type: "attack", value: 40 },"This hammer knows how to do it's job. All you have to do is hold it.")
+                    player.addItem( ForgemastersHammer);
+                ;
+                },
+                buttonText: "Look through the tools."
+            },
+             
         ],
         impassable: false,
         startMessage: 'You awaken to the oppressive heat of a forge-like chamber, the clang of metal on metal reverberating through your body. The smell of molten steel fills your lungs as you realize the relentless toil of this place never ceases. Here, the work of creation and destruction continues endlessly.'
     },
     {
         name: "The Timekeeper's Anomaly",
-        description: 'The room is filled with clocks of all sizes, their incessant ticking filling the air. Yet, something feels wrong—time itself seems to be unraveling, the hands of the clocks moving in erratic, unpredictable patterns. The air hums with an unsettling energy, as if the very fabric of time is in flux.',
+        description: 'The room is a kaleidoscope of clocks, each an intricate masterpiece, their incessant ticking creating a symphony of chaotic rhythms. Yet, something feels profoundly unsettling—time itself seems to be unraveling. The hands of the clocks twist and turn in erratic, unpredictable patterns, dancing to a rhythm only they can hear. The air vibrates with a strange energy, as if the very fabric of time is being pulled taut and frayed at the edges, a tangible reminder of its fleeting nature. Shadows flicker across the walls, elongating and contracting in a disturbing mimicry of the passage of time.',
         contents: [
-            { name: 'clocks', description: 'The room is filled with clocks of all shapes and sizes, each ticking at its own erratic pace. Some hands move backward, while others spin wildly, defying any sense of normalcy.' },
-            { name: 'hourglasses', description: 'Several hourglasses sit on shelves, but the sands within them do not flow smoothly. Instead, they hover in mid-air, as if unsure whether to fall or rise.' }
+            {
+                name: 'clocks',
+                description: 'The room is an eclectic collection of clocks, each ticking at its own erratic pace. Some hands move backward in defiance of logic, while others spin wildly as if caught in a temporal whirlpool. The faces of the clocks are adorned with strange symbols and cryptic inscriptions, hinting at forgotten lore and mysteries waiting to be unraveled.'
+            },
+            {
+                name: 'hourglasses',
+                description: 'Several hourglasses sit precariously on dusty shelves, their glass casings reflecting the dim light. However, the sands within them refuse to flow smoothly; they hover in mid-air, caught in a surreal limbo as if uncertain whether to fall or rise. The grains shimmer with an otherworldly glow, suggesting that they might hold secrets of time itself, their motions defying the laws of nature.'
+            },
+            {
+                name: 'timekeeper\'s journal',
+                description: 'Tucked away in a corner is a tattered journal, its pages filled with frantic scribbles and sketches of clocks. The ink appears to shimmer and change, revealing different messages upon closer inspection. It speaks of a timekeeper who lost control over time, warning of the consequences of meddling with the fabric of reality. Reading it sends shivers down your spine, as if the words themselves are alive with energy.'
+            },
+            {
+                name: 'a broken clock',
+                description: 'In the center of the room stands a grand clock, its once-majestic exterior now cracked and weathered. The pendulum swings wildly, but the clock face remains blank, a haunting reminder of a time long lost. You can almost hear the whispers of the past emanating from it, tales of those who dared to challenge time and paid the price.'
+            }
         ],
         impassable: false,
-        startMessage: 'You awaken to the sound of relentless ticking, the room around you filled with clocks that defy the natural flow of time. The air hums with a strange energy, and with each glance at the clocks, you feel as though time itself is slipping away, unraveling at the seams.'
+        startMessage: 'You awaken to the sound of relentless ticking, the room around you a disorienting maze of clocks that defy the natural flow of time. The air hums with a strange energy, and with each glance at the clocks, you feel as though time itself is slipping away, unraveling at the seams. As you take your first step, the world feels strangely fluid, with each second stretching into infinity and collapsing into nothingness at the same time.'
     },
-
     {
         "name": "The Alchemist's Refuge",
         "description": "A dimly lit laboratory stretches out before you, cluttered with glass vials and strange apparatus. The pungent scent of chemicals hangs thick in the air, a reminder of dangerous experiments that might have once taken place here—perhaps long abandoned. Bubbling liquids and crackling energy fill the room with an unsettling energy, as shadows flicker along the walls, hinting at the arcane secrets this place once held. You can feel the weight of forgotten knowledge in the atmosphere, and an uneasy sensation creeps up your spine, as if something is lurking, waiting to be discovered.",
         "startMessage": "You awaken in this eerie laboratory, confusion clouding your mind as the flickering lights above cast unsettling shadows. A sense of dread settles in as you grasp the reality of your surroundings; the faint scent of chemicals clings to you, igniting an instinctual alarm. As you collect your thoughts, you realize you are not alone in your predicament—something here stirs, echoing with the memories of its former occupant.",
         "impassable": false,
         "contents": [
-            { 
-                "name": "vials", 
-                "description": "Rows of glass vials line the counters, each filled with bubbling, colorful liquids that emit an acrid, chemical scent. Some vials hiss and pop with strange reactions, creating an atmosphere that is both fascinating and terrifying, as if the very air hums with the potential for danger." 
+            {
+                "name": "vials",
+                "description": "Rows of glass vials line the counters, each filled with bubbling, colorful liquids that emit an acrid, chemical scent. Some vials hiss and pop with strange reactions, creating an atmosphere that is both fascinating and terrifying, as if the very air hums with the potential for danger."
             },
-            { 
-                "name": "apparatus", 
-                "description": "Bizarre metal contraptions and coiled wires crisscross the room, sparking with residual energy. They hum faintly, suggesting they still possess power from forgotten experiments, their presence whispering secrets of their creators and the hubris that led to their downfall." 
+            {
+                "name": "apparatus",
+                "description": "Bizarre metal contraptions and coiled wires crisscross the room, sparking with residual energy. They hum faintly, suggesting they still possess power from forgotten experiments, their presence whispering secrets of their creators and the hubris that led to their downfall."
             },
-            { 
-                "name": "notebook", 
-                "description": "An open notebook rests nearby, filled with frantic scribbles and intricate diagrams. The ink is smudged and faded, but you can make out desperate notes about a failed experiment and its catastrophic results, a chilling testament to the dangers that lurk in the pursuit of knowledge." 
+            {
+                "name": "notebook",
+                "description": "An open notebook rests nearby, filled with frantic scribbles and intricate diagrams. The ink is smudged and faded, but you can make out desperate notes about a failed experiment and its catastrophic results, a chilling testament to the dangers that lurk in the pursuit of knowledge."
             },
-            { 
-                "name": "broken glassware", 
-                "description": "Shattered glassware litters the floor, remnants of experiments gone awry. The jagged shards glint in the dim light, creating a dangerous terrain that reflects the chaos of the lab's past." 
+            {
+                "name": "broken glassware",
+                "description": "Shattered glassware litters the floor, remnants of experiments gone awry. The jagged shards glint in the dim light, creating a dangerous terrain that reflects the chaos of the lab's past."
             },
-            { 
-                "name": "flickering candles", 
-                "description": "A few flickering candles struggle against the darkness, casting an uneven glow over the room. Their wax drips down in thick rivulets, a stark contrast to the sterile environment of the laboratory." 
+            {
+                "name": "flickering candles",
+                "description": "A few flickering candles struggle against the darkness, casting an uneven glow over the room. Their wax drips down in thick rivulets, a stark contrast to the sterile environment of the laboratory."
             }
         ]
-    },    
+    },
     {
         name: "The Melancholy Chamber",
         description: 'A music room with a grand piano sits at its center, though no one plays, the keys sometimes striking themselves in eerie, discordant notes. The haunting melody lingers in the air, filling the room with a sense of melancholy. Dust dances in the dim light, and the walls seem to absorb the music, creating a somber echo that resonates with lost memories. As you move closer, an unsettling feeling washes over you, as if the very essence of sorrow is woven into the fabric of this place.',
         startMessage: 'You awaken in a haunting music room, the ghostly sounds of the piano filling your ears. Confusion grips you as you struggle to comprehend how you arrived here, surrounded by an eerie silence broken only by the discordant notes. The air is thick with an unshakable sadness, as if the room itself mourns the melodies of the past.',
         impassable: false,
         contents: [
-            { name: 'grand piano', description: 'A grand piano sits at the room’s center, its keys yellowed with age. Every so often, a note strikes itself, filling the air with an unsettling, discordant melody that echoes your unease.' },
+            { name: 'grand piano', description: 'A grand piano sits at the room’s center, its keys yellowed with age. Every so often, a note strikes itself, filling the air with an unsettling, discordant melody that echoes your unease.',
+                interactive: true,
+                action: (player) => {
+                    player.message('You approach the grand piano, the keys striking themselves in a haunting, melancholy tune. As you listen, a sense of sorrow washes over you, the music resonating with a deep, unspoken grief that seems to seep into your very soul.');
+                    player.message(`<div class="piano-container"></div>
+    <script src="piano.js"></script>`)
+                },
+                buttonText: 'Approach the piano.'
+             },
             { name: 'sheet music', description: 'A crumpled piece of sheet music rests on the piano, the notes faded and smudged, but just legible enough to see that the melody was once beautiful, though now it is haunting. The remnants of the song evoke a bittersweet nostalgia, hinting at tales untold.' },
             { name: 'music box', description: 'A small, ornate music box sits on a nearby shelf, its lid slightly ajar. The delicate carvings are worn, and you feel compelled to wind it, despite the strange sensation that accompanies it.' }
-        ]
+        ],
+        roomType: 'music'
     },
     {
         name: "The Cellar of Shadows",
@@ -349,17 +419,17 @@ export const descriptions = [
         startMessage: "You awaken in a damp cellar, confusion enveloping you like the chill in the air. The distant sound of shifting shadows sends a shiver down your spine as you try to piece together how you ended up here. The oppressive scent of aged wine and something far more sinister fills your lungs, igniting an instinctual urge to flee. The flickering torchlight reveals glimpses of your surroundings, but it only deepens your sense of dread as the shadows loom larger.",
         impassable: false,
         contents: [
-            { 
-                name: 'wine barrels', 
-                description: 'Tall wooden barrels are stacked against the damp stone walls, their surfaces slick with moisture. The scent of aged wine mingles with the musty, sour odor of something that has been forgotten for far too long. You can hear liquid sloshing within, as if the barrels themselves hold tales of revelry and despair, whispering secrets of long-past gatherings.' 
+            {
+                name: 'wine barrels',
+                description: 'Tall wooden barrels are stacked against the damp stone walls, their surfaces slick with moisture. The scent of aged wine mingles with the musty, sour odor of something that has been forgotten for far too long. You can hear liquid sloshing within, as if the barrels themselves hold tales of revelry and despair, whispering secrets of long-past gatherings.'
             },
-            { 
-                name: 'dark corner', 
-                description: 'In one corner, shadows gather thickly, almost sentient in their density. The faint sound of something moving just out of sight sends a shiver down your spine, making you acutely aware that the cellar hides more than just wine. A glint of metal catches your eye, hinting at objects long lost, perhaps the remnants of someone else’s misfortune.' 
+            {
+                name: 'dark corner',
+                description: 'In one corner, shadows gather thickly, almost sentient in their density. The faint sound of something moving just out of sight sends a shiver down your spine, making you acutely aware that the cellar hides more than just wine. A glint of metal catches your eye, hinting at objects long lost, perhaps the remnants of someone else’s misfortune.'
             },
-            { 
-                name: 'rusty key', 
-                description: 'Half-buried in the muck, a rusty key lies hidden, its purpose long forgotten. The key is heavy in your hand, and you can’t help but wonder what it might unlock and who once wielded it with intent. It feels like a relic of lost hope, a reminder that not all who enter this place find their way out.' 
+            {
+                name: 'rusty key',
+                description: 'Half-buried in the muck, a rusty key lies hidden, its purpose long forgotten. The key is heavy in your hand, and you can’t help but wonder what it might unlock and who once wielded it with intent. It feels like a relic of lost hope, a reminder that not all who enter this place find their way out.'
             },
             {
                 name: 'skeleton remains',
@@ -370,7 +440,7 @@ export const descriptions = [
                 description: 'A single torch flickers on the wall, casting erratic shadows that seem to dance with a life of their own. Its light struggles against the darkness, illuminating just enough to reveal the damp stone walls and the oppressive atmosphere, while leaving much hidden in the corners.'
             }
         ]
-    },    
+    },
     {
         name: "The Celestial Observatory",
         description: 'A grand, domed observatory welcomes you, dominated by a massive telescope aimed at the stars, though the sky outside seems unusually dark. Dust has settled over everything, and the silence is broken only by the faint creak of the telescope swiveling, though no one touches it. Ancient machinery lies dormant, and the air is thick with the weight of countless secrets gazed upon in solitude. As you step forward, an eerie sensation washes over you, as if the universe itself is watching.',
@@ -403,7 +473,7 @@ export const descriptions = [
             { name: "pool", description: "In the center of the cave, a small pool of water reflects the shimmering gems above, creating an ethereal mirror that ripples gently. The water is crystal clear, but the reflections distort as if something stirs just beneath the surface. You can’t help but wonder what lies beneath the stillness, and if the pool has seen the passage of time or witnessed ancient rituals long forgotten." },
             { name: "stone tablet", description: "A weathered stone tablet rests against the wall, its surface etched with cryptic runes that glow faintly in the dim light. The language is foreign, but a sense of urgency emanates from it, as if it contains warnings of great importance. The tablet feels warm to the touch, almost as if it is resonating with the energy of the cavern itself, urging you to decipher its message." }
         ]
-    },    
+    },
     {
         name: 'The Forgotten Ballroom',
         description: 'A dilapidated ballroom greets you with its decaying grandeur; chandeliers hang precariously, their crystals dulled by years of neglect, while tattered curtains sway like ghosts in the dim light. The faint sound of forgotten music lingers, resonating with a melancholic nostalgia that hints at the vibrant celebrations that once filled this space. As you stand amidst the ruin, a strange sense of dislocation washes over you, as though you have awakened in someone else’s memory.',
@@ -432,28 +502,28 @@ export const descriptions = [
         startMessage: "You awaken in a serene sanctuary, feeling the weight of your disorientation gradually lift as the gentle ambiance envelops you. Here, it seems as though the world outside has forgotten your existence, offering a moment of refuge from the unknown that lies beyond. The soft illumination soothes your spirit, and you can’t help but feel an inexplicable connection to this tranquil haven.",
         impassable: false,
         contents: [
-            { 
-                name: "glowing orbs", 
-                description: "Small orbs of soft, golden light float lazily in the air, their warmth radiating a sense of peace that is almost palpable. They shimmer gently, casting playful shadows on the walls and seem to move with a slow, deliberate grace, inviting you to follow their ethereal dance. Occasionally, they pulse softly, as if responding to your presence, creating a mesmerizing spectacle of luminescence." 
+            {
+                name: "glowing orbs",
+                description: "Small orbs of soft, golden light float lazily in the air, their warmth radiating a sense of peace that is almost palpable. They shimmer gently, casting playful shadows on the walls and seem to move with a slow, deliberate grace, inviting you to follow their ethereal dance. Occasionally, they pulse softly, as if responding to your presence, creating a mesmerizing spectacle of luminescence."
             },
-            { 
-                name: "silk cushions", 
-                description: "Silken cushions are strewn across the floor, inviting you to sit and relax. Their colors are rich and deep, blending harmoniously with the serene atmosphere of the room—vibrant shades of emerald, sapphire, and amethyst promise comfort and solace. As you sink into one, the cushions cradle you gently, providing a sense of weightlessness and calm, making it easy to forget the outside world." 
+            {
+                name: "silk cushions",
+                description: "Silken cushions are strewn across the floor, inviting you to sit and relax. Their colors are rich and deep, blending harmoniously with the serene atmosphere of the room—vibrant shades of emerald, sapphire, and amethyst promise comfort and solace. As you sink into one, the cushions cradle you gently, providing a sense of weightlessness and calm, making it easy to forget the outside world."
             },
-            { 
-                name: "fountain of light", 
-                description: "In the center, a small fountain bubbles softly, but instead of water, it flows with glowing liquid light. This luminous stream dances gracefully, casting rippling reflections across the room. Its soothing sound complements the tranquility of the space, creating a melody of peace that resonates in your soul, each drop a note in a harmonious symphony. Delicate petals from nearby blossoms float on the surface, adding to the enchanting visual display." 
+            {
+                name: "fountain of light",
+                description: "In the center, a small fountain bubbles softly, but instead of water, it flows with glowing liquid light. This luminous stream dances gracefully, casting rippling reflections across the room. Its soothing sound complements the tranquility of the space, creating a melody of peace that resonates in your soul, each drop a note in a harmonious symphony. Delicate petals from nearby blossoms float on the surface, adding to the enchanting visual display."
             },
-            { 
-                name: "delicate chimes", 
-                description: "Hanging from the ceiling, delicate wind chimes made of crystal catch the soft light and tinkle gently in the slightest breeze. Their notes are clear and pure, adding a melodic undertone to the serenity of the sanctuary, enhancing the otherworldly atmosphere and reminding you of the beauty found in simplicity." 
+            {
+                name: "delicate chimes",
+                description: "Hanging from the ceiling, delicate wind chimes made of crystal catch the soft light and tinkle gently in the slightest breeze. Their notes are clear and pure, adding a melodic undertone to the serenity of the sanctuary, enhancing the otherworldly atmosphere and reminding you of the beauty found in simplicity."
             },
-            { 
-                name: "lush greenery", 
-                description: "Potted plants and vines drape gracefully around the edges of the sanctuary, their leaves a vibrant green that adds life to the tranquil space. The gentle rustle of foliage creates a soft whisper, a reminder that nature is ever-present, offering a connection to the outside world without the chaos." 
+            {
+                name: "lush greenery",
+                description: "Potted plants and vines drape gracefully around the edges of the sanctuary, their leaves a vibrant green that adds life to the tranquil space. The gentle rustle of foliage creates a soft whisper, a reminder that nature is ever-present, offering a connection to the outside world without the chaos."
             }
         ]
-    },    
+    },
     {
         name: 'The Glowing Garden',
         description: 'You step into a vast underground cavern lit by bioluminescent fungi, their soft glow casting eerie shadows on the stone walls. The air is cool and damp, with the faint luminescence creating a dreamlike atmosphere, as if the cavern belongs to another world untouched by time. The distant sound of dripping water echoes, drawing your attention to the mysteries hidden in the darkness.',
@@ -504,37 +574,50 @@ export const descriptions = [
         startMessage: 'Awakening in this crystalline realm, you are struck by the breathtaking beauty that envelops you. The melodic hum reverberates in your chest, urging you to explore the hidden depths of this magical place. Vivid colors swirl and flicker in your peripheral vision, drawing your gaze to the intricate patterns formed by the light. Each crystal seems to whisper secrets untold, promising revelations that lie beyond your current understanding. You feel a sense of both wonder and trepidation, as if the very essence of the cavern is aware of your presence and eager to reveal its mysteries.',
         impassable: false,
         contents: [
-            { 
-                name: 'crystals', 
-                description: 'The walls are lined with shimmering crystals, ranging from deep azure to vibrant magenta. Their smooth, reflective surfaces catch the light and scatter it throughout the cavern, creating a breathtaking display of color and brilliance. Each crystal emits a soft, melodic hum that resonates in harmony with the other stones, forming a symphony of light and sound that enchants your very soul. The larger crystals stand majestically, resembling ancient sentinels that have guarded this place for millennia, while smaller ones twinkle like stars, waiting to be discovered.' 
+            {
+                name: 'crystals',
+                description: 'The walls are lined with shimmering crystals, ranging from deep azure to vibrant magenta. Their smooth, reflective surfaces catch the light and scatter it throughout the cavern, creating a breathtaking display of color and brilliance. Each crystal emits a soft, melodic hum that resonates in harmony with the other stones, forming a symphony of light and sound that enchants your very soul. The larger crystals stand majestically, resembling ancient sentinels that have guarded this place for millennia, while smaller ones twinkle like stars, waiting to be discovered.'
             },
-            { 
-                name: 'crystal shards', 
-                description: 'Sharp shards of crystal litter the floor, each one catching the light in a dazzling array of colors. They seem delicate yet powerful, their sharp edges reflecting light in unpredictable patterns. As you navigate through them, you can feel a faint vibration in the air, a pulse of energy that hints at the immense potential they hold. Tread carefully, for while their beauty is alluring, the shards are jagged and can easily cut the unwary traveler. Rumor has it that these shards can be harnessed for magical purposes, making them both a treasure and a danger.' 
+            {
+                name: 'crystal shards',
+                description: 'Sharp shards of crystal litter the floor, each one catching the light in a dazzling array of colors. They seem delicate yet powerful, their sharp edges reflecting light in unpredictable patterns. As you navigate through them, you can feel a faint vibration in the air, a pulse of energy that hints at the immense potential they hold. Tread carefully, for while their beauty is alluring, the shards are jagged and can easily cut the unwary traveler. Rumor has it that these shards can be harnessed for magical purposes, making them both a treasure and a danger.'
             },
-            { 
-                name: 'pulsating veins', 
-                description: 'Veins of radiant energy snake through the cavern walls, glowing faintly beneath the layer of crystals. They pulse rhythmically, reminiscent of a heartbeat, as though the entire cave is alive with some hidden power. The glow shifts in intensity, creating a mesmerizing effect that captivates your attention. As you approach, you can almost hear a low thrum that harmonizes with the melodic hum of the crystals, adding an eerie yet alluring atmosphere to your surroundings. Some believe these veins are remnants of an ancient magic, a force that imbues the cavern with its enchanting properties.' 
+            {
+                name: 'pulsating veins',
+                description: 'Veins of radiant energy snake through the cavern walls, glowing faintly beneath the layer of crystals. They pulse rhythmically, reminiscent of a heartbeat, as though the entire cave is alive with some hidden power. The glow shifts in intensity, creating a mesmerizing effect that captivates your attention. As you approach, you can almost hear a low thrum that harmonizes with the melodic hum of the crystals, adding an eerie yet alluring atmosphere to your surroundings. Some believe these veins are remnants of an ancient magic, a force that imbues the cavern with its enchanting properties.'
             },
-            { 
-                name: 'hidden alcoves', 
-                description: 'Scattered throughout the cavern are small alcoves, each one draped with delicate crystal formations. These secluded spaces provide a sense of tranquility amidst the vibrant chaos of color and sound. Upon closer inspection, you notice faint inscriptions carved into the stone, hinting at a forgotten civilization that once revered this place. Exploring these alcoves may yield forgotten treasures or ancient knowledge waiting to be uncovered, inviting adventurers to delve into the history etched in the very stone around them.' 
+            {
+                name: 'hidden alcoves',
+                description: 'Scattered throughout the cavern are small alcoves, each one draped with delicate crystal formations. These secluded spaces provide a sense of tranquility amidst the vibrant chaos of color and sound. Upon closer inspection, you notice faint inscriptions carved into the stone, hinting at a forgotten civilization that once revered this place. Exploring these alcoves may yield forgotten treasures or ancient knowledge waiting to be uncovered, inviting adventurers to delve into the history etched in the very stone around them.'
             },
-            { 
-                name: 'illuminated pools', 
-                description: 'At the far end of the cavern, you discover shallow pools of water that glimmer like liquid glass. The surface of each pool reflects the colorful light from the surrounding crystals, creating a surreal effect. It is said that these waters possess healing properties, capable of rejuvenating those who drink from them. However, caution is advised, for the depths may conceal unseen dangers lurking beneath the surface, ready to ensnare the unwary.' 
+            {
+                name: 'illuminated pools',
+                description: 'At the far end of the cavern, you discover shallow pools of water that glimmer like liquid glass. The surface of each pool reflects the colorful light from the surrounding crystals, creating a surreal effect. It is said that these waters possess healing properties, capable of rejuvenating those who drink from them. However, caution is advised, for the depths may conceal unseen dangers lurking beneath the surface, ready to ensnare the unwary.'
             }
         ]
-    },    
+    },
     {
         name: "The Verdant Sanctuary",
         description: 'You find yourself in a lush jungle room where vibrant vines cascade from every surface, and the air is thick with the scent of damp earth and exotic plants. The distant calls of unseen animals fill the atmosphere with a sense of wildness and untamed beauty, making you feel both curious and cautious.',
         startMessage: 'Awakening in this verdant paradise, you are enveloped by the vibrant colors and rich scents that ignite your senses. The sounds of the jungle echo around you, filling the air with an intoxicating symphony of life that beckons you to explore its depths.',
         impassable: false,
         contents: [
-            { name: 'vines', description: 'Thick, green vines hang from the ceiling and walls, some so long they drape across the floor. Their leaves are large and waxy, damp with condensation, creating a lush canopy that sways gently with the air currents.' },
-            { name: 'exotic flowers', description: 'Brightly colored flowers of various shapes and sizes bloom in every corner, their petals wide and vibrant. The air is thick with their heady scent, intoxicating and overwhelming, a testament to the wild beauty of this hidden paradise.' },
-            { name: 'animal calls', description: 'From deep within the jungle-like room, you hear the faint, distant calls of animals, though none are visible. The sounds make the room feel alive yet untamed, as if you are an intruder in a world that thrives in secrecy.' }
+            {
+                name: 'vines',
+                description: 'Thick, green vines hang from the ceiling and walls, some so long they drape across the floor. Their leaves are large and waxy, damp with condensation, creating a lush canopy that sways gently with the air currents.'
+            },
+            {
+                name: 'exotic flowers',
+                description: 'Brightly colored flowers of various shapes and sizes bloom in every corner, their petals wide and vibrant. The air is thick with their heady scent, intoxicating and overwhelming, a testament to the wild beauty of this hidden paradise.'
+            },
+            {
+                name: 'animal calls',
+                description: 'From deep within the jungle-like room, you hear the faint, distant calls of animals, though none are visible. The sounds make the room feel alive yet untamed, as if you are an intruder in a world that thrives in secrecy.'
+            },
+            {
+                name: 'ancient stone ruins',
+                description: 'Partially hidden by the foliage, crumbling stone structures are interwoven with vines and moss. These ruins suggest that this jungle may not always have been untouched by civilization, though nature has long since reclaimed it.'
+            }
         ]
     },
     {
@@ -543,36 +626,46 @@ export const descriptions = [
         "startMessage": "Awakening in this vast amphitheater, you are struck by the stillness that envelops you. The air feels charged with anticipation, as if the very walls are holding their breath, longing for the sounds of applause and the thrill of performance once more. You glance around, feeling the weight of countless eyes that once filled the seats, their laughter and gasps echoing faintly in your mind.",
         "impassable": false,
         "contents": [
-            { 
-                "name": "stone seats", 
-                "description": "The amphitheater’s stone seats are cracked and weathered, long abandoned by any audience. Dust has settled into the crevices, and though they are silent now, faint whispers of long-gone spectators seem to linger in the air, creating an atmosphere steeped in nostalgia and longing for the past." 
+            {
+                "name": "stone seats",
+                "description": "The amphitheater’s stone seats are cracked and weathered, long abandoned by any audience. Dust has settled into the crevices, and though they are silent now, faint whispers of long-gone spectators seem to linger in the air, creating an atmosphere steeped in nostalgia and longing for the past."
             },
-            { 
-                "name": "center stage", 
-                "description": "A large stage at the center remains untouched, as if frozen in time, awaiting the return of a performer. The wood creaks softly underfoot, and an old podium rests there, slightly off-kilter, a remnant of forgotten speeches and heartfelt performances. You can almost hear the echoes of dramatic monologues and musical notes hanging in the air." 
+            {
+                "name": "center stage",
+                "description": "A large stage at the center remains untouched, as if frozen in time, awaiting the return of a performer. The wood creaks softly underfoot, and an old podium rests there, slightly off-kilter, a remnant of forgotten speeches and heartfelt performances. You can almost hear the echoes of dramatic monologues and musical notes hanging in the air."
             },
-            { 
-                "name": "faded curtains", 
-                "description": "Heavy, faded curtains drape around the edges of the stage, their once-vibrant colors muted by time. They sway gently in an unseen breeze, as if inviting you to pull them back and reveal the stories hidden behind." 
+            {
+                "name": "faded curtains",
+                "description": "Heavy, faded curtains drape around the edges of the stage, their once-vibrant colors muted by time. They sway gently in an unseen breeze, as if inviting you to pull them back and reveal the stories hidden behind."
             },
-            { 
-                "name": "orchestral pit", 
-                "description": "In front of the stage, the empty orchestral pit sits like a hollow reminder of the music that once filled the theater. Dust-covered instruments lie abandoned, their notes forever silent, waiting for a conductor to return and breathe life into the melody." 
+            {
+                "name": "orchestral pit",
+                "description": "In front of the stage, the empty orchestral pit sits like a hollow reminder of the music that once filled the theater. Dust-covered instruments lie abandoned, their notes forever silent, waiting for a conductor to return and breathe life into the melody."
             },
-            { 
-                "name": "echoing whispers", 
-                "description": "The air seems to pulse with the faint echo of applause and laughter, remnants of performances long past. Each whisper carries a fragment of history, hinting at the stories that unfolded on this very stage." 
+            {
+                "name": "echoing whispers",
+                "description": "The air seems to pulse with the faint echo of applause and laughter, remnants of performances long past. Each whisper carries a fragment of history, hinting at the stories that unfolded on this very stage."
             }
         ]
-    },    
+    },
     {
         name: 'Glimmering Abyss',
         description: 'You find yourself in a room submerged in water up to your knees, with ripples forming with every step you take. Strange aquatic plants glow softly beneath the surface, illuminating the path ahead and creating an otherworldly ambiance.',
         startMessage: 'Awakening in this surreal watery realm, you feel the coolness of the water enveloping you. Each step sends shimmers dancing around your legs, and the faint glow of the plants beckons you forward, promising secrets hidden beneath the surface.',
         impassable: false,
         contents: [
-            { name: 'glowing aquatic plants', description: 'Under the surface of the knee-high water, strange, bioluminescent plants emit a soft glow, casting a ghostly light across the submerged floor, illuminating the path and revealing fleeting shadows in the depths.' },
-            { name: 'rippling water', description: 'Every step sends ripples through the clear water, distorting the reflections of the glowing plants and the room itself, making navigation feel disorienting and almost dreamlike.' }
+            {
+                name: 'glowing aquatic plants',
+                description: 'Under the surface of the knee-high water, strange, bioluminescent plants emit a soft glow, casting a ghostly light across the submerged floor, illuminating the path and revealing fleeting shadows in the depths.'
+            },
+            {
+                name: 'rippling water',
+                description: 'Every step sends ripples through the clear water, distorting the reflections of the glowing plants and the room itself, making navigation feel disorienting and almost dreamlike.'
+            },
+            {
+                name: 'submerged statues',
+                description: 'Barely visible beneath the shimmering surface, you can spot the outlines of statues long-sunken into the abyss, their features worn smooth by time and water. They seem to watch silently, guardians of the abyssal depths.'
+            }
         ]
     },
     {
@@ -591,9 +684,19 @@ export const descriptions = [
         startMessage: 'Awakening in this forsaken sanctuary, you are struck by the heavy silence that hangs in the air. The remnants of faith linger here, mingled with the whispers of the past, urging you to uncover the stories hidden within these crumbling walls.',
         impassable: false,
         contents: [
-            { name: 'broken pews', description: 'The pews, once places of reverence, are now splintered and scattered, their wood rotting and falling apart, whispering tales of forgotten worship and devotion.' },
-            { name: 'shattered stained glass', description: 'Shattered pieces of stained glass litter the floor, and moonlight streaming through the broken windows casts fragmented colors across the dusty stone, transforming the space into a kaleidoscope of lost glory and sorrow.' },
-            { name: 'Book of Lost Prayers', description: 'This ancient tome is filled with prayers and invocations once recited by the faithful. The pages are yellowed and brittle, inscribed with faded ink that seems to pulse with a lingering energy. Each prayer is a fragment of hope, but some carry a warning, hinting at the wrath that might befall those who dare to invoke the forgotten deities.' }
+            {
+                name: 'broken pews',
+                description: 'The pews, once places of reverence, are now splintered and scattered, their wood rotting and falling apart, whispering tales of forgotten worship and devotion.'
+            },
+            {
+                name: 'shattered stained glass',
+                description: 'Shattered pieces of stained glass litter the floor. Moonlight streaming through the broken windows casts fragmented colors across the dusty stone, transforming the space into a kaleidoscope of lost glory and sorrow.'
+            },
+            {
+                name: 'Book of Lost Prayers',
+                description: 'This ancient tome is filled with prayers and invocations once recited by the faithful. The pages are yellowed and brittle, inscribed with faded ink that seems to pulse with a lingering energy. Each prayer is a fragment of hope, but some carry a warning, hinting at the wrath that might befall those who dare to invoke the forgotten deities.',
+                excerpt: 'In the twilight of forsaken faith, we offer these words to the gods who have turned their gaze away. May they hear our plea, though our voices tremble in the silence. We seek the mercy of forgotten hands to lift the veil of despair that shrouds our world. But beware the utterance of names too long left unspoken, for to call upon them is to awaken what has been buried, and their wrath is as boundless as their neglect. Beware the shadows that linger in the corners of your vision, for they hunger for the light that you carry within. Offer your prayers with caution, lest you draw their attention and invite their wrath upon your soul.'
+            }
         ]
     },
     {
@@ -604,8 +707,8 @@ export const descriptions = [
         contents: [
             { name: 'falling snow', description: "Snowflakes descend slowly from the ceiling, glimmering faintly in the ambient light as if infused with magic. Each flake is unique, an intricate pattern formed in the frozen air before melting just above the floor or gently resting atop the snow. The steady fall gives the impression that the room is locked in an eternal winter." },
             { name: 'pristine white layer', description: 'The floor is a flawless expanse of undisturbed snow, its surface so smooth that it looks like a blank canvas. Only your footprints mar its perfection, their shape crisp and defined in the otherwise untouched landscape. Each step creates a soft crunch underfoot, the snow absorbing sound and adding to the hushed tranquility' },
-            { name: 'icicles', description: "Long, sharp icicles hang from the ceiling like jagged spears of glass. They shimmer in the light, each one appearing delicate yet deadly, their pointed ends threatening to drop at any moment. Some reach nearly to the floor, adding a sense of danger to the otherwise serene beauty of the room."},
-            { name: 'moonlit glow', description: "Though the source remains unseen, a soft, silvery light bathes the entire room, casting long shadows and illuminating the snow in a way that makes it glow faintly. It feels like walking beneath a full moon on a clear winter night, the light both calming and eerie, giving the space an ethereal quality."}
+            { name: 'icicles', description: "Long, sharp icicles hang from the ceiling like jagged spears of glass. They shimmer in the light, each one appearing delicate yet deadly, their pointed ends threatening to drop at any moment. Some reach nearly to the floor, adding a sense of danger to the otherwise serene beauty of the room." },
+            { name: 'moonlit glow', description: "Though the source remains unseen, a soft, silvery light bathes the entire room, casting long shadows and illuminating the snow in a way that makes it glow faintly. It feels like walking beneath a full moon on a clear winter night, the light both calming and eerie, giving the space an ethereal quality." }
         ]
     },
     {
@@ -622,14 +725,14 @@ export const descriptions = [
         name: "The Could-Have-Been Hall",
         description: 'You find yourself in a hall of mirrors, each reflecting distorted versions of yourself. The glass twists reality, and some reflections move in ways they shouldn’t, as though they have a life of their own. The air is thick with an oppressive silence, broken only by the occasional whisper of your own voice echoing back at you, warping into unintelligible murmurs. A sense of unease washes over you as you wonder how you ended up in this nightmarish space, filled with fragmented versions of yourself lurking in the reflections.',
         startMessage: 'As you awaken in this bizarre hall, a chill runs down your spine. Memories of a life before this moment are foggy, and you feel a strange pull to uncover the truth behind your sudden displacement. Each mirror seems to mock you, beckoning you to step closer and confront the shadows of your existence. The flickering lights overhead create a dance of shadows, amplifying the feeling that you are not alone in this twisted reality.',
-        impassable: true,
+        impassable: false,
         contents: [
             { name: 'distorted mirrors', description: 'The mirrors reflect warped versions of yourself, making your image twist and stretch in eerie, unnatural ways. Each reflection tells a different story, revealing the myriad paths your life could have taken.' },
             { name: 'moving reflections', description: 'Some reflections in the mirrors seem to move on their own, stepping in different directions, as if they exist independently of you. Their actions are unsettling, mirroring your own movements with a disturbing delay.' },
             { name: 'flickering lights', description: 'Small lights flicker between the mirrors, creating an unsettling ambiance that adds to the eerie atmosphere of the hall. Shadows dance across the walls, playing tricks on your mind and heightening your sense of paranoia.' },
             { name: 'shattered glass shards', description: 'Scattered shards of broken glass litter the floor, each reflecting a different glimpse of a distorted reality. Tread carefully; they might hold fragments of forgotten memories or serve as a reminder of paths that were never taken.' }
         ]
-    },    
+    },
     {
         name: "The Spore Sanctuary",
         description: 'You stumble into a room filled with oversized mushrooms and strange glowing plants. The atmosphere is humid, and the air is thick with spores, making it feel like stepping into another world entirely. The vibrant colors and otherworldly glow suggest that this place is alive, perhaps even sentient, watching your every move with a silent gaze.',
@@ -675,11 +778,6 @@ export const descriptions = [
             { name: 'towering bookshelves', description: 'The bookshelves stretch endlessly upward, filled with countless tomes that seem to whisper ancient knowledge. Dusty volumes, untouched for centuries, beckon with their hidden wisdom.' },
             { name: 'ancient books', description: 'The books themselves are worn with age, their spines cracked and faded. Each one seems older than the next, filled with forgotten lore that might just hold the answers to unspoken mysteries.' },
             { name: 'scent of parchment', description: 'The heavy scent of old parchment fills the air, a comforting yet musty smell that wraps around you like a cloak. It’s the unmistakable odor of knowledge left to age in silence.' },
-            { name: 'Codex of Celestial Patterns', description: 'This large, leather-bound volume contains intricate diagrams of the stars and their movements, claiming to reveal the secrets of fate to those who can interpret its pages. It is said that each reading will change the course of destiny itself.' },
-            { name: 'Tales of the Forgotten Gods', description: 'A beautifully illustrated collection of myths detailing the rise and fall of deities long lost to time. Each story is filled with lessons of power, betrayal, and the fleeting nature of immortality.' },
-            { name: 'The Art of Reality Weaving', description: 'This unusual tome teaches the lost art of manipulating the very fabric of reality through incantations and visualization. Those who dare to master it risk becoming architects of their own worlds, for better or worse.' },
-            { name: 'Whispers from Beyond the Veil', description: 'Bound in dark leather, this book is filled with eerie accounts of encounters with the spectral realm. Each tale serves as a chilling reminder of the thin barrier between the living and the dead.' },
-            { name: "The Alchemist's Compendium", description: 'A detailed guide to the art of alchemy, containing recipes for potions and transmutations. However, many of the entries are written in riddles, hinting at dark secrets and the price of knowledge.' }
         ],
         roomType: 'library',
     },
@@ -780,12 +878,8 @@ export const descriptions = [
             { name: 'ancient tomes', description: 'Rows of ancient tomes fill the shelves, their spines cracked and titles faded. Each one seems to hold secrets of forgotten worlds, waiting to be uncovered.' },
             { name: 'dusty scrolls', description: 'Scrolls lay scattered across the tables, covered in dust. They are filled with intricate writings and illustrations, remnants of knowledge long lost to time.' },
             { name: 'flickering candles', description: 'Candles flicker gently, casting a warm glow that creates a stark contrast to the cool air of the library. Their light dances across the pages, illuminating secrets as if beckoning you to read.' },
-            { name: 'The Celestial Codex', description: 'A beautifully bound book adorned with celestial illustrations, containing forbidden knowledge about the cosmos and ancient star maps, said to hold the key to interstellar travel.' },
-            { name: 'Whispers in the Dark', description: 'An eldritch horror novel, its pages filled with unsettling tales of beings from beyond the stars and the sanity-eroding truths of their existence. Reading it may awaken things best left undisturbed.' },
-            { name: 'The Last King of Aeloria', description: 'A high fantasy epic detailing the rise and fall of a once-great kingdom, filled with tales of knights, sorcery, and betrayal. It’s said that those who read it are cursed to relive its tragedies.' },
-            { name: 'Mechanisms of the Mind', description: 'A groundbreaking work of science fiction that explores the nature of consciousness and artificial intelligence, questioning what it truly means to be alive. Its theories are as captivating as they are terrifying.' },
-            { name: 'The Grimoire of Shadows', description: 'An ancient spellbook bound in worn leather, containing dark rituals and incantations. Its pages are filled with arcane symbols and warnings, hinting at the dangers of tampering with the unseen.' }
-        ]
+        ],
+        roomType: 'library'
     },
     {
         name: "Ad Memoriam",
@@ -859,25 +953,25 @@ export const descriptions = [
         startMessage: 'You awaken in the ruins, your heart racing as the howling wind pierces the silence. Confusion grips you, the echoes of past battles whispering in your ears, leaving you to question how you ended up in this desolate place. A sense of foreboding fills the air, as if the fortress itself holds secrets waiting to be uncovered. As you stand amidst the ruins, fleeting shadows flicker at the edges of your vision, remnants of the brave souls who once called this fortress home, urging you to discover the truth of their fate.',
         impassable: false,
         contents: [
-            { 
-                name: 'shattered walls', 
-                description: 'The fortress walls are crumbling, their stones strewn about like fallen soldiers. Vines creep through the cracks, reclaiming the structure for nature. Each jagged edge tells a story of a fierce defense against relentless invaders, and the remnants of arrows and broken weapons litter the ground, hinting at the desperation of the final battle.' 
+            {
+                name: 'shattered walls',
+                description: 'The fortress walls are crumbling, their stones strewn about like fallen soldiers. Vines creep through the cracks, reclaiming the structure for nature. Each jagged edge tells a story of a fierce defense against relentless invaders, and the remnants of arrows and broken weapons litter the ground, hinting at the desperation of the final battle.'
             },
-            { 
-                name: 'howling wind', 
-                description: 'The wind whistles through the broken windows, creating an eerie symphony of sound that echoes the fortress’s past glory and current ruin. It carries with it the distant cries of those who fought bravely, their voices forever intertwined with the gusts, as if warning you of the dangers that lurk in the shadows.' 
+            {
+                name: 'howling wind',
+                description: 'The wind whistles through the broken windows, creating an eerie symphony of sound that echoes the fortress’s past glory and current ruin. It carries with it the distant cries of those who fought bravely, their voices forever intertwined with the gusts, as if warning you of the dangers that lurk in the shadows.'
             },
-            { 
-                name: 'scent of decay', 
-                description: 'A musty smell fills the air, a blend of damp earth and rotting wood, reminding you that time has not been kind to this once-majestic stronghold. The aroma clings to the walls, a testament to the years of neglect and abandonment, as if the fortress itself mourns the loss of its defenders.' 
+            {
+                name: 'scent of decay',
+                description: 'A musty smell fills the air, a blend of damp earth and rotting wood, reminding you that time has not been kind to this once-majestic stronghold. The aroma clings to the walls, a testament to the years of neglect and abandonment, as if the fortress itself mourns the loss of its defenders.'
             },
-            { 
-                name: 'weathered banners', 
-                description: 'Faded banners hang limply from the remnants of the fortress, their once-vibrant colors now muted by time and weather. They bear the sigils of ancient houses, symbols of loyalty and valor that once inspired fear in the hearts of enemies. As the wind catches them, they flutter gently, whispering stories of glory and tragedy to those who dare to listen.' 
+            {
+                name: 'weathered banners',
+                description: 'Faded banners hang limply from the remnants of the fortress, their once-vibrant colors now muted by time and weather. They bear the sigils of ancient houses, symbols of loyalty and valor that once inspired fear in the hearts of enemies. As the wind catches them, they flutter gently, whispering stories of glory and tragedy to those who dare to listen.'
             },
-            { 
-                name: 'crumbling statues', 
-                description: 'Stone statues of legendary knights stand guard among the ruins, their features worn and eroded by the passage of time. Once proud protectors of the realm, they now seem to sag under the weight of their own history, their gazes fixed on the ground as if in mourning for their fallen comrades. Lichen and moss cling to their surfaces, blending nature and stone in a haunting display of beauty and decay.' 
+            {
+                name: 'crumbling statues',
+                description: 'Stone statues of legendary knights stand guard among the ruins, their features worn and eroded by the passage of time. Once proud protectors of the realm, they now seem to sag under the weight of their own history, their gazes fixed on the ground as if in mourning for their fallen comrades. Lichen and moss cling to their surfaces, blending nature and stone in a haunting display of beauty and decay.'
             }
         ]
     },
@@ -887,29 +981,29 @@ export const descriptions = [
         startMessage: 'You awaken in the aftermath of cataclysmic destruction, the air thick with ash and smoke. Through a shattered window, you see the planet below writhing in its death throes, the ground split apart and spewing molten rock. Confusion and dread grip you as the oppressive atmosphere presses down. Somewhere within this observatory, the purpose of the destruction below may still be found amidst the ruin.',
         impassable: false,
         contents: [
-            { 
-                name: 'shattered instruments', 
-                description: 'Once tools of discovery, these consoles are now little more than wreckage, their displays frozen on distorted readouts. They hum faintly, as if recalling the lost wisdom they once held.' 
+            {
+                name: 'shattered instruments',
+                description: 'Once tools of discovery, these consoles are now little more than wreckage, their displays frozen on distorted readouts. They hum faintly, as if recalling the lost wisdom they once held.'
             },
-            { 
-                name: 'planetary viewport', 
-                description: 'The enormous viewing window showcases the planet’s molten surface, riven with fiery cracks and blanketed by smoke. The heat feels almost palpable, radiating through the cracks in the glass.' 
+            {
+                name: 'planetary viewport',
+                description: 'The enormous viewing window showcases the planet’s molten surface, riven with fiery cracks and blanketed by smoke. The heat feels almost palpable, radiating through the cracks in the glass.'
             },
-            { 
-                name: 'cracked walls', 
-                description: 'The walls ooze a viscous liquid, pooling in dark corners of the room. They groan and pulse faintly, as if the building itself struggles against the catastrophe happening below.' 
+            {
+                name: 'cracked walls',
+                description: 'The walls ooze a viscous liquid, pooling in dark corners of the room. They groan and pulse faintly, as if the building itself struggles against the catastrophe happening below.'
             },
-            { 
-                name: 'void windows', 
-                description: 'Through these smaller windows, the expanse of space twinkles serenely, a beautiful contrast to the fiery destruction of the planet below. The stars seem impossibly distant, yet comforting in their silence.' 
+            {
+                name: 'void windows',
+                description: 'Through these smaller windows, the expanse of space twinkles serenely, a beautiful contrast to the fiery destruction of the planet below. The stars seem impossibly distant, yet comforting in their silence.'
             },
-            { 
-                name: 'ash-choked air', 
-                description: 'The atmosphere within is thick and acrid, filled with the smell of burning rock. Every breath is labored as ash drifts in through the cracks, coating the floor in a thin layer of dust.' 
+            {
+                name: 'ash-choked air',
+                description: 'The atmosphere within is thick and acrid, filled with the smell of burning rock. Every breath is labored as ash drifts in through the cracks, coating the floor in a thin layer of dust.'
             }
             //when done with room overhaul will have consoles you can interact with.
         ]
-    },    
+    },
     {
         name: "Glimmering Glade",
         description: 'You find yourself in a cave with walls lined by bioluminescent fungi, casting a soft blue glow. The sound of water dripping echoes through the stillness, and the air smells faintly of damp earth. The gentle light offers a surreal beauty, yet the isolation feels unnerving.',
@@ -960,24 +1054,24 @@ export const descriptions = [
         "startMessage": "As you awaken in this surreal environment, disorientation grips your senses. The sensation of weightlessness is exhilarating yet terrifying, making it hard to discern which way is up or down. Glimpses of forgotten technology and drifting relics remind you of a past that may have been lost to the cosmos, whispering secrets you cannot quite grasp. Each moment stretches out, the air thick with anticipation, and you can’t shake the feeling that something unseen is watching you from the shadows, ready to reveal the mysteries that lie hidden within this enigmatic space.",
         "impassable": false,
         "contents": [
-            { 
-                "name": "floating artifacts", 
-                "description": "Various objects drift lazily around the room, remnants of advanced technology from a civilization long gone. They shine with an otherworldly energy, each item radiating an aura of mystery and intrigue, their purposes lost to time." 
+            {
+                "name": "floating artifacts",
+                "description": "Various objects drift lazily around the room, remnants of advanced technology from a civilization long gone. They shine with an otherworldly energy, each item radiating an aura of mystery and intrigue, their purposes lost to time."
             },
-            { 
-                "name": "pulsating panels", 
-                "description": "The walls are covered in panels that pulse with a soft blue light, responding to your presence in an almost sentient manner. Their rhythmic glow suggests they may hold secrets waiting to be unlocked, beckoning you to investigate further." 
+            {
+                "name": "pulsating panels",
+                "description": "The walls are covered in panels that pulse with a soft blue light, responding to your presence in an almost sentient manner. Their rhythmic glow suggests they may hold secrets waiting to be unlocked, beckoning you to investigate further."
             },
-            { 
-                "name": "starfield viewport", 
-                "description": "A massive viewport offers a breathtaking view of the cosmos, revealing distant stars and swirling celestial bodies. It is a mesmerizing sight that fills you with awe, yet it also evokes an unsettling sense of isolation, as if you are adrift in an endless void." 
+            {
+                "name": "starfield viewport",
+                "description": "A massive viewport offers a breathtaking view of the cosmos, revealing distant stars and swirling celestial bodies. It is a mesmerizing sight that fills you with awe, yet it also evokes an unsettling sense of isolation, as if you are adrift in an endless void."
             },
-            { 
-                "name": "zero-gravity console", 
-                "description": "A console floats near the center, covered in strange symbols and markings that seem to pulse with energy. Its buttons shimmer invitingly, promising untold knowledge and potential dangers, tempting you to engage with the mysteries it guards." 
+            {
+                "name": "zero-gravity console",
+                "description": "A console floats near the center, covered in strange symbols and markings that seem to pulse with energy. Its buttons shimmer invitingly, promising untold knowledge and potential dangers, tempting you to engage with the mysteries it guards."
             }
         ]
-    },    
+    },
     {
         name: 'The Quantum Nexus',
         description: 'You enter a sprawling room filled with swirling energy patterns, vibrant and chaotic. Each step you take sends ripples through the air, distorting the space around you, as if you are walking through a dream. The walls are lined with shimmering screens displaying incomprehensible data, hinting at experiments that defy the very fabric of reality. Holographic projections flicker to life, showing glimpses of alternate dimensions and timelines. This is a place where the boundaries of science have been pushed beyond comprehension.',
@@ -1255,7 +1349,7 @@ export const impassableDescriptions = [
             { name: 'rippling surface', description: 'The surface of the water quivers as though disturbed by some unseen force beneath. It ripples outward in uneven patterns, suggesting movement far below, as if something waits in the dark, watching for anyone foolish enough to enter its domain.' },
             { name: 'dripping echoes', description: 'Water drips from the ceiling in slow, rhythmic drops, echoing loudly in the otherwise silent chamber. Each droplet splashes into the pool, disturbing the stillness, heightening the sense that you are not alone here.' }
         ]
-    },    
+    },
     {
         description: 'a chamber filled with rapidly shifting sand, sinking deeper the longer you stand, impossible to escape by foot. The sand swirls and shifts, as though alive, dragging anything caught in it to certain doom.',
         contents: [
@@ -1299,7 +1393,7 @@ export const impassableDescriptions = [
             { name: 'sharp barbs', description: 'The barbs lining the vines are long and jagged, their edges gleaming as they twitch in the air. It is said that these barbs are infused with the blood and essence of the dungeon\'s many victims, making each wound they inflict a painful reminder of those who perished before you.' },
             { name: 'creeping shadows', description: 'Shadows dance in the flickering light, moving unnervingly in tandem with the vines. Whether they are real or an illusion brought on by fear, it is impossible to tell. But they serve as a reminder: there is no easy way out of this deadly snare.' }
         ]
-    },    
+    },
     {
         description: 'a room with a whirlpool of black water spinning in the center, the pull too strong to resist. The water churns violently, and the air is filled with the roar of its deadly current.',
         contents: [
@@ -1335,7 +1429,7 @@ export const impassableDescriptions = [
                 "description": "Each move you make is fraught with peril. The risk of being flung against the walls or ceiling looms large, and the echoes of the lost resonate in the air, warning you of the deadly consequences that await the unwary."
             }
         ]
-    },    
+    },
     {
         description: 'a room filled with glowing, unstable crystals, crackling with dangerous energy that sparks across the floor. The crystals hum ominously, their light flickering like a warning of the danger they pose.',
         contents: [
@@ -1350,24 +1444,24 @@ export const impassableDescriptions = [
         startMessage: 'You awaken to an unnatural cold that grips your very soul. Around you, figures flicker like dying embers, filling the room with an oppressive presence. The whispers of countless souls brush against your ears, their sorrowful cries pleading for something lost, leaving you no doubt that this is a place of doom. Escape feels distant, and survival uncertain.',
         impassable: true,
         contents: [
-            { 
-                name: 'spectral beings', 
-                description: 'Ghostly figures hover and flicker with an eerie glow, their bodies transparent and shifting like mist. Their forms are broken and fragmented, remnants of souls long lost to time. They appear as shadows of their former selves, their faces twisted in expressions of torment and pain. Each one is a story of untimely death, drawn to this place as if by some invisible force, seeking vengeance on the living for the injustices they suffered in life.' 
+            {
+                name: 'spectral beings',
+                description: 'Ghostly figures hover and flicker with an eerie glow, their bodies transparent and shifting like mist. Their forms are broken and fragmented, remnants of souls long lost to time. They appear as shadows of their former selves, their faces twisted in expressions of torment and pain. Each one is a story of untimely death, drawn to this place as if by some invisible force, seeking vengeance on the living for the injustices they suffered in life.'
             },
-            { 
-                name: 'lethal touch', 
-                description: 'The spectral beings move with unnatural grace, but their presence is deadly. Their touch is like the cold hand of death itself, capable of draining the life from any living being with a mere brush. Legends tell of adventurers who ventured too close, only to have their life forces consumed by the swarm, their very souls torn from their bodies and absorbed into the spectral horde.' 
+            {
+                name: 'lethal touch',
+                description: 'The spectral beings move with unnatural grace, but their presence is deadly. Their touch is like the cold hand of death itself, capable of draining the life from any living being with a mere brush. Legends tell of adventurers who ventured too close, only to have their life forces consumed by the swarm, their very souls torn from their bodies and absorbed into the spectral horde.'
             },
-            { 
-                name: 'ghostly whispers', 
-                description: 'The air is thick with the eerie whispers of the spectral beings, a constant murmur of regret, sorrow, and betrayal. The voices are indistinct, but the emotions they carry are unmistakable—grief, anger, and a longing for revenge. The sound weaves through the room, gnawing at your mind, making it impossible to shake the feeling that these lost souls hold you responsible for their suffering.' 
+            {
+                name: 'ghostly whispers',
+                description: 'The air is thick with the eerie whispers of the spectral beings, a constant murmur of regret, sorrow, and betrayal. The voices are indistinct, but the emotions they carry are unmistakable—grief, anger, and a longing for revenge. The sound weaves through the room, gnawing at your mind, making it impossible to shake the feeling that these lost souls hold you responsible for their suffering.'
             },
-            { 
-                name: 'remnants of the fallen', 
-                description: 'Scattered across the cold stone floor are the remnants of those who came before, now nothing more than brittle bones and forgotten belongings. Their bodies have long since withered away, but their souls remain, forever trapped in this nightmarish cycle. Among the debris, the glint of tarnished metal catches your eye—a rusted sword, a cracked shield, once held by someone who thought they could survive this place.' 
+            {
+                name: 'remnants of the fallen',
+                description: 'Scattered across the cold stone floor are the remnants of those who came before, now nothing more than brittle bones and forgotten belongings. Their bodies have long since withered away, but their souls remain, forever trapped in this nightmarish cycle. Among the debris, the glint of tarnished metal catches your eye—a rusted sword, a cracked shield, once held by someone who thought they could survive this place.'
             }
         ]
-    },    
+    },
     {
         description: 'a room flooded with poisonous fumes, the air unbreathable, with no way to clear the suffocating gas. The fumes coil like living things, and even the faintest whiff would be enough to paralyze.',
         contents: [
@@ -1403,7 +1497,7 @@ export const impassableDescriptions = [
     {
         name: 'The Webbed Sanctum', // Added room name
         description: 'You stand in a room engulfed by webs thicker than ropes, stretching from wall to wall like the very fabric of nightmares. The air is stifling, heavy with an oppressive humidity that clings to your skin, making each breath feel like a struggle. In the dim light, the silken threads shimmer with an unsettling beauty, and the faint scuttle of unseen creatures skitters through the darkness, sending chills down your spine. Shadows dance along the walls, seemingly alive as if they are sentient manifestations of the room’s eerie presence. It is a space where time stands still, and the weight of countless souls lingers, forever ensnared in the web of fate.',
-        
+
         contents: [
             {
                 name: 'thick webs',
@@ -1427,7 +1521,7 @@ export const impassableDescriptions = [
             }
         ],
         impassable: true
-    },    
+    },
     {
         description: 'a room where lightning arcs continuously from wall to wall, crackling with deadly energy. The air is charged, and every step toward the center is met with an unbearable, buzzing heat.',
         contents: [
@@ -1503,7 +1597,7 @@ export const impassableDescriptions = [
             { name: 'crushing force', description: 'The weight of the chains threatens to crush anything caught beneath them, making every step feel like a gamble. It is said that many have met their end in this chamber, their remains lost to the echoes of time. You can almost hear their whispers, warning you of the peril that lies ahead.' },
             { name: 'rusted shackles', description: 'Scattered across the floor are rusted shackles, remnants of those who once endured the torment of this place. Their presence serves as a grim reminder of the dark past that lingers here, each one telling a story of pain and suffering.' }
         ]
-    },    
+    },
     {
         description: 'a room filled with thick, glowing mist that clings to everything, slowly draining the life from whatever it touches. The very air feels oppressive, and the mist pulses as if alive with intent.',
         contents: [
@@ -1599,7 +1693,7 @@ export const impassableDescriptions = [
             { name: "grinding metal sounds", description: "The noise is deafening, a chaotic symphony of grinding, clanking, and crashing that echoes ominously through the room. It feels as though the walls themselves tremble in response to the mechanical fury, amplifying the sense of urgency. Each sound sends vibrations through the ground, adding to the anxiety that grips you as you navigate this perilous space." },
             { name: "crushing danger", description: "The gears move with terrifying speed, a ballet of destruction that leaves no room for error. You can almost feel the rush of air as they turn, and the thought of being caught in their path sends a shiver down your spine. Those who linger too long may find themselves crushed beneath the unforgiving clockwork, a grim fate that serves as a warning to all who dare approach." }
         ]
-    },    
+    },
     {
         "name": "The Venomous Thicket",
         "description": "You find yourself in a foreboding chamber filled with venomous plants, their thorny vines thrashing about as if possessed by a malevolent spirit. The vibrant greens of the flora stand in stark contrast to the dim, flickering light that barely penetrates the dense undergrowth. Each plant seems to pulse with a sinister energy, ready to ensnare any intruder. The air is thick with a sweet, cloying scent that masks the danger lurking within, creating a deceptive atmosphere that beckons the unwary to draw closer. As you assess your surroundings, it becomes painfully clear that traversing this treacherous thicket is an impossibility; every movement sends a ripple of anticipation through the plants, poised to strike and ensnare anyone foolish enough to venture forward.",
@@ -1610,7 +1704,7 @@ export const impassableDescriptions = [
             { "name": "deadly scent", "description": "The air is saturated with a sickly sweet fragrance that hangs heavily, masking the plants' lethal properties. It draws the unsuspecting in, enticing them to venture closer to the dangerous flora." },
             { "name": "ready to strike", "description": "Every vine in this room acts as a potential weapon, coiling and uncurling with predatory intent. Those who underestimate these sentient plants may find themselves swiftly overwhelmed, ensnared by their relentless grasp." }
         ]
-    },    
+    },
     {
         description: 'a room where strange, otherworldly voices echo constantly, growing louder the closer you approach. The sound seems to invade your mind, making it impossible to think or move forward.',
         contents: [
@@ -1671,8 +1765,41 @@ export const impassableDescriptions = [
 
 ];
 
+
+export function getRandomInteractiveDescription() {
+    // Select a random index higher than 0 and less than descriptions.length
+    const index = Math.floor(Math.random() * (descriptions.length - 1)) + 1;
+
+    // Flip a coin to decide the direction (1 for forward, -1 for backward)
+    const coinFlip = Math.random() < 0.5;
+    const iterator = coinFlip ? 1 : -1;
+
+    // Define the start and end caps for iteration based on the direction
+    let i = index;
+
+    // Loop through the descriptions array based on the direction
+    while (i >= 0 && i < descriptions.length) {
+        if (descriptions[i].impassable) {
+            //check contents to see if any have interactive=true. if so, return that room
+            let interactiveContent = descriptions[i].contents.find(content => content.interactive === true);
+            if (interactiveContent) {
+                return descriptions[i];
+            }
+
+        }
+        i += iterator;
+    }
+
+    // If no impassable description is found, fallback to random recursive call
+    return getRandomInteractiveDescription(); // Ensure recursion has a return value
+}
+
+
+
+
 // 30% chance of a room being impassable
 export function getRandomDescription() {
+    
     const impassableChance = 0.3;
     const isImpassable = Math.random() < impassableChance;
     let room = {}
@@ -1682,20 +1809,20 @@ export function getRandomDescription() {
         room = getRandomPassableDescription();
     }
 
-    if(!room.roomType) {
+    if (!room.roomType) {
         return room
     }
     else {
-        switch(room.roomType){
+        switch (room.roomType) {
             case "library":
                 let books
-                room.name == "The Grand Databank" ? books = getRandomBooks(3) : books = getRandomBooks(6)
+                room.name == "The Grand Databank" ? books = getRandomBooks(5) : books = getRandomBooks(9)
                 room.contents = [...room.contents, ...books]
                 return room
-            break;
+                break;
             default:
                 return room
-            break;
+                break;
         }
     }
 

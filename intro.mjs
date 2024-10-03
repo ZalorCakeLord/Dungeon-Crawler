@@ -23,13 +23,13 @@ export async function intro(name="Jane Doe", gender='F', species='Human') {
     messages.push("Forced into this nightmarish abyss, you must fight your way through countless rooms, each more treacherous than the last, in search of a way out.");
     messages.push("Prepare yourself, for every step forward brings you closer to sinister enemies and unimaginable dangers.");
     messages.push("Your fate, perhaps your very soul, hangs in the balance. Good luck! Type 'help' for a list of commands.");
-    messages.push("Press any key to begin your desperate quest for freedom...");
+    //messages.push("Press any key to begin your desperate quest for freedom...");
 
     // Simulate waiting for user to "press any key"
     await wait(2); // You can adjust this to simulate pressing a key
 
     // Character creation narrative
-    messages.push("You are dreaming...");
+    messages.push('<hr class="decorative-line">');
     messages.push("Before you can take another step, you catch a glimpse of yourself in a cracked, dark mirror. But who are you really?");
     messages.push(`You are ${name}, a ${gender=="M"?"male":"female"} ${species}.`);
 
@@ -67,7 +67,7 @@ export async function intro(name="Jane Doe", gender='F', species='Human') {
     };
 
     species = species.charAt(0).toUpperCase() + species.slice(1).toLowerCase(); // Standardize input
-    console.log(species)
+    //console.log(species)
     // Display race-specific response or fallback
     if (raceResponses[species]) {
         messages.push(raceResponses[species]);
@@ -77,7 +77,7 @@ export async function intro(name="Jane Doe", gender='F', species='Human') {
 
     // Conclude the intro
     messages.push("Prepare yourself, adventurer. The dungeon awaits...");
-    messages.push(`<button id="start">Click Here</button>`)
+    messages.push(`<button id="start" class="btn-76">Start</button>`)
     return { name, gender, species, messages };
 }
 
